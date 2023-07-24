@@ -1,13 +1,17 @@
+import React from "react";
 import { type ReactNode } from "react";
 import Navbar from "../Navbar";
 import Head from "next/head";
 import SearchBox from "../SearchBox";
+import type { Suggestion } from "../SearchBox/types/SearchBoxTypes";
 
 type props = {
   children: ReactNode;
 };
 
 const Layout = ({ children, ...rest }: props) => {
+
+
   return (
     <>
       <Head>
@@ -16,8 +20,7 @@ const Layout = ({ children, ...rest }: props) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navbar {...rest} />
-      <SearchBox />
-      {children}
+      {children }
     </>
   );
 };

@@ -6,7 +6,7 @@ export default function Navbar() {
     <>
       <nav className="border-gray-200 bg-white dark:bg-gray-900">
         <div className="mx-auto flex max-w-screen-xl flex-wrap items-center justify-between p-4">
-          <a href="#" className="flex items-center">
+          <Link href={"/"} className="flex items-center">
             <Image
               width={40}
               height={40}
@@ -17,7 +17,7 @@ export default function Navbar() {
             <span className="self-center whitespace-nowrap text-2xl font-semibold dark:text-white">
               Home
             </span>
-          </a>
+          </Link>
           <div className="flex items-center md:order-2">
             <Link href={"/connexion"}>
               <button className="text-gray mr-4 rounded border border-gray-400 bg-white px-4 py-2 text-sm font-semibold shadow hover:bg-gray-100">
@@ -120,7 +120,7 @@ export default function Navbar() {
             <ul className="mt-4 flex flex-col rounded-lg border border-gray-100 bg-gray-50 p-4 font-medium dark:border-gray-700 dark:bg-gray-800 md:mt-0 md:flex-row md:space-x-8 md:border-0 md:bg-white md:p-0 md:dark:bg-gray-900">
               <li>
                 <Link
-                  href="#"
+                  href={"/"}
                   className="block rounded bg-blue-700 py-2 pl-3 pr-4 text-white md:bg-transparent md:p-0 md:text-blue-700 md:dark:text-blue-500"
                   aria-current="page"
                 >
@@ -129,10 +129,10 @@ export default function Navbar() {
               </li>
               <li>
                 <Link
-                  href="#"
+                  href={"/search"}
                   className="block rounded py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-blue-500"
                 >
-                  About
+                  Search
                 </Link>
               </li>
               <li>

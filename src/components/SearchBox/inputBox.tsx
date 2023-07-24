@@ -1,16 +1,5 @@
-import React, { ChangeEvent } from "react";
-
-interface Suggestion {
-  place_id: string;
-  display_name: string;
-}
-
-interface InputBoxProps {
-  placeholder: string;
-  value: string;
-  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
-  suggestions: Suggestion[];
-}
+import React from "react";
+import type { InputBoxProps } from "./types/SearchBoxTypes";
 
 const InputBox: React.FC<InputBoxProps> = ({
   placeholder,
@@ -18,6 +7,10 @@ const InputBox: React.FC<InputBoxProps> = ({
   onChange,
   suggestions,
 }) => {
+
+  console.log("suggestions")
+  console.log(suggestions)
+
   return (
     <>
       <input

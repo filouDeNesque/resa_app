@@ -13,7 +13,7 @@ export default function Home() {
       <>
         <Layout>
           <div className="flex items-center justify-center">
-            <MapNoSSR></MapNoSSR>
+            <h1>Home</h1>
           </div>
         </Layout>
       </>
