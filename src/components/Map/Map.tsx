@@ -3,22 +3,22 @@ import "leaflet/dist/leaflet.css";
 import "leaflet-defaulticon-compatibility";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
 import type {
-  ActionBoxProps,
+  MapProps,
   Suggestion,
 } from "../SearchBox/types/SearchBoxTypes";
 
-const map: React.FC<ActionBoxProps> = (suggestions) => {
+const map: React.FC<MapProps> = (suggestions) => {
   const map = {
     width: "100%",
-    height: "70vh",
+    height: "30em",
   };
 
   return (
     <MapContainer
-      className="mt-10 border-2 pt-2 h-full  "
+      className="sticky top-0"
       style={map}
-      center={[51.505, -0.09]}
-      zoom={6}
+      center={[47.505, 1.5]}
+      zoom={5}
       scrollWheelZoom={true}
     >
       <TileLayer

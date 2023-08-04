@@ -24,11 +24,6 @@ declare module "next-auth" {
       // role: UserRole;
     } & DefaultSession["user"];
   }
-
-  // interface User {
-  //   // ...other properties
-  //   // role: UserRole;
-  // }
 }
 
 /**
@@ -40,12 +35,7 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     session({ session, user }) {
       if (session.user) {
-        console.log("session");
-        console.log(session);
-        console.log(session.user.name);
-        console.log("user");
-        console.log(user);
-
+        session.user.id = user.id;
         // session.user.role = user.role; <-- put other properties on the session here
       }
       return session;
@@ -59,8 +49,8 @@ export const authOptions: NextAuthOptions = {
     }),
     GoogleProvider({
       clientId: env.GOOGLE_CLIENT_ID,
-      clientSecret: env.GOOGLE_CLIENT_SECRET
-    })
+      clientSecret: env.GOOGLE_CLIENT_SECRET,
+    }),
     /**
      * ...add more providers here.
      *

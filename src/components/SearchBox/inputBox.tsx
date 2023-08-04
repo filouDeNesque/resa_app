@@ -8,13 +8,10 @@ const InputBox: React.FC<InputBoxProps> = ({
   suggestions,
 }) => {
 
-  console.log("suggestions")
-  console.log(suggestions)
-
   return (
     <>
       <input
-        className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-300 focus:outline-none focus:ring"
+        className="w-full rounded-lg border border-gray-300 px-4 py-2 my-2 focus:border-blue-300 focus:outline-none focus:ring"
         type="text"
         placeholder={placeholder}
         value={value}

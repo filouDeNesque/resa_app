@@ -37,6 +37,10 @@ export interface InputBoxProps {
 
 export interface ActionBoxProps {
   suggestions: Suggestion[];
+  setUpdateStore:React.Dispatch<React.SetStateAction<boolean>>;
+}
+export interface MapProps {
+  suggestions: Suggestion[];
 }
 
 export interface SearchBoxProps {

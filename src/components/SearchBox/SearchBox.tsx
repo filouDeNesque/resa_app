@@ -1,8 +1,11 @@
 import React from "react";
 import InputBox from "./inputBox";
-import type { Suggestion, SearchBoxProps } from "./types/SearchBoxTypes";
+import type { SearchBoxProps, Suggestion } from "./types/SearchBoxTypes";
 
-const SearchBox: React.FC<SearchBoxProps> = ({ suggestions, setSuggestions }) => {
+const SearchBox: React.FC<SearchBoxProps> = ({
+  suggestions,
+  setSuggestions,
+}) => {
   const [inputSearch, setInputSearch] = React.useState("");
   const [debounced, setDebounced] = React.useState("");
 
@@ -15,7 +18,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({ suggestions, setSuggestions }) =>
       setDebounced(inputSearch);
     }, 500);
     return () => clearTimeout(timeoutId);
-  }, [inputSearch, 500]);
+  }, [inputSearch, debounced]);
 
   React.useEffect(() => {
     if (debounced !== "") {
@@ -35,18 +38,16 @@ const SearchBox: React.FC<SearchBoxProps> = ({ suggestions, setSuggestions }) =>
     } else {
       setSuggestions([]);
     }
-  }, [debounced]);
+  }, [debounced, setSuggestions]);
 
   return (
     <>
-      <h3>SearchBox</h3>
       <InputBox
         placeholder="Saisissez votre texte ici..."
         value={inputSearch}
         onChange={handleInputChange}
         suggestions={suggestions}
       />
-
     </>
   );
 };
