@@ -16,6 +16,7 @@ export default async function handler(
     // Read
     const userPlace = await prisma.userPlace.findMany({
       select: {
+        id:true,
         name: true,
         type: true,
         dateAdded: true,

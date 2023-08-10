@@ -21,11 +21,13 @@ export interface Suggestion {
     ISO3166_2_lvl4: string;
     country: string;
     country_code: string;
+    postcode: string;
   };
   geojson: {
     type: string;
     coordinates: [number, number][];
   };
+  marker?: string;
 }
 
 export interface InputBoxProps {
@@ -37,7 +39,7 @@ export interface InputBoxProps {
 
 export interface ActionBoxProps {
   suggestions: Suggestion[];
-  setUpdateStore:React.Dispatch<React.SetStateAction<boolean>>;
+  setUpdateStore: React.Dispatch<React.SetStateAction<boolean>>;
 }
 export interface MapProps {
   suggestions: Suggestion[];

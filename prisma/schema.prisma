@@ -2,7 +2,7 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-    provider        = "prisma-client-js"
+    provider = "prisma-client-js"
 }
 
 datasource db {
@@ -21,11 +21,25 @@ model UserPlace {
     name      String
     type      String
     dateAdded String
-    id_Api    Int @unique
+    id_Api    Int    @unique
     lon       Float
     lat       Float
     userId    String
     user      User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model stabs {
+    id              String @id @default(cuid()) @map("_id")
+    name            String
+    StreetAddress   String
+    PostalCode      String
+    AddressLocality String
+    AddressCountry  String
+    Telephone       String
+    Site            String
+    lon             Float?
+    lat             Float?
+    place_id        String?
 }
 
 // Necessary for Next auth

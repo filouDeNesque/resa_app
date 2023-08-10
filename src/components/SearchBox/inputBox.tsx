@@ -7,11 +7,10 @@ const InputBox: React.FC<InputBoxProps> = ({
   onChange,
   suggestions,
 }) => {
-
   return (
     <>
       <input
-        className="w-full rounded-lg border border-gray-300 px-4 py-2 my-2 focus:border-blue-300 focus:outline-none focus:ring"
+        className="my-2 w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-300 focus:outline-none focus:ring"
         type="text"
         placeholder={placeholder}
         value={value}
@@ -19,11 +18,13 @@ const InputBox: React.FC<InputBoxProps> = ({
         id="place"
         list="propalplace"
       />
-      <datalist id="propalplace">
-        {suggestions.map((suggestion) => (
-          <option key={suggestion.place_id} value={suggestion.display_name} />
-        ))}
-      </datalist>
+      {Array.isArray(suggestions) && suggestions.length > 0 && (
+        <datalist id="propalplace">
+          {suggestions.map((suggestion) => (
+            <option key={suggestion.place_id} value={suggestion.display_name} />
+          ))}
+        </datalist>
+      )}
     </>
   );
 };
