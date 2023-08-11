@@ -13,7 +13,7 @@ export default async function handler(
   res: NextApiResponse<Data>
 ) {
   try {
-    const { ids, lon, lat, codePostal } = req.body;
+    const { ids, lon, lat, city, codePostal } = req.body;
     console.log(ids); // Utilisation de l'opérateur 'as' pour l'assertion de type
     console.log(lon); // Utilisation de l'opérateur 'as' pour l'assertion de type
     console.log(lat); // Utilisation de l'opérateur 'as' pour l'assertion de type
@@ -23,6 +23,11 @@ export default async function handler(
           {
             place_id: {
               in: ids,
+            },
+          },
+          {
+            AddressLocality: {
+              in: city,
             },
           },
           {
@@ -52,7 +57,6 @@ export default async function handler(
       },
     });
     console.log("stabs read request");
-    console.log(module.filename);
     console.log(stabs);
     res.status(200).json({ message: "stabs data", data: stabs });
   } catch (error) {

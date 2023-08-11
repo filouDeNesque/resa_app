@@ -1,6 +1,5 @@
 import type { Suggestion } from "~/components/SearchBox/types/SearchBoxTypes";
 import type { Stabs } from "./types/stabs";
-import loadConfig from "next/dist/server/config";
 
 type Data = {
   message: object | string;

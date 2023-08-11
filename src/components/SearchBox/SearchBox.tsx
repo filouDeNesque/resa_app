@@ -3,7 +3,6 @@ import InputBox from "./inputBox";
 import type { SearchBoxProps, Suggestion } from "./types/SearchBoxTypes";
 import { getStabsBdd } from "../../handler/getStabsBdd";
 
-
 const SearchBox: React.FC<SearchBoxProps> = ({
   suggestions,
   setSuggestions,
@@ -24,24 +23,13 @@ const SearchBox: React.FC<SearchBoxProps> = ({
 
   React.useEffect(() => {
     if (debounced !== "") {
-      fetch(
-        `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(
-          debounced
-        )}&format=json&polygon_geojson=1&addressdetails=1`
-      )
-        .then((response) => response.json())
-        .then((data: Suggestion[]) => {
-          // Traitez les données reçues de l'API ici
-          setSuggestions(data);
-          //cherche si les addresses certifier existe
-          fetchData(suggestions, setSuggestions);
-        })
-        .catch((error) => {
-          console.error("Erreur lors de l'appel API :", error);
-        });
+      fetchResearch(debounced, suggestions, setSuggestions).catch((errors) => {
+        console.log(errors);
+      });
     } else {
       setSuggestions([]);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [debounced, setSuggestions]);
 
   return (
@@ -58,37 +46,53 @@ const SearchBox: React.FC<SearchBoxProps> = ({
 
 export default SearchBox;
 
-export async function fetchData(suggestions, setSuggestions) {
+export async function fetchData(
+  suggestions: Suggestion[],
+  setSuggestions: React.Dispatch<React.SetStateAction<Suggestion[]>>
+) {
   try {
-    console.log("suggestions.length");
-    console.log(suggestions.length);
     if (suggestions.length > 0) {
       const stabRes: Suggestion[] = await getStabsBdd(suggestions)
         .then((el) => {
-          console.log("stabRes el");
-          console.log(...el);
           return { ...el };
         })
         .then((data) => {
-          console.log("stabRes data");
-          console.log(data);
           return Object.values(data);
         })
         .catch((error) => {
           console.log(error);
         });
 
-      console.log("============stabs============");
-      console.log(typeof stabRes);
       const arrstabres = Object.values(stabRes);
-      console.log("arrstabres");
-      console.log(arrstabres);
-      console.log(stabRes.length);
       if (arrstabres.length > 0) {
+        console.log("arrstabres");
+        console.log(arrstabres);
         setSuggestions(stabRes);
       }
     }
   } catch (err) {
     console.log(err);
   }
+}
+
+export async function fetchResearch(
+  debounced: string,
+  suggestions: Suggestion[],
+  setSuggestions: React.Dispatch<React.SetStateAction<Suggestion[]>>
+) {
+  fetch(
+    `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(
+      debounced
+    )}&format=json&polygon_geojson=1&addressdetails=1`
+  )
+    .then((response) => response.json())
+    .then((data: Suggestion[]) => {
+      // Traitez les données reçues de l'API ici
+      setSuggestions(data);
+      //cherche si les addresses certifier existe
+    })
+    .catch((error) => {
+      console.error("Erreur lors de l'appel API :", error);
+    });
+  await fetchData(suggestions, setSuggestions);
 }

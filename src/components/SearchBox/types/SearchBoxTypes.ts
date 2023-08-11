@@ -17,6 +17,7 @@ export interface Suggestion {
     town: string;
     district: string;
     county: string;
+    city:string;
     state: string;
     ISO3166_2_lvl4: string;
     country: string;
