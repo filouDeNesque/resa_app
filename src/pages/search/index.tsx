@@ -7,7 +7,6 @@ import type { Suggestion } from "~/components/SearchBox/types/SearchBoxTypes";
 import UserTableStore from "~/components/UserTableStore/UserTableStore";
 import type { UserPlace } from "~/components/UserTableStore/types/UserTableStoreTypes";
 import ActionBox from "../../components/SearchBox/ActionBox";
-import { getStabsBdd } from "../../handler/getStabsBdd";
 
 const MapNoSSR = dynamic(() => import("../../components/Map"), {
   ssr: false,
@@ -32,31 +31,6 @@ export default function Home() {
   //requête existance dans le tableau de l'utilisateur
   //changer l'icone
   //empêcher le bouton add + changement de couleur
-
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        if (suggestions.length > 0) {
-          const stabRes: Suggestion[] = await getStabsBdd(suggestions)
-            .then((el) => {
-              return { ...el };
-            })
-            .catch((error) => {
-              console.log(error);
-            });
-
-          console.log("stabs");
-          console.log(stabRes);
-          if (stabRes.length > 0) {
-            setSuggestions(stabRes);
-          }
-        }
-      } catch (err) {
-        console.log(err);
-      }
-    }
-    fetchData();
-  }, [suggestions]);
 
   useEffect(() => {
     void fetch("api/UserStore/readMany", {

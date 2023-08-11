@@ -1,5 +1,6 @@
 import type { Suggestion } from "~/components/SearchBox/types/SearchBoxTypes";
 import type { Stabs } from "./types/stabs";
+import loadConfig from "next/dist/server/config";
 
 type Data = {
   message: object | string;
@@ -16,14 +17,27 @@ export async function getStabsBdd(
   const codePostal = suggestions.map((suggestion) => {
     return suggestion.address.postcode;
   });
+  const lon = suggestions.map((suggestion) => {
+    return parseFloat(suggestion.lon);
+  });
 
-  //fetch api
+  const lat = suggestions.map((suggestion) => {
+    return parseFloat(suggestion.lat);
+  });
+
+  const dataFetch = {
+    ids: map_id,
+    lon: lon,
+    lat: lat,
+    codePostal: codePostal,
+  }; //fetch api
+
   return fetch(`api/Stabs/read`, {
     headers: {
       "Content-Type": "application/json",
     },
     method: "POST",
-    body: JSON.stringify(map_id),
+    body: JSON.stringify(dataFetch),
   })
     .then((res) => {
       return res.json();
@@ -38,15 +52,25 @@ function detectType(suggestion: Suggestion[], data: Data): Suggestion[] {
   const ids = data.data?.map((map_id) => {
     return map_id.place_id;
   });
+  const lon = data.data?.map((map_id) => {
+    return map_id.lon;
+  });
+  const lat = data.data?.map((map_id) => {
+    return map_id.lat;
+  });
 
   const suggestType: Suggestion[] = suggestion.map((arg: Suggestion) => {
-    if (ids && arg.place_id && ids.includes(arg.place_id.toString())) {
+    if (
+      ids?.includes(arg.place_id.toString()) ||
+      lon?.includes(parseFloat(arg.lon)) ||
+      lat?.includes(parseFloat(arg.lat))
+    ) {
       return {
         ...arg,
         marker: "Ecurie",
       };
     } else {
-      return { ...arg };
+      return { ...arg, marker: "unknow" };
     }
   });
   return suggestType;

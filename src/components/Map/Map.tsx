@@ -63,8 +63,7 @@ const map: React.FC<MapProps> = (suggestions) => {
     shadowSize: [41, 41],
   });
 
-  function getIcon(marker) {
-    console.log(marker)
+  function getIcon(marker: string | undefined) {
     if (marker === "Ecurie") {
       return greenMarkerIcon;
     }
@@ -86,7 +85,7 @@ const map: React.FC<MapProps> = (suggestions) => {
       {suggestions.suggestions.map((suggestion: Suggestion) => (
         <Marker
           key={suggestion.place_id}
-          icon={getIcon(suggestion)}
+          icon={getIcon(suggestion.marker)}
           position={[parseFloat(suggestion.lat), parseFloat(suggestion.lon)]}
         >
           <Popup>

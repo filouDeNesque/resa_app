@@ -13,12 +13,29 @@ export default async function handler(
   res: NextApiResponse<Data>
 ) {
   try {
-    const ids = req.body as string[]; // Utilisation de l'opérateur 'as' pour l'assertion de type
+    const { ids, lon, lat, codePostal } = req.body;
+    console.log(ids); // Utilisation de l'opérateur 'as' pour l'assertion de type
+    console.log(lon); // Utilisation de l'opérateur 'as' pour l'assertion de type
+    console.log(lat); // Utilisation de l'opérateur 'as' pour l'assertion de type
     const stabs = await prisma.stabs.findMany({
       where: {
-        place_id: {
-          in: ids,
-        },
+        OR: [
+          {
+            place_id: {
+              in: ids,
+            },
+          },
+          {
+            lon: {
+              in: lon,
+            },
+          },
+          {
+            lat: {
+              in: lat,
+            },
+          },
+        ],
       },
       select: {
         id: true,
@@ -34,6 +51,9 @@ export default async function handler(
         place_id: true,
       },
     });
+    console.log("stabs read request");
+    console.log(module.filename);
+    console.log(stabs);
     res.status(200).json({ message: "stabs data", data: stabs });
   } catch (error) {
     console.log(error);
