@@ -52,7 +52,36 @@ const Map: React.FC = () => {
           ]}
         >
           <Popup>
-            <h2>{stab.name}</h2>
+            <div className="p-2">
+              <h2 className="text-lg font-semibold">{stab.name}</h2>
+              <p className="mt-2 text-gray-600">
+                {stab.StreetAddress}, {stab.PostalCode} {stab.AddressLocality},{" "}
+                {stab.AddressCountry}
+              </p>
+              <p className="mt-1 text-gray-600">Téléphone: {stab.Telephone}</p>
+              {stab.Site && (
+                <a
+                  href={stab.Site}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-1 text-blue-600"
+                >
+                  Site Web
+                </a>
+              )}
+              <div className="mt-3">
+                <a
+                  href={`https://www.google.com/maps?q=${stab.lat ?? 0},${
+                    stab.lon ?? 0
+                  }`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-600 hover:underline"
+                >
+                  Voir sur la carte
+                </a>
+              </div>
+            </div>
           </Popup>
         </Marker>
       ))}
