@@ -166,3 +166,13 @@ export default function Home() {
 - Création d'un fichier api read
 - Création d'un parser de api à suggestion
 - 
+
+## refactor avec un context + reducer
+Le context conserve les données dans les parents
+permet de transmettre le context sans le passé en props
+
+Le reducer reduit la declaration des states
+gère un etat complexe de composant
+
+lien d'exemple:
+[Exemple 1](https://codesandbox.io/s/usereducer-hook-swkwl?file=/src/ShopContext.js:587-592)

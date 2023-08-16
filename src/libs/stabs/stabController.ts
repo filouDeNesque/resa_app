@@ -1,4 +1,4 @@
-import type { Stabs } from "../../handler/types/stabs";
+import type { Stabs } from "../../types/stabs";
 import type { Suggestion } from "../../components/SearchBox/types/SearchBoxTypes";
 
 export const transformStabsToSuggestion = (stab: Stabs): Suggestion => {

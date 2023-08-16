@@ -1,11 +1,22 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { prisma } from "~/server/db";
-
-import type { Stabs } from "../../../handler/types/stabs";
+import type { Stabs } from "../../../types/stabs";
 
 type Data = {
-  message: object | string;
-  data: null | Stabs[];
+  message: string | object;
+  data: Stabs[] | null;
+};
+
+type RequestBody = {
+  ids: string[];
+  lon: number[];
+  lat: number[];
+  city: string[];
+};
+
+const MESSAGES = {
+  success: "stabs data",
+  error: "An error occurred",
 };
 
 export default async function handler(
@@ -13,10 +24,7 @@ export default async function handler(
   res: NextApiResponse<Data>
 ) {
   try {
-    const { ids, lon, lat, city, codePostal } = req.body;
-    console.log(ids); // Utilisation de l'opérateur 'as' pour l'assertion de type
-    console.log(lon); // Utilisation de l'opérateur 'as' pour l'assertion de type
-    console.log(lat); // Utilisation de l'opérateur 'as' pour l'assertion de type
+    const { ids, lon, lat, city } = req.body as RequestBody;
     const stabs = await prisma.stabs.findMany({
       where: {
         OR: [
@@ -56,15 +64,13 @@ export default async function handler(
         place_id: true,
       },
     });
+
     console.log("stabs read request");
     console.log(stabs);
-    res.status(200).json({ message: "stabs data", data: stabs });
+
+    res.status(200).json({ message: MESSAGES.success, data: stabs });
   } catch (error) {
     console.log(error);
-    res.status(400).json({ message: error || "An error occurred", data: null });
+    res.status(400).json({ message: error || MESSAGES.error, data: null });
   }
 }
-//recherche sur le nom
-//la ville
-// le departement
-//todo : return stabs find

@@ -1,5 +1,5 @@
 import type { Suggestion } from "~/components/SearchBox/types/SearchBoxTypes";
-import type { Stabs } from "./types/stabs";
+import type { Stabs } from "../types/stabs";
 
 type Data = {
   message: object | string;
