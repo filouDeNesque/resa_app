@@ -1,4 +1,3 @@
-
 <div align="center">
 
 <h1> StableMate</h1>
@@ -10,16 +9,19 @@
 
 </div>
 <div align="center">
-  <img src="https://img.shields.io/badge/%40next--auth%2Fprisma--adapter-1.0.5-blue">
+  <img src="https://img.shields.io/badge/next-13.4.2-blue">
+  <img src="https://img.shields.io/badge/react-18.2.0-blue">
+  <img src="https://img.shields.io/badge/next--auth-4.22.1-blue">
+  <img src="https://img.shields.io/badge/leaflet--defaulticon--compatibility-0.1.2-blue">
   <img src="https://img.shields.io/badge/%40prisma%2Fclient-4.14.0-blue">
+  <img src="https://img.shields.io/badge/react--leaflet-4.2.1-blue">
+</div>
+<div align="center">
+  
   <img src="https://img.shields.io/badge/%40t3--oss%2Fenv--nextjs-0.3.1-blue">
   <img src="https://img.shields.io/badge/%40types%2Freact--leaflet-3.0.0-blue">
-  <img src="https://img.shields.io/badge/leaflet--defaulticon--compatibility-0.1.2-blue">
-  <img src="https://img.shields.io/badge/next-13.4.2-blue">
-  <img src="https://img.shields.io/badge/next--auth-4.22.1-blue">
-  <img src="https://img.shields.io/badge/react-18.2.0-blue">
+  <img src="https://img.shields.io/badge/%40next--auth%2Fprisma--adapter-1.0.5-blue">
   <img src="https://img.shields.io/badge/react--dom-18.2.0-blue">
-  <img src="https://img.shields.io/badge/react--leaflet-4.2.1-blue">
   <img src="https://img.shields.io/badge/zod-3.21.4-blue">
 </div>
 
