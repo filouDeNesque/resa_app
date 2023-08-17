@@ -2,7 +2,7 @@ import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import "leaflet-defaulticon-compatibility";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
-import type { MapProps, Suggestion } from "../SearchBox/types/SearchBoxTypes";
+import type { MapProps, Suggestion } from "../../types/SearchBoxTypes";
 import {
   redMarkerIcon,
   stabsIcon,

@@ -1,6 +1,7 @@
 import React from "react";
 import InputBox from "./inputBox";
-import type { SearchBoxProps, Suggestion } from "./types/SearchBoxTypes";
+import type { SearchBoxProps, Suggestion } from "../../types/SearchBoxTypes";
+
 import { getStabsBdd } from "../../handler/getStabsBdd";
 
 const SearchBox: React.FC<SearchBoxProps> = ({

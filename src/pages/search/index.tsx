@@ -3,7 +3,8 @@ import dynamic from "next/dynamic";
 import React, { useEffect } from "react";
 import Layout from "~/components/Layout";
 import SearchBox from "~/components/SearchBox";
-import type { Suggestion } from "~/components/SearchBox/types/SearchBoxTypes";
+import type { Suggestion } from "../../types/SearchBoxTypes";
+
 import UserTableStore from "~/components/UserTableStore/UserTableStore";
 import type { UserPlace } from "~/components/UserTableStore/types/UserTableStoreTypes";
 import ActionBox from "../../components/SearchBox/ActionBox";

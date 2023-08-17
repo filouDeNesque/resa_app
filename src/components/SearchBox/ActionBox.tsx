@@ -1,5 +1,5 @@
 import ListCity from "./List/ListCity";
-import type { ActionBoxProps } from "./types/SearchBoxTypes";
+import type { ActionBoxProps } from "../../types/SearchBoxTypes";
 
 const ActionBox: React.FC<ActionBoxProps> = ({ suggestions , setUpdateStore}) => {
   return (

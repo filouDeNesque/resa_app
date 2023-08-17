@@ -66,12 +66,16 @@ Rejoignez StableMate et créez des connexions plus fortes entre propriétaires, 
 ## &#x1F3AF; TodoList
 
 - [x] Import de la liste des écuries
+- [x] Revoir le Readme.md
+- [ ] Mise en place du form utilisateur
+  - [ ] Création d'une page setting
+  - [ ] Intégration du composant UserForm
 - [ ] Schema BDD
   - [ ] [Ecurie](#2-ecurie)
-  - [ ] [Cheval](#3-cheval)
+  - [ ] [Cheval][def]
   - [ ] [Utilisateur](#4-utilisateur)
-- [ ] Revoir le Readme.md
 - [ ] Mise en place d'une nouvelle structure de fichier
+  - [ ] Revoir entièrement la page search et ses composants
 
 ### Reflection
 
@@ -272,3 +276,7 @@ export default function Home() {
 ```
 
 </details>
+
+<!-- Variable -->
+
+[def]: #3-cheval

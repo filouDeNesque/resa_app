@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import type { Suggestion } from "../types/SearchBoxTypes";
+import type { Suggestion } from "../../../types/SearchBoxTypes";
+
 import { getSession } from "next-auth/react";
 import type { Session } from "next-auth";
 

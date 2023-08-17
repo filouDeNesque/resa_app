@@ -1,4 +1,4 @@
-import type { Suggestion } from "~/components/SearchBox/types/SearchBoxTypes";
+import type { Suggestion } from "../types/SearchBoxTypes";
 import type { Stabs } from "../types/stabs";
 
 type Data = {

@@ -1,5 +1,5 @@
 import React from "react";
-import type { InputBoxProps } from "./types/SearchBoxTypes";
+import type { InputBoxProps } from "../../types/SearchBoxTypes";
 
 const InputBox: React.FC<InputBoxProps> = ({
   placeholder,

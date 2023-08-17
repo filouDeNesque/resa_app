@@ -1,5 +1,6 @@
 import { getStabsBdd } from "../getStabsBdd";
-import type { Suggestion } from "../../components/SearchBox/types/SearchBoxTypes";
+import type { Suggestion } from "../../types/SearchBoxTypes";
+
 
 export async function compareStabs(
   suggestions: Suggestion[]
