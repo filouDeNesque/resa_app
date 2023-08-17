@@ -4,7 +4,7 @@ const AboutPage = () => {
   return (
     <Layout>
       <div className="w-full flex flex-col items-center justify-center">
-        <div className="w-2/3 justify-center p-8	">
+        <div className="md:w-2/3  justify-center p-8	">
           <h1 className="mb-4 text-3xl font-semibold text-[#00122D]">
             À Propos de Stable Mate
           </h1>
