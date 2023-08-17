@@ -11,7 +11,7 @@ const Layout = ({ children, ...rest }: props) => {
   return (
     <>
       <Head>
-        <title>Resa</title>
+        <title>Stable Mate</title>
         <meta name="description" content="Bloc ton créneau" />
         <link rel="icon" href="/favicon.ico" />
       </Head>

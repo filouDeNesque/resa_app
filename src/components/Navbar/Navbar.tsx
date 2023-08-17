@@ -10,12 +10,12 @@ export default function Navbar() {
             <Image
               width={40}
               height={40}
-              src="/images/Home-logos_transparent.png"
+              src="/favicon.ico"
               className="mr-3 "
               alt="Home Logo"
             />
             <span className="self-center whitespace-nowrap text-2xl font-semibold dark:text-white">
-              Home
+              Stable Mate
             </span>
           </Link>
           <div className="flex items-center md:order-2">
