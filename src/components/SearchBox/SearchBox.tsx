@@ -26,16 +26,13 @@ const SearchBox: React.FC<SearchBoxProps> = ({
       fetchResearch(debounced, suggestions, setSuggestions).catch((errors) => {
         console.log(errors);
       });
+      fetchData(suggestions, setSuggestions).catch((errors) => {
+        console.log(errors);
+      });
     } else {
       setSuggestions([]);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [debounced]);
-
-  React.useEffect(() => {
-    fetchData(suggestions, setSuggestions).catch((errors) => {
-      console.log(errors);
-    });
   }, [debounced]);
 
   return (
@@ -79,17 +76,7 @@ export async function fetchData(
   console.log("fetchdata");
   try {
     if (suggestions.length > 0) {
-      const stabRes: Suggestion[] = await getStabsBdd(suggestions)
-        .then((el) => {
-          return { ...el };
-        })
-        .then((data) => {
-          return Object.values(data);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-
+      const stabRes: Suggestion[] = await getStabsBdd(suggestions);
       const arrstabres = Object.values(stabRes);
 
       if (arrstabres.length > 0) {
