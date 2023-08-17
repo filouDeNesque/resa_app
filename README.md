@@ -76,6 +76,8 @@ Rejoignez StableMate et créez des connexions plus fortes entre propriétaires, 
   - [ ] [Utilisateur](#4-utilisateur)
 - [ ] Mise en place d'une nouvelle structure de fichier
   - [ ] Revoir entièrement la page search et ses composants
+- [ ] Refaire page connection
+- [ ] Faire page logout
 
 ### Reflection
 
