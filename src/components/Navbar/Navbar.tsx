@@ -1,7 +1,25 @@
 import Image from "next/image";
 import Link from "next/link";
+import { useState, useRef, useEffect } from "react";
 
 export default function Navbar() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const userMenuRef = useRef<HTMLDivElement | null>(null);
+
+  const closeMenu = (e: MouseEvent) => {
+    if (
+      userMenuRef.current &&
+      !userMenuRef.current.contains(e.target as Node)
+    ) {
+      setIsMenuOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("click", closeMenu);
+    return () => window.removeEventListener("click", closeMenu);
+  }, []);
+
   return (
     <>
       <nav className="border-gray-200 bg-white dark:bg-[#78ABF4]">
@@ -18,17 +36,20 @@ export default function Navbar() {
               Stable Mate
             </span>
           </Link>
-          <div className="flex items-center md:order-2">
+          {/* BUTTON CONNEXION */}
+          <div className="relative flex items-center md:order-2">
             <Link href={"/connexion"}>
-              <button className="mr-4 rounded-full border border-[#1F3C64] bg-white px-4 py-2 text-xs font-semibold text-[#1F3C64] shadow hover:bg-gray-100">
+              <button className="mr-4 rounded-full  bg-white px-4 py-2 text-xs font-semibold text-[#1F3C64] shadow hover:bg-gray-100">
                 Connexion
               </button>
             </Link>
+            {/* BUTTON USER DROPDOWN*/}
             <button
               type="button"
-              className="mr-3 flex rounded-full bg-gray-800  text-sm focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600 md:mr-0"
+              className="mr-3 flex rounded-full bg-gray-800 text-sm focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600 md:mr-0"
               id="user-menu-button"
-              aria-expanded="false"
+              aria-expanded={isMenuOpen}
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
               data-dropdown-toggle="user-dropdown"
               data-dropdown-placement="bottom"
             >
@@ -36,20 +57,24 @@ export default function Navbar() {
               <Image
                 width={600}
                 height={600}
-                className=" w-8 rounded-full"
+                className="w-8 rounded-full"
                 src="/images/pp.jpeg"
                 alt="user photo"
               />
             </button>
+
+            {/* USER DROPDOWN */}
             <div
-              className="z-50 my-4 hidden list-none divide-y divide-gray-100 rounded-lg bg-white text-base shadow dark:divide-gray-600 dark:bg-[#78ABF4]"
+              className={`${
+                isMenuOpen ? "absolute" : "hidden"
+              } r-0 absolute  right-[-1.1rem] top-[2.4rem] z-50 my-4 list-none divide-y divide-gray-100 rounded-lg bg-white bg-gradient-to-b from-[#ffcfd2] to-[#78ABF4] p-4 text-base shadow dark:divide-gray-600 dark:bg-[#78ABF4]`}
               id="user-dropdown"
             >
               <div className="px-4 py-3">
-                <span className="block text-sm text-gray-900 dark:text-white">
+                <span className="block text-sm text-[#00122D] dark:text-[#00122D]">
                   Bonnie Green
                 </span>
-                <span className="block truncate  text-sm text-gray-500 dark:text-gray-400">
+                <span className="block truncate  text-sm text-white dark:text-white">
                   name@flowbite.com
                 </span>
               </div>
@@ -57,7 +82,7 @@ export default function Navbar() {
                 <li>
                   <a
                     href="#"
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white"
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-[#00122D] dark:hover:bg-gray-600 dark:hover:text-white"
                   >
                     Dashboard
                   </a>
@@ -65,7 +90,7 @@ export default function Navbar() {
                 <li>
                   <a
                     href="#"
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white"
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-[#00122D] dark:hover:bg-gray-600 dark:hover:text-white"
                   >
                     Settings
                   </a>
@@ -73,21 +98,21 @@ export default function Navbar() {
                 <li>
                   <a
                     href="#"
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white"
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-[#00122D] dark:hover:bg-gray-600 dark:hover:text-white"
                   >
                     Earnings
                   </a>
                 </li>
                 <li>
-                  <a
-                    href="#"
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white"
-                  >
-                    Sign out
-                  </a>
+                  <Link href={"/connexion"}>
+                    <button className="ml-[0.5rem] mr-4 mt-[0.4rem] rounded-full bg-white px-4  py-2  text-xs font-semibold  shadow dark:text-[#C13131] dark:hover:bg-[#C13131] dark:hover:text-white">
+                      Sign out
+                    </button>
+                  </Link>
                 </li>
               </ul>
             </div>
+            {/* NAVBAR USER pour mobile*/}
             <button
               data-collapse-toggle="navbar-user"
               type="button"
@@ -113,6 +138,7 @@ export default function Navbar() {
               </svg>
             </button>
           </div>
+          {/* NAVBAR-USER sur laptop */}
           <div
             className="hidden w-full items-center justify-between md:order-1 md:flex md:w-auto"
             id="navbar-user"
@@ -158,3 +184,8 @@ export default function Navbar() {
     </>
   );
 }
+
+// const backgroundGradient = `
+// background: rgb(255,207,210);
+// background: linear-gradient(2deg, rgba(255,207,210,1) 1%, rgba(120,171,244,1) 100%);
+// `;

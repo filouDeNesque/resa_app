@@ -112,27 +112,29 @@ Rejoignez StableMate et créez des connexions plus fortes entre propriétaires, 
 
 #### 4. Utilisateur
 
-| Propriété       | Type                 | Description                                 |
-| --------------- | -------------------- | ------------------------------------------- |
-| Identifiant     | unique               | Identifiant unique de l'adresse             |
-| id cavalier     | relation id cavalier | Identifiant du cavalier associé à l'adresse |
-| name            | string               | Nom de l'adresse                            |
-| StreetAddress   | string               | Adresse de rue                              |
-| PostalCode      | string               | Code postal de l'adresse                    |
-| AddressLocality | string               | Ville de l'adresse                          |
-| AddressCountry  | string               | Pays de l'adresse                           |
-| lon             | number               | Longitude géographique                      |
-| lat             | number               | Latitude géographique                       |
-| place_id        | string               | Identifiant de lieu                         |
+| Propriété          | Type                        | Description                                     |
+| ------------------ | --------------------------- | ----------------------------------------------- |
+| Identifiant        | unique                      | Identifiant unique de l'adresse                 |
+| id user            | relation id user connection | Identifiant de l'utilsateur associé à l'adresse |
+| name               | string                      | Nom de l'adresse                                |
+| firstname          | string                      | Nom de l'adresse                                |
+| StreetAddress      | string                      | Adresse de rue                                  |
+| PostalCode         | string                      | Code postal de l'adresse                        |
+| AddressLocality    | string                      | Ville de l'adresse                              |
+| AddressCountry     | string                      | Pays de l'adresse                               |
+| lon                | number                      | Longitude géographique                          |
+| lat                | number                      | Latitude géographique                           |
+| place_id           | string                      | Identifiant de lieu                             |
+| Date d'inscription | Date                        | Date de création                                |
 
 ---
 
 ## &#x1F4DA; Documentation
 
 ### Palette de couleur
+
 - [Palette de couleur](https://coolors.co/palette/fbf8cc-fde4cf-ffcfd2-f1c0e8-cfbaf0-a3c4f3-90dbf4-8eecf5-98f5e1-b9fbc0)
 - [Figma color declinaison](https://www.figma.com/file/aRvfer9AnxV8Hgc0NI3g3N/Untitled?type=design&node-id=2-2&mode=design&t=i5TCQ1c8tHSclzwp-0)
-
 
 ### Geocoding search
 
