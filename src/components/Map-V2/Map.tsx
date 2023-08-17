@@ -5,7 +5,7 @@ import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import useHome from "~/layout/home/home.context";
 import type { Stabs } from "~/types/stabs";
 import {
-  greenMarkerIcon,
+  stabsIcon,
   redMarkerIcon,
 } from "../../libs/map/marker/markerIcon";
 
@@ -25,23 +25,33 @@ const Map: React.FC = () => {
     height: "100%",
   };
 
+  const MAPBOX_ACCESS_TOKEN = 'pk.eyJ1IjoicGN1cXVlbXkiLCJhIjoiY2txNW82c3hlMGQxODJ2cW80a20wdXVhaCJ9.Xa-faAijdGvYFWDsKC-Zzw'; // Remplacez par votre clé Mapbox
+  const MAPBOX_STYLE_ID = 'pcuquemy/cllea02pv012401pdhz1cbtqg'
+
+  const tileUrl = `https://api.mapbox.com/styles/v1/${MAPBOX_STYLE_ID}/tiles/{z}/{x}/{y}@2x?access_token=${MAPBOX_ACCESS_TOKEN}`;
+
+
   return (
     <MapContainer
       className="sticky top-0"
       style={map}
-      center={[47.505, 1.5]}
-      zoom={5}
+      center={[user.position.lat, user.position.lon]}
+      zoom={11}
       scrollWheelZoom={true}
     >
-      <TileLayer
+      {/* <TileLayer
         url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
+        attribution='&copy; <a href="https://carto.com/attribution">CARTO</a>'
+      /> */}
+      <TileLayer
+        url={tileUrl}
         attribution='&copy; <a href="https://carto.com/attribution">CARTO</a>'
       />
 
       {filteredObjects.map((stab: Stabs) => (
         <Marker
           key={stab.id}
-          icon={greenMarkerIcon}
+          icon={stabsIcon}
           position={[
             stab.lat !== null && stab.lat !== undefined
               ? parseFloat(stab.lat.toString())

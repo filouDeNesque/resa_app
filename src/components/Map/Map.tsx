@@ -1,24 +1,22 @@
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
-import { Icon } from "leaflet";
 import "leaflet/dist/leaflet.css";
 import "leaflet-defaulticon-compatibility";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
 import type { MapProps, Suggestion } from "../SearchBox/types/SearchBoxTypes";
 import {
   redMarkerIcon,
-  greenMarkerIcon,
+  stabsIcon,
 } from "../../libs/map/marker/markerIcon";
 
 const map: React.FC<MapProps> = (suggestions) => {
   const map = {
     width: "100%",
-    // height: "30em",
     height: "100%",
   };
 
   function getIcon(marker: string | undefined) {
     if (marker === "Ecurie") {
-      return greenMarkerIcon;
+      return stabsIcon;
     }
     return redMarkerIcon;
   }
@@ -51,7 +49,7 @@ const map: React.FC<MapProps> = (suggestions) => {
         icon={redMarkerIcon}
       >
         <Popup>
-          A pretty CSS3 popup. <br /> Easily customizable.
+          Vous
         </Popup>
       </Marker>
     </MapContainer>

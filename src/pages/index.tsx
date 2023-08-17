@@ -14,28 +14,37 @@ export default function Home() {
     return (
       <>
         <Layout>
-        
           <HomeProvider>
             <div className="mt-6 flex flex-col items-center justify-center space-y-6">
               <div className="text-center">
-                <h2 className="text-2xl font-semibold">
-                  Bienvenue sur notre site
-                </h2>
-                <p className="text-gray-500">
-                  Trouvez le cheval parfait près de chez vous
-                </p>
+                <h2 className="text-2xl font-semibold">Bienvenue</h2>
               </div>
               <blockquote className="text-center italic">
-              &ldquo;Les chevaux nous offrent l&apos;opportunité de nous connecter avec
-                la nature et de trouver la liberté dans la course.&rdquo;
+                &ldquo;Passion Équestre, À Deux Pas&rdquo;
               </blockquote>
-              <p className="text-center">
-                Vous êtes passionné par les chevaux ? Recherchez des écuries,
-                des centres équestres et des chevaux à vendre près de chez vous.
-                Profitez de notre carte interactive pour découvrir toutes les
-                options disponibles à proximité.
-              </p>
-              <div id="maptest" style={{ height: '48vh' }} className="sticky top-0 w-full h-[calc(100vh - 100px)] w-full min-h-[200px] sm:h-[calc(100vh - 150px)]">
+              <div className="flex space-x-6">
+                <div className="flex flex-col items-center">
+                  <button
+                    style={{ width: "20em" }}
+                    className="h-2em rounded-full bg-[#FEC5BB]  px-6 py-4 font-bold  text-white  hover:bg-[#E8E8E4]"
+                  >
+                    Pension
+                  </button>
+                </div>
+                <div className="flex flex-col items-center">
+                  <button
+                    style={{ width: "20em" }}
+                    className="rounded-full bg-[#FEC89A] px-6 py-4 font-bold text-white hover:bg-[#E8E8E4]"
+                  >
+                    Demi-pension
+                  </button>
+                </div>
+              </div>
+              <div
+                id="maptest"
+                style={{ height: "48vh" }}
+                className="h-[calc(100vh - 100px)] sm:h-[calc(100vh - 150px)] sticky top-0 min-h-[200px] w-full "
+              >
                 <MapNoSSR></MapNoSSR>
               </div>
             </div>
