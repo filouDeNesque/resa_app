@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function Navbar() {
   return (
     <>
-      <nav className="border-gray-200 bg-white dark:bg-gray-900">
+      <nav className="border-gray-200 bg-white dark:bg-[#78ABF4]">
         <div className="mx-auto flex max-w-screen-xl flex-wrap items-center justify-between p-4">
           <Link href={"/"} className="flex items-center">
             <Image
@@ -20,7 +20,7 @@ export default function Navbar() {
           </Link>
           <div className="flex items-center md:order-2">
             <Link href={"/connexion"}>
-              <button className="text-gray mr-4 rounded border border-gray-400 bg-white px-4 py-2 text-sm font-semibold shadow hover:bg-gray-100">
+              <button className="text-[#1F3C64] mr-4 rounded-full border border-[#1F3C64] bg-white px-4 py-2 text-xs font-semibold shadow hover:bg-gray-100">
                 Connexion
               </button>
             </Link>
@@ -42,7 +42,7 @@ export default function Navbar() {
               />
             </button>
             <div
-              className="z-50 my-4 hidden list-none divide-y divide-gray-100 rounded-lg bg-white text-base shadow dark:divide-gray-600 dark:bg-gray-700"
+              className="z-50 my-4 hidden list-none divide-y divide-gray-100 rounded-lg bg-white text-base shadow dark:divide-gray-600 dark:bg-[#78ABF4]"
               id="user-dropdown"
             >
               <div className="px-4 py-3">
@@ -117,11 +117,11 @@ export default function Navbar() {
             className="hidden w-full items-center justify-between md:order-1 md:flex md:w-auto"
             id="navbar-user"
           >
-            <ul className="mt-4 flex flex-col rounded-lg border border-gray-100 bg-gray-50 p-4 font-medium dark:border-gray-700 dark:bg-gray-800 md:mt-0 md:flex-row md:space-x-8 md:border-0 md:bg-white md:p-0 md:dark:bg-gray-900">
+            <ul className="mt-4 flex flex-col rounded-lg border border-gray-100 bg-gray-50 p-4 font-medium dark:border-gray-700 dark:bg-[#78ABF4] md:mt-0 md:flex-row md:space-x-8 md:border-0 md:bg-white md:p-0 md:dark:bg-[#78ABF4]">
               <li>
                 <Link
                   href={"/"}
-                  className="block rounded bg-blue-700 py-2 pl-3 pr-4 text-white md:bg-transparent md:p-0 md:text-blue-700 md:dark:text-blue-500"
+                  className="block rounded bg-blue-700 py-2 pl-3 pr-4 text-white md:bg-transparent md:p-0 md:text-[#00122D] md:dark:text-[#00122D]"
                   aria-current="page"
                 >
                   Home
@@ -130,7 +130,7 @@ export default function Navbar() {
               <li>
                 <Link
                   href={"/search"}
-                  className="block rounded py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-blue-500"
+                  className="block rounded py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-[#1F3C64] md:dark:hover:bg-transparent md:dark:hover:text-[#1F3C64]"
                 >
                   Search
                 </Link>
@@ -138,7 +138,7 @@ export default function Navbar() {
               <li>
                 <a
                   href="#"
-                  className="block rounded py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-blue-500"
+                  className="block rounded py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-[#1F3C64] md:dark:hover:bg-transparent md:dark:hover:text-[#1F3C64]"
                 >
                   Services
                 </a>
@@ -146,17 +146,17 @@ export default function Navbar() {
               <li>
                 <Link
                   href="#"
-                  className="block rounded py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-blue-500"
+                  className="block rounded py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-[#1F3C64] md:dark:hover:bg-transparent md:dark:hover:text-[#1F3C64]"
                 >
                   Pricing
                 </Link>
               </li>
               <li>
-                <Link
-                  href="#"
-                  className="block rounded py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-blue-500"
+              <Link
+                  href={"/about"}
+                  className="block rounded py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-[#1F3C64] md:dark:hover:bg-transparent md:dark:hover:text-[#1F3C64]"
                 >
-                  Contact
+                  About
                 </Link>
               </li>
             </ul>

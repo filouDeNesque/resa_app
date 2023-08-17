@@ -129,6 +129,10 @@ Rejoignez StableMate et créez des connexions plus fortes entre propriétaires, 
 
 ## &#x1F4DA; Documentation
 
+### Palette de couleur
+- [Palette de couleur](https://coolors.co/palette/fbf8cc-fde4cf-ffcfd2-f1c0e8-cfbaf0-a3c4f3-90dbf4-8eecf5-98f5e1-b9fbc0)
+
+
 ### Geocoding search
 
 - [nominatim](https://nominatim.org/release-docs/develop/)
