@@ -1,8 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-import USerDropDownMenu from "./UserDropDownMenu";
-import TitleMenu from "./TitleMenu";
 import ButtonConnect from "./ButtonConnect";
+import TitleMenu from "./TitleMenu";
+import USerDropDownMenu from "./UserDropDownMenu";
 
 export default function Navbar() {
   return (
@@ -21,13 +21,9 @@ export default function Navbar() {
               Stable Mate
             </span>
           </Link>
-          {/* BUTTON CONNEXION */}
-
           <div className="relative flex items-center md:order-2">
             <ButtonConnect />
-
             <USerDropDownMenu />
-
             {/* NAVBAR Menu pour mobile*/}
             <button
               data-collapse-toggle="navbar-user"
@@ -54,7 +50,6 @@ export default function Navbar() {
               </svg>
             </button>
           </div>
-
           <TitleMenu />
         </div>
       </nav>

@@ -46,7 +46,7 @@ const ButtonDropDown = () => {
       <div
         className={`${
           isMenuOpen ? "absolute" : "hidden"
-        } r-0 absolute  right-[-1.1rem] top-[2.4rem] z-50 my-4 list-none divide-y divide-gray-100 rounded-lg bg-white bg-gradient-to-b from-[#ffcfd2] to-[#78ABF4] p-4 text-base shadow dark:divide-gray-600 dark:bg-[#78ABF4]`}
+        } r-0 dark:bg-[#[#ffcfd2]  ] absolute right-[-1.1rem] top-[2.4rem] z-50 my-4 list-none divide-y divide-gray-100 rounded-lg bg-white bg-gradient-to-b from-[#78ABF4] to-[#ffcfd2] p-4 text-base shadow  dark:divide-gray-600`}
         id="user-dropdown"
       >
         <NavbarMenuUser />
