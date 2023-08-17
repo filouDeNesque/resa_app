@@ -15,7 +15,7 @@ export default async function handler(
   try {
     const { ids } = req.body as { ids: string }; // Utilisation de l'opérateur 'as' pour l'assertion de type
 
-    const stabs:Stabs[] = await prisma.stabs.findMany({
+    const stabs: Stabs[] = await prisma.stabs.findMany({
       where: {
         id: {
           in: ids,
@@ -35,7 +35,6 @@ export default async function handler(
         place_id: true,
       },
     });
-    console.log(stabs);
     res.status(200).json({ message: "stabs data", data: stabs });
   } catch (error) {
     console.log(error);

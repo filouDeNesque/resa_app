@@ -17,7 +17,7 @@ export default async function handler(
   res: NextApiResponse<Data>
 ) {
   const { lon, lat } = req.body as RequestBody;
-  console.log(lon, lat);
+
   try {
     const targetlat = lat - 0.2;
     const targetlatmax = lat + 0.4;

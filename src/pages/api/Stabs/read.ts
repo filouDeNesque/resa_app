@@ -64,10 +64,6 @@ export default async function handler(
         place_id: true,
       },
     });
-
-    console.log("stabs read request");
-    console.log(stabs);
-
     res.status(200).json({ message: MESSAGES.success, data: stabs });
   } catch (error) {
     console.log(error);
