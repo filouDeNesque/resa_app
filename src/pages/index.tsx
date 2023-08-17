@@ -16,9 +16,6 @@ export default function Home() {
         <Layout>
           <HomeProvider>
             <div className="mt-6 flex flex-col items-center justify-center space-y-6">
-              <div className="text-center">
-                <h2 className="text-2xl font-semibold">Bienvenue</h2>
-              </div>
               <blockquote className="text-center italic">
                 &ldquo;Passion Équestre, À Deux Pas&rdquo;
               </blockquote>

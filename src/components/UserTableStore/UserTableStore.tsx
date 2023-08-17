@@ -1,6 +1,7 @@
 import ButtonErase from "./ButtonErase/ButtonErase";
 import type { UserTableprops } from "./types/UserTableStoreTypes";
 
+
 const UserTableStore = ({
   UserStore,
   setUpdateStore,
@@ -13,7 +14,8 @@ const UserTableStore = ({
       });
 
       if (response.ok) {
-        const data = await response.json();
+        // const data = await response.json();
+        console.log("data")
         // Faire quelque chose après la suppression réussie, par exemple recharger la liste des utilisateurs.
         setUpdateStore(!updateStore);
       } else {

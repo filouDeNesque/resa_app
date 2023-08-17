@@ -1,31 +1,19 @@
 import { getStabsBdd } from "../getStabsBdd";
 import type { Suggestion } from "../../components/SearchBox/types/SearchBoxTypes";
 
-export function compareStabs(suggestions: Suggestion[]) {
-  (async () => {
-    try {
-      if (suggestions.length > 0) {
-        const stabRes: Suggestion[] = await getStabsBdd(suggestions)
-          .then((el) => {
-            return { ...el };
-          })
-          .then((data) => {
-            return Object.values(data);
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-
-        return Object.values(stabRes);
-      }
-    } catch (err) {
-      console.log(err);
+export async function compareStabs(
+  suggestions: Suggestion[]
+): Promise<Suggestion[]> {
+  try {
+    if (suggestions.length > 0) {
+      const stabRes: Suggestion[] = await getStabsBdd(suggestions);
+      const values = Object.values(stabRes);
+      return values;
+    } else {
+      return []; // Return an empty array if suggestions.length is not greater than 0
     }
-  })()
-    .then((data) => {
-      return data;
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+  } catch (err) {
+    console.log(err);
+    throw err; // Throw the error to propagate it further
+  }
 }

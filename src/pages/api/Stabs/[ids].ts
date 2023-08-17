@@ -5,7 +5,7 @@ import type { Stabs } from "../../../types/stabs";
 
 type Data = {
   message: object | string;
-  data: null | Stabs;
+  data: Stabs[] | null;
 };
 
 export default async function handler(
@@ -15,7 +15,7 @@ export default async function handler(
   try {
     const { ids } = req.body as { ids: string }; // Utilisation de l'opérateur 'as' pour l'assertion de type
 
-    const stabs = await prisma.stabs.findMany({
+    const stabs:Stabs[] = await prisma.stabs.findMany({
       where: {
         id: {
           in: ids,
