@@ -20,7 +20,7 @@ export default function Navbar() {
           </Link>
           <div className="flex items-center md:order-2">
             <Link href={"/connexion"}>
-              <button className="text-[#1F3C64] mr-4 rounded-full border border-[#1F3C64] bg-white px-4 py-2 text-xs font-semibold shadow hover:bg-gray-100">
+              <button className="mr-4 rounded-full border border-[#1F3C64] bg-white px-4 py-2 text-xs font-semibold text-[#1F3C64] shadow hover:bg-gray-100">
                 Connexion
               </button>
             </Link>
@@ -136,23 +136,15 @@ export default function Navbar() {
                 </Link>
               </li>
               <li>
-                <a
-                  href="#"
-                  className="block rounded py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-[#1F3C64] md:dark:hover:bg-transparent md:dark:hover:text-[#1F3C64]"
-                >
-                  Services
-                </a>
-              </li>
-              <li>
                 <Link
-                  href="#"
+                  href="/pricing"
                   className="block rounded py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-[#1F3C64] md:dark:hover:bg-transparent md:dark:hover:text-[#1F3C64]"
                 >
                   Pricing
                 </Link>
               </li>
               <li>
-              <Link
+                <Link
                   href={"/about"}
                   className="block rounded py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-[#1F3C64] md:dark:hover:bg-transparent md:dark:hover:text-[#1F3C64]"
                 >
