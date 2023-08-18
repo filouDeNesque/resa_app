@@ -25,7 +25,7 @@ const ButtonDropDown = () => {
       {/* BUTTON USER DROPDOWN*/}
       <button
         type="button"
-        className="mr-3 flex rounded-full bg-gray-800 text-sm focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600 md:mr-0"
+        className="mr-3 flex rounded-full bg-gray-800 text-sm focus:ring-4 p-1 focus:ring-gray-300 dark:focus:ring-gray-600 md:mr-0"
         id="user-menu-button"
         aria-expanded={isMenuOpen}
         onClick={() => setIsMenuOpen(!isMenuOpen)}

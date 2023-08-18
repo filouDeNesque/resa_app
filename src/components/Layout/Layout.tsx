@@ -16,7 +16,7 @@ const Layout = ({ children, ...rest }: props) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navbar {...rest} />
-      {/* TODO: Remplacer mx auto */}
+      {/* TODO: Remplacer  */}
       <div className="container mx-auto ">{children}</div>
     </>
   );

@@ -6,7 +6,7 @@ export default function DisconnectHome() {
             <div className=' bg-[url("https://cdn.pixabay.com/photo/2019/06/18/19/05/horse-4283016_1280.jpg")]  bg-cover bg-center w-full h-[50vh]  flex justify-center flex-col items-center relative shadow-sm rounded-md  '>
                 <h1 className='self-center whitespace-nowrap text-4xl font-semibold text-white shadow-xs' style={{ textShadow: "3px 2px 0px rgb(0 0 0)" }}>Stable Mate</h1>
 
-                <div className='hidden flex-wrap text-sm w-full top-[55vh] md:flex justify-center space-x-4 items-center  absolute'>
+                <div className='hidden flex-wrap text-sm w-20h top-[55vh] md:flex justify-center space-x-2 items-center  absolute'>
 
                     <div className='bg-[#ffffff] p-6 shadow-md rounded-md  w-[25vw] h-[40vh]'>
                         <h2>Rejoignez la communauté dès maintenant !</h2>
@@ -27,11 +27,10 @@ export default function DisconnectHome() {
                         </p>
                     </div>
                 </div>
+            </div>
+            <div className='bg-[#78ABF4] absolute -z-50 inset-x-0 top-0 w-[100%] h-[80vh]'>
 
             </div>
-            <div className='bg-[#78ABF4] absolute -z-50 inset-x-0 top-0 w-[100vw] h-[80vh]'>
-                Connecter vous !
-            </div>
-        </>
-    )
+            </>
+            )
 }
