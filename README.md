@@ -59,7 +59,7 @@ La messagerie intégrée facilite la communication en temps réel entre les part
 ✅ **Large Choix :**
 Les cavaliers ont accès à une variété de chevaux disponibles à la demi-pension, adaptés à leurs besoins et préférences.
 
-Rejoignez StableMate et créez des connexions plus fortes entre propriétaires, écuries et cavaliers. 🐎🌟
+Rejoignez StableMate et créez des LoginPages plus fortes entre propriétaires, écuries et cavaliers. 🐎🌟
 
 ---
 

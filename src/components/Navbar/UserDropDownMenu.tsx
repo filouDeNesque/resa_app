@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
-import NavbarMenuUser from "./MenuUser ";
+import MenuUser from "./MenuUser ";
 
 const ButtonDropDown = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -49,7 +49,7 @@ const ButtonDropDown = () => {
         } r-0 dark:bg-[#[#ffcfd2]  ] absolute right-[-1.1rem] top-[2.4rem] z-50 my-4 list-none divide-y divide-gray-100 rounded-lg bg-white bg-gradient-to-b from-[#78ABF4] to-[#ffcfd2] p-4 text-base shadow  dark:divide-gray-600`}
         id="user-dropdown"
       >
-        <NavbarMenuUser />
+        <MenuUser />
       </div>
     </>
   );

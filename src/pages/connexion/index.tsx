@@ -1,22 +1,43 @@
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
+import { useRouter } from "next/router";
+import React from "react";
+import { FaDiscord, FaGoogle } from "react-icons/fa";
+import Layout from "~/components/Layout/Layout";
 
-export default function Connexion() {
+const LoginPage = () => {
+  const { data: session } = useSession();
+  const router = useRouter();
 
+  if (session) {
+    router.push("/").catch((error) => {
+      console.log(error);
+    });
+    return null;
+  }
 
   return (
-    <div className="flex h-screen items-center justify-center">
-      <button
-        className="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
-        onClick={()=>void signIn("google")}
-      >
-        Google
-      </button>
-      <button
-        className="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
-        onClick={()=>void signIn("discord")}
-      >
-        Discord
-      </button>
-    </div>
+    <Layout>
+      <div className="login-container">
+        <div className="login-box">
+          <h2>Connectez-vous</h2>
+          <div className="social-buttons">
+            <button
+              onClick={() => void signIn("discord")}
+              className="discord-button"
+            >
+              <FaDiscord className="mr-2" /> Se connecter avec Discord
+            </button>
+            <button
+              onClick={() => void signIn("google")}
+              className="google-button"
+            >
+              <FaGoogle className="mr-2" /> Se connecter avec Google
+            </button>
+          </div>
+        </div>
+      </div>
+    </Layout>
   );
-}
+};
+
+export default LoginPage;

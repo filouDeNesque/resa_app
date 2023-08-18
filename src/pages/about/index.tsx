@@ -78,7 +78,7 @@ const AboutPage = () => {
           </ul>
 
           <p className="mt-6">
-            Rejoignez StableMate et créez des connexions plus fortes entre
+            Rejoignez StableMate et créez des LoginPages plus fortes entre
             propriétaires, écuries et cavaliers. 🐎🌟
           </p>
         </div>

@@ -1,6 +1,11 @@
-import Link from "next/link";
+/* eslint-disable @typescript-eslint/no-misused-promises */
+import { signOut } from "next-auth/react";
 
-const NavbarMenuUser = () => {
+const MenuUser = () => {
+  const handleLogout = () => {
+    return signOut();
+  };
+
   return (
     <>
       <div className="px-4 py-3">
@@ -37,15 +42,16 @@ const NavbarMenuUser = () => {
           </a>
         </li>
         <li>
-          <Link href={"/connexion"}>
-            <button className="ml-[0.5rem] mr-4 mt-[0.4rem] rounded-full bg-white px-4  py-2  text-xs font-semibold  shadow dark:text-[#C13131] dark:hover:bg-[#C13131] dark:hover:text-white">
-              Sign out
-            </button>
-          </Link>
+          <button
+            onClick={handleLogout}
+            className="ml-[0.5rem] mr-4 mt-[0.4rem] rounded-full bg-white px-4  py-2  text-xs font-semibold  shadow dark:text-[#C13131] dark:hover:bg-[#C13131] dark:hover:text-white"
+          >
+            Sign out
+          </button>
         </li>
       </ul>
     </>
   );
 };
 
-export default NavbarMenuUser;
+export default MenuUser;
