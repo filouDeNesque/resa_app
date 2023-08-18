@@ -15,9 +15,9 @@ export default function DisconnectHome() {
                         </p>
                     </div>
                     <div className='bg-[#ffffff] p-6 shadow-md rounded-md  w-[25vw] h-[40vh]'>
-                        <h2>Inscrivez-vous et rejoignez-nous dès aujourd'hui !
+                        <h2>Inscrivez-vous et rejoignez-nous dès aujourd&aposhui !
                         </h2>
-                        <p>Plongez dans un monde passionnant de partage de connaissances, d'expériences inspirantes et d'amitiés durables. L'aventure commence ici !
+                        <p>Plongez dans un monde passionnant de partage de connaissances, d&aposexpériences inspirantes et d&aposamitiés durables. L&aposaventure commence ici !
                         </p>
                     </div>
                     <div className='bg-[#ffffff] p-6 shadow-md rounded-md  w-[25vw] h-[40vh]'>
