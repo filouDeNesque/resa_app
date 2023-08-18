@@ -67,6 +67,7 @@ Rejoignez StableMate et créez des connexions plus fortes entre propriétaires, 
 
 - [x] Import de la liste des écuries
 - [x] Revoir le Readme.md
+- [x] Création du repo github
 - [ ] Mise en place du form utilisateur
   - [ ] Création d'une page setting
   - [ ] Intégration du composant UserForm
