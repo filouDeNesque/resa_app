@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
 import { signOut } from "next-auth/react";
+import Link from "next/link";
 
 const MenuUser = () => {
   const handleLogout = () => {
@@ -26,12 +27,12 @@ const MenuUser = () => {
           </a>
         </li>
         <li>
-          <a
-            href="#"
+          <Link
+            href={"/setting"}
             className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-[#00122D] dark:hover:bg-gray-600 dark:hover:text-white"
           >
             Settings
-          </a>
+          </Link>
         </li>
         <li>
           <a

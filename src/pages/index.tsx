@@ -2,6 +2,7 @@ import { useSession } from "next-auth/react";
 import TopContainer from "~/components/Home/TopContainer";
 import Layout from "~/components/Layout";
 import { HomeProvider } from "~/layout/home/home.context";
+import DisconnectHome from "~/components/Home/DisconnectHome";
 
 export default function Home() {
   const { data: session } = useSession();
@@ -19,7 +20,7 @@ export default function Home() {
   }
   return (
     <Layout>
-      <h2>Connecter vous</h2>
+      <DisconnectHome />
     </Layout>
   );
 }
