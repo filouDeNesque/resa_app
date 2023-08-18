@@ -3,8 +3,8 @@ import Layout from "~/components/Layout/Layout";
 const AboutPage = () => {
   return (
     <Layout>
-      <div className="w-full flex flex-col items-center justify-center">
-        <div className="md:w-2/3  justify-center p-8	">
+      <div className="flex w-full flex-col items-center justify-center">
+        <div className="justify-center  p-8 md:w-2/3	">
           <h1 className="mb-4 text-3xl font-semibold text-[#00122D]">
             À Propos de Stable Mate
           </h1>
@@ -15,7 +15,9 @@ const AboutPage = () => {
             écuries et les cavaliers intéressés par la demi-pension.
           </p>
 
-          <h2 className="mt-6 text-xl font-semibold text-[#00122D]">Fonctionnalités clés :</h2>
+          <h2 className="mt-6 text-xl font-semibold text-[#00122D]">
+            Fonctionnalités clés :
+          </h2>
           <ul className="list-inside list-disc text-[#1F3C64]">
             <li>
               <strong>🏠 Écuries :</strong> Les écuries peuvent utiliser
