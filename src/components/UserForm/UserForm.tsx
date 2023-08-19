@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 
 const EditableForm: React.FC = () => {
   const [formData, setFormData] = useState({
+    email: 'test@gmoi.com',
     name: 'John',
     firstname: 'Doe',
     streetAddress: '123 Main St',
+    city: 'NYC',
     postalCode: '12345'
   });
 
@@ -21,12 +23,15 @@ const EditableForm: React.FC = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto p-4">
+    <div className="max-w-md mx-auto p-4 mt-5 bg-white bg-gradient-to-b from-[#78ABF4] to-[#ffcfd2] ">
       <div className="space-y-4">
+        <InputField label="email" value={formData.email} onChange={value => handleChange('email', value)} />
         <InputField label="Nom" value={formData.name} onChange={value => handleChange('name', value)} />
         <InputField label="Prénom" value={formData.firstname} onChange={value => handleChange('firstname', value)} />
         <InputField label="Adresse" value={formData.streetAddress} onChange={value => handleChange('streetAddress', value)} />
+        <InputField label="Ville" value={formData.city} onChange={value => handleChange('city', value)} />
         <InputField label="Code postal" value={formData.postalCode} onChange={value => handleChange('postalCode', value)} />
+
       </div>
       <button
         onClick={handleSave}

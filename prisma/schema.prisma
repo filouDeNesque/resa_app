@@ -29,7 +29,7 @@ model UserPlace {
 }
 
 model stabs {
-    id              String @id @default(cuid()) @map("_id")
+    id              String  @id @default(cuid()) @map("_id")
     name            String
     StreetAddress   String
     PostalCode      String
@@ -70,14 +70,21 @@ model Session {
 }
 
 model User {
-    id            String      @id @default(cuid()) @map("_id")
-    name          String?
-    email         String?     @unique
-    emailVerified DateTime?
-    image         String?
-    accounts      Account[]
-    sessions      Session[]
-    UserPlace     UserPlace[]
+    id              String      @id @default(cuid()) @map("_id")
+    name            String?
+    firstname       String?
+    email           String?     @unique
+    emailVerified   DateTime?
+    image           String?
+    streetAddress   String?
+    postalCode      String?
+    addresseCity    String?
+    addresseCountry String?
+    lon             Float?
+    lat             Float?
+    accounts        Account[]
+    sessions        Session[]
+    UserPlace       UserPlace[]
 }
 
 model VerificationToken {
