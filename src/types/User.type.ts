@@ -1,4 +1,4 @@
-import { UserPlace } from "./UserPlace.type";
+import type { UserPlace } from "./UserPlace.type";
 export interface User {
     id?: string;
     name?: string;

@@ -62,7 +62,19 @@ Les cavaliers ont accès à une variété de chevaux disponibles à la demi-pens
 Rejoignez StableMate et créez des LoginPages plus fortes entre propriétaires, écuries et cavaliers. 🐎🌟
 
 ---
+## Table des matières
 
+- [Description](#description)
+- [Fonctionnalités](#fonctionnalités-clés)
+- [Avantages](#avantages)
+- [TodoList](#todolist)
+- [Réflexion](#reflection)
+- [Documentation](#documentation)
+  - [Palette de couleur](#palette-de-couleur)
+  - [Geocoding search](#geocoding-search)
+  - [Refacto avec un context + reducer](#refacto-avec-un-context--reducer)
+  - [Hooks personnalisés](#hooks-personnalisés)
+  
 ## &#x1F3AF; TodoList
 
 - [x] Import de la liste des écuries
@@ -85,6 +97,7 @@ Rejoignez StableMate et créez des LoginPages plus fortes entre propriétaires, 
   - [ ] Revoir entièrement la page search et ses composants
 - [x] Refaire page connection
 - [x] Faire page logout
+- [ ] Modifier les Hooks dans les composant
 
 ### Reflection
 
@@ -143,6 +156,7 @@ Rejoignez StableMate et créez des LoginPages plus fortes entre propriétaires, 
 ---
 
 ## &#x1F4DA; Documentation
+
 
 ### Palette de couleur
 
@@ -285,6 +299,65 @@ export default function Home() {
 ```
 
 </details>
+
+### Hooks personalisé
+Les hooks personnalisés peuvent être placés dans un répertoire spécifique de votre projet, généralement appelé `hooks` ou `customHooks`. Cela permet de les organiser de manière centralisée et facilite leur réutilisation dans toute votre application.
+
+Voici comment vous pourriez organiser votre arborescence et nommer vos fichiers de hooks personnalisés :
+
+### Structure d'arborescence suggérée :
+
+```
+src/
+|-- components/
+|   |-- ... (Vos composants réutilisables)
+|-- hooks/
+|   |-- useUserData.ts  (Hook personnalisé pour la récupération de données utilisateur)
+|   |-- useOtherCustomHook.ts  (Autres hooks personnalisés)
+|-- pages/
+|   |-- ... (Vos pages)
+|-- server/
+|   |-- db.ts
+|-- types/
+|   |-- User.type.ts
+|-- ...
+```
+
+### Nomenclature des fichiers :
+
+Pour les noms de fichiers de hooks personnalisés, vous pouvez suivre une convention telle que `use[NomDescriptifDuHook].ts`. Cela rend vos fichiers plus explicites et facilite leur identification.
+
+Par exemple, si vous avez un hook personnalisé pour la récupération de données utilisateur, vous pourriez nommer le fichier `useUserData.ts`. Voici à quoi cela pourrait ressembler :
+
+```tsx
+// useUserData.ts
+
+import { useState, useEffect } from "react";
+
+const useUserData = (userId) => {
+  const [userData, setUserData] = useState(null);
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const response = await fetch(`/api/users/${userId}`);
+        const data = await response.json();
+        setUserData(data.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchUserData();
+  }, [userId]);
+
+  return userData;
+};
+
+export default useUserData;
+```
+
+En suivant cette convention, vous pouvez rapidement identifier la fonction et le rôle du hook personnalisé à partir de son nom de fichier. Cela rend également l'organisation de vos hooks personnalisés plus cohérente et prévisible.
 
 <!-- Variable -->
 
