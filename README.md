@@ -70,16 +70,21 @@ Rejoignez StableMate et créez des LoginPages plus fortes entre propriétaires, 
 - [x] Création du repo github
 - [ ] (Remplacement des input text)[https://codepen.io/lucasyem/pen/ZEEYKdj]
 - [ ] Mise en place du form utilisateur
-  - [ ] Création d'une page setting
-  - [ ] Intégration du composant UserForm
+  - [x] Création d'une page setting
+  - [x] Intégration du composant UserForm
+  - [x] changement schema user 
+  - [ ] mise a jour / création du type user  
+  - [ ] api crud user  
+    - [ ] handler findByID  
+    - [ ] handler updateById   
 - [ ] Schema BDD
   - [ ] [Ecurie](#2-ecurie)
   - [ ] [Cheval][def]
   - [ ] [Utilisateur](#4-utilisateur)
 - [ ] Mise en place d'une nouvelle structure de fichier
   - [ ] Revoir entièrement la page search et ses composants
-- [ ] Refaire page connection
-- [ ] Faire page logout
+- [x] Refaire page connection
+- [x] Faire page logout
 
 ### Reflection
 
