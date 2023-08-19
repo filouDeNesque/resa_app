@@ -87,12 +87,13 @@ Rejoignez StableMate et créez des LoginPages plus fortes entre propriétaires, 
   - [x] changement schema user 
   - [ ] mise a jour / création du type user  
   - [ ] api crud user  
-    - [ ] handler findByID  
+    - [x] handler findByID  
     - [ ] handler updateById   
+    - [ ] Hook updateById   
 - [ ] Schema BDD
   - [ ] [Ecurie](#2-ecurie)
   - [ ] [Cheval][def]
-  - [ ] [Utilisateur](#4-utilisateur)
+  - [x] [Utilisateur](#4-utilisateur)
 - [ ] Mise en place d'une nouvelle structure de fichier
   - [ ] Revoir entièrement la page search et ses composants
 - [x] Refaire page connection

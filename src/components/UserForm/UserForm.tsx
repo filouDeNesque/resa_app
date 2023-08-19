@@ -1,14 +1,21 @@
 import React, { useState } from 'react';
+import { useSession } from "next-auth/react";
+import useUserData from '~/hooks/useUserData';
 
 const EditableForm: React.FC = () => {
+  const { data: session } = useSession();
+  console.log(session?.user)
   const [formData, setFormData] = useState({
-    email: 'test@gmoi.com',
-    name: 'John',
+    email: session?.user.email || 'moi@nimp.com',
+    name: session?.user.name || 'Jhon',
     firstname: 'Doe',
     streetAddress: '123 Main St',
     city: 'NYC',
     postalCode: '12345'
   });
+  if (session) {
+    const userData = useUserData(session?.user.id)
+  }
 
   const handleChange = (field: string, value: string) => {
     setFormData(prevData => ({
