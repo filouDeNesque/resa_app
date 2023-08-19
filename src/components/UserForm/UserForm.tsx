@@ -31,7 +31,6 @@ const EditableForm: React.FC = () => {
         <InputField label="Adresse" value={formData.streetAddress} onChange={value => handleChange('streetAddress', value)} />
         <InputField label="Ville" value={formData.city} onChange={value => handleChange('city', value)} />
         <InputField label="Code postal" value={formData.postalCode} onChange={value => handleChange('postalCode', value)} />
-
       </div>
       <button
         onClick={handleSave}
