@@ -13,9 +13,10 @@ const EditableForm: React.FC = () => {
     city: 'NYC',
     postalCode: '12345'
   });
-  if (session) {
-    const userData = useUserData(session?.user.id)
-  }
+  const sessionId = session?.user.id || ""
+  const userData = useUserData(sessionId)
+  console.log(userData)
+
 
   const handleChange = (field: string, value: string) => {
     setFormData(prevData => ({

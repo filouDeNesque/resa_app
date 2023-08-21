@@ -1,22 +1,38 @@
-// useUserData.ts
-
 import { useState, useEffect } from "react";
+import type { User } from "~/types/User.type";
 
-const useUserData = (userId:string ) => {
-  const [userData, setUserData] = useState(null);
+
+interface APIResponse<T> {
+  data: T;
+  message: string;
+  // Vous pouvez ajouter d'autres propriétés spécifiques à la réponse API si nécessaire
+}
+
+const useUserData = (userId: string) => {
+  const [userData, setUserData] = useState<User | null>(null);
 
   useEffect(() => {
     const fetchUserData = async () => {
       try {
         const response = await fetch(`/api/users/${userId}`);
-        const data = await response.json();
-        setUserData(data.data);
+
+        if (response.ok) {
+
+          const responseData = await response.json() as APIResponse<User | null>
+
+          if (responseData.data !== null && typeof responseData.data === 'object') {
+            setUserData(responseData.data);
+          }
+
+        }
       } catch (error) {
         console.error(error);
       }
     };
 
-    fetchUserData();
+    fetchUserData().catch((error) => {
+      console.log(error)
+    });
   }, [userId]);
 
   return userData;
