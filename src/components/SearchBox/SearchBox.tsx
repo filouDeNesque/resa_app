@@ -55,7 +55,6 @@ export async function fetchResearch(
   suggestions: Suggestion[],
   setSuggestions: React.Dispatch<React.SetStateAction<Suggestion[]>>
 ) {
-  console.log("fetching research");
   await fetch(
     `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(
       debounced
@@ -74,7 +73,6 @@ export async function fetchData(
   suggestions: Suggestion[],
   setSuggestions: React.Dispatch<React.SetStateAction<Suggestion[]>>
 ) {
-  console.log("fetchdata");
   try {
     if (suggestions.length > 0) {
       const stabRes: Suggestion[] = await getStabsBdd(suggestions);

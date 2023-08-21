@@ -4,7 +4,6 @@ import useUserData from '~/hooks/useUserData';
 
 const EditableForm: React.FC = () => {
   const { data: session } = useSession();
-  console.log(session?.user)
   const [formData, setFormData] = useState({
     email: session?.user.email || 'moi@nimp.com',
     name: session?.user.name || 'Jhon',
@@ -15,8 +14,6 @@ const EditableForm: React.FC = () => {
   });
   const sessionId = session?.user.id || ""
   const userData = useUserData(sessionId)
-  console.log(userData)
-
 
   const handleChange = (field: string, value: string) => {
     setFormData(prevData => ({

@@ -15,15 +15,11 @@ const useUserData = (userId: string) => {
     const fetchUserData = async () => {
       try {
         const response = await fetch(`/api/users/${userId}`);
-
         if (response.ok) {
-
           const responseData = await response.json() as APIResponse<User | null>
-
           if (responseData.data !== null && typeof responseData.data === 'object') {
             setUserData(responseData.data);
           }
-
         }
       } catch (error) {
         console.error(error);
