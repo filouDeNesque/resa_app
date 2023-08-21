@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSession } from "next-auth/react";
-import useUserData from '~/hooks/useUserData';
+import { useUserData } from '~/hooks/useUserData';
 
 const EditableForm: React.FC = () => {
   const { data: session } = useSession();

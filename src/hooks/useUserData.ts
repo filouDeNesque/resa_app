@@ -10,6 +10,8 @@ interface APIResponse<T> {
 
 const useUserData = (userId: string) => {
   const [userData, setUserData] = useState<User | null>(null);
+  const [updateStatus, setUpdateStatus] = useState<boolean | null>(null);
+
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -31,10 +33,35 @@ const useUserData = (userId: string) => {
     });
   }, [userId]);
 
-  return userData;
+
+
+  const updateUserData = async (updatedData: Partial<User>) => {
+    try {
+      const response = await fetch(`/api/users/${userId}`, {
+        method: "PUT", // Utilisez PUT ou PATCH en fonction de votre API
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updatedData),
+      });
+
+      if (response.ok) {
+        setUpdateStatus(true);
+        // Vous pouvez également mettre à jour userData ici si nécessaire
+      } else {
+        setUpdateStatus(false);
+      }
+    } catch (error) {
+      console.error(error);
+      setUpdateStatus(false);
+    }
+  };
+
+  return { userData, updateStatus, updateUserData };
 };
 
-export default useUserData;
+export { useUserData };
+
 
 
 // TODO: mise en place du hook update Data
