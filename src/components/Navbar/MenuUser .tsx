@@ -1,20 +1,24 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
 import { signOut } from "next-auth/react";
 import Link from "next/link";
+import { useSession } from "next-auth/react";
+
 
 const MenuUser = () => {
   const handleLogout = () => {
     return signOut();
   };
+  const { data: session } = useSession();
+  console.log(session?.user)
 
   return (
     <>
       <div className="px-4 py-3">
         <span className="block text-sm text-[#00122D] dark:text-[#00122D]">
-          Bonnie Green
+          {session?.user.name}
         </span>
         <span className="block truncate  text-sm text-white dark:text-white">
-          name@flowbite.com
+          {session?.user.email}
         </span>
       </div>
       <ul className="py-2" aria-labelledby="user-menu-button">

@@ -3,8 +3,12 @@ import Link from "next/link";
 import ButtonConnect from "./ButtonConnect";
 import TitleMenu from "./TitleMenu";
 import USerDropDownMenu from "./UserDropDownMenu";
+import { useSession } from "next-auth/react";
+
 
 export default function Navbar() {
+  const { data: session } = useSession();
+
   return (
     <>
       <nav className="border-gray-200 bg-white dark:bg-[#78ABF4]">
@@ -23,8 +27,8 @@ export default function Navbar() {
           </Link>
           <div className="relative flex items-center md:order-2">
             <ButtonConnect />
-            <USerDropDownMenu />
             {/* NAVBAR Menu pour mobile*/}
+            {session ? <USerDropDownMenu /> : null}
             <button
               data-collapse-toggle="navbar-user"
               type="button"
