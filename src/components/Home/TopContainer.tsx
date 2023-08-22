@@ -1,4 +1,5 @@
 import dynamic from "next/dynamic";
+import ButtonCard from "../ButtonCard/ButtonCard.component";
 
 const MapNoSSR = dynamic(() => import("../Map-V2"), {
   ssr: false,
@@ -12,15 +13,30 @@ const TopContainer = () => {
           &ldquo;Passion Équestre, À Deux Pas&rdquo;
         </blockquote>
         <div className="flex flex-wrap	justify-center md:space-x-6">
-          <div className="flex flex-col items-center">
-            <button className=" xs:my-0 my-2 h-[1.8rem] w-[14rem] rounded-full bg-[#FEC5BB] font-bold text-[#1F3C64]   shadow hover:bg-[#E8E8E4] md:mx-1 md:my-0 md:h-[2rem] md:w-[20rem]  ">
-              Pension
-            </button>
-          </div>
-          <div className="flex flex-col items-center">
-            <button className="xs:my-0 my-2 h-[1.8rem] w-[14rem] rounded-full bg-[#FEC89A] font-bold text-[#1F3C64]  shadow hover:bg-[#E8E8E4] md:my-0 md:h-[2rem] md:w-[20rem] ">
-              Demi-pension
-            </button>
+
+          <div className="flex flex-wrap items-center place-content-center ">
+
+            <ButtonCard
+              title="Vos Chevaux"
+              content=" Consulter / personnalisez les informations sur votre cheval à tout moment."
+              href="https://cdn.pixabay.com/photo/2017/02/01/12/14/animal-2030012_1280.png"
+            />
+            <ButtonCard
+              title="Pensions"
+              content=" À la recherche d'une  pension/demi-pension près de chez vous ! Trouvez la dès maintenant."
+              href="https://cdn.pixabay.com/photo/2018/10/10/14/44/audit-3737447_640.jpg"
+            />
+            <ButtonCard
+              title="Organisation"
+              content=" Personnalisez les informations sur votre cheval à tout moment."
+              href="https://cdn.pixabay.com/photo/2016/07/28/20/42/icon-1549619_1280.png"
+            />
+            <ButtonCard
+              title="Pensions"
+              content=" À la recherche d'une  pension/demi-pension près de chez vous ! Trouvez la dès maintenant."
+              href="https://cdn.pixabay.com/photo/2018/10/10/14/44/audit-3737447_640.jpg"
+            />
+
           </div>
         </div>
 
