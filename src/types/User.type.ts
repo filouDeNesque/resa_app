@@ -1,16 +1,21 @@
 import type { UserPlace } from "./UserPlace.type";
+import type { Account } from "./Account.type";
+import type { Session } from "./Session.type";
 export interface User {
     id?: string;
-    name?: string;
-    firstname?: string;
-    email?: string;
-    emailVerified?: Date;
-    image?: string;
-    streetAddress?: string;
-    postalCode?: string;
-    addresseCity?: string;
-    addresseCountry?: string;
-    lon?: number;
-    lat?: number;
-    UserPlace?: UserPlace[];
+    name?: string |null;
+    firstname?: string |null;
+    email?: string |null;
+    emailVerified?: Date |null;
+    image?: string |null;
+    streetAddress?: string|null;
+    postalCode?: string|null;
+    addresseCity?: string|null;
+    addresseCountry?: string|null;
+    lon?: number|null;
+    lat?: number|null;
+    accounts?: Account[];
+  sessions?: Session[];
+
+    UserPlace?: UserPlace[]|null;
 }

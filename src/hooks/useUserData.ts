@@ -1,3 +1,4 @@
+import { useSession } from "next-auth/react";
 import { useState, useEffect } from "react";
 import type { User } from "~/types/User.type";
 
@@ -8,12 +9,18 @@ interface APIResponse<T> {
   // Vous pouvez ajouter d'autres propriétés spécifiques à la réponse API si nécessaire
 }
 
-const useUserData = (userId: string) => {
+const useUserData = () => {
   const [userData, setUserData] = useState<User | null>(null);
   const [updateStatus, setUpdateStatus] = useState<boolean | null>(null);
 
+  const { data: session } = useSession();
+  const userId : string = session?.user?.id ?? ""
+  console.log("userId")
+  console.log(userId)
+
 
   useEffect(() => {
+
     const fetchUserData = async () => {
       try {
         const response = await fetch(`/api/users/${userId}`);
@@ -26,12 +33,16 @@ const useUserData = (userId: string) => {
       } catch (error) {
         console.error(error);
       }
+
     };
 
-    fetchUserData().catch((error) => {
-      console.log(error)
-    });
-  }, [userId]);
+    if (userId) {
+
+      fetchUserData().catch((error) => {
+        console.log(error)
+      });
+    }
+  }, [userId, setUserData]);
 
 
 
@@ -61,7 +72,3 @@ const useUserData = (userId: string) => {
 };
 
 export { useUserData };
-
-
-
-// TODO: mise en place du hook update Data
