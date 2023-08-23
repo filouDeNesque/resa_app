@@ -64,40 +64,45 @@ Rejoignez StableMate et créez des LoginPages plus fortes entre propriétaires, 
 ---
 ## Table des matières
 
-- [Description](#description)
-- [Fonctionnalités](#fonctionnalités-clés)
-- [Avantages](#avantages)
-- [TodoList](#todolist)
-- [Réflexion](#reflection)
-- [Documentation](#documentation)
+- [Table des matières](#table-des-matières)
+- [🎯 TodoList](#-todolist)
+  - [Reflection](#reflection)
+    - [1. Nouvelle structure à mettre en place](#1-nouvelle-structure-à-mettre-en-place)
+    - [2. Ecurie](#2-ecurie)
+    - [3. Cheval](#3-cheval)
+    - [4. Utilisateur](#4-utilisateur)
+- [📚 Documentation](#-documentation)
   - [Palette de couleur](#palette-de-couleur)
   - [Geocoding search](#geocoding-search)
   - [Refacto avec un context + reducer](#refacto-avec-un-context--reducer)
-  - [Hooks personnalisés](#hooks-personnalisés)
+  - [Hooks personalisé](#hooks-personalisé)
+  - [Structure d'arborescence suggérée :](#structure-darborescence-suggérée-)
+  - [Nomenclature des fichiers :](#nomenclature-des-fichiers-)
   
 ## &#x1F3AF; TodoList
 
 - [x] Import de la liste des écuries
 - [x] Revoir le Readme.md
 - [x] Création du repo github
-- [ ] (Remplacement des input text)[https://codepen.io/lucasyem/pen/ZEEYKdj]
-- [ ] Mise en place du form utilisateur
+- [x] Mise en place du form utilisateur
   - [x] Création d'une page setting
   - [x] Intégration du composant UserForm
   - [x] changement schema user 
-  - [ ] mise a jour / création du type user  
-  - [ ] api crud user  
+  - [x] mise a jour / création du type user  
+  - [x] api crud user  
     - [x] handler findByID  
-    - [ ] handler updateById   
-    - [ ] Hook updateById   
-- [ ] Schema BDD
-  - [ ] [Ecurie](#2-ecurie)
-  - [ ] [Cheval][def]
-  - [x] [Utilisateur](#4-utilisateur)
-- [ ] Mise en place d'une nouvelle structure de fichier
-  - [ ] Revoir entièrement la page search et ses composants
+    - [x] handler updateById   
+    - [x] Hook updateById   
 - [x] Refaire page connection
 - [x] Faire page logout
+- [ ] [Remplacement des input text](https://codepen.io/lucasyem/pen/ZEEYKdj)
+- [ ] Mise en place du popup choix cheval [popup](https://codesandbox.io/s/practical-roentgen-oxzb4?from-embed=&file=/src/components/CustomPopup/index.js)
+- [ ] Schema BDD
+  - [x] [Utilisateur](#4-utilisateur)
+  - [ ] [Ecurie](#2-ecurie)
+  - [ ] [Cheval][def]
+- [ ] Mise en place d'une nouvelle structure de fichier
+  - [ ] Revoir entièrement la page search et ses composants
 - [ ] Modifier les Hooks dans les composant
 
 ### Reflection
@@ -363,3 +368,8 @@ En suivant cette convention, vous pouvez rapidement identifier la fonction et le
 <!-- Variable -->
 
 [def]: #3-cheval
+
+
+
+------
+
