@@ -372,4 +372,104 @@ En suivant cette convention, vous pouvez rapidement identifier la fonction et le
 
 
 ------
+<!-- 
+````mermaid
+erDiagram
+  User ||--o{ Account : has
+  User ||--o{ Session : has
+  User ||--o{ VerificationToken : has
+  User ||--o{ UserPlace : has
 
+  stabs ||--o{ UserPlace : located 
+	stabs ||--o{ User: located
+	stabs ||--o{ Horse: located
+
+	Horse{
+		id string
+		name string 
+		userId string
+		driver Driver[]
+	}
+
+  User {
+    id              String
+    name            String
+    firstname       String
+    email           String
+    emailVerified   DateTime
+    image           String
+    streetAddress   String
+    postalCode      String
+    addresseCity    String
+    addresseCountry String
+    lon             Float
+    lat             Float
+		accounts        Account[]
+    sessions        Session[]
+    UserPlace       UserPlace[]
+		Horse           Horse[] 
+  }
+
+  UserPlace {
+    id        String
+    name      String
+    type      String
+    dateAdded String
+    id_Api    Int
+    lon       Float
+    lat       Float
+		userId    String
+  }
+
+  Account {
+    id                String
+    userId            String
+    type              String
+    provider          String
+    providerAccountId String
+    refresh_token     String
+    access_token      String
+    expires_at        Int
+    token_type        String
+    scope             String
+    id_token          String
+    session_state     String
+  }
+
+  Session {
+    id           String
+    sessionToken String
+    userId       String
+    expires      DateTime
+  }
+
+  VerificationToken {
+    identifier String
+    token      String
+    expires    DateTime
+  }
+
+  stabs {
+    id              String
+    name            String
+    StreetAddress   String
+    PostalCode      String
+    AddressLocality String
+    AddressCountry  String
+    Telephone       String
+    Site            String
+    lon             Float
+    lat             Float
+    place_id        String
+		horse           Horse
+  }
+
+
+
+
+```` -->
+
+---------
+
+
+----

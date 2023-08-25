@@ -10,42 +10,19 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
-model Example {
-    id        String   @id @default(cuid()) @map("_id")
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
-}
+model VerificationToken {
+    identifier String   @id @default(auto()) @map("_id")  @db.ObjectId
+    token      String   @unique
+    expires    DateTime
 
-model UserPlace {
-    id        String @id @default(cuid()) @map("_id")
-    name      String
-    type      String
-    dateAdded String
-    id_Api    Int    @unique
-    lon       Float
-    lat       Float
-    userId    String
-    user      User   @relation(fields: [userId], references: [id], onDelete: Cascade)
-}
-
-model stabs {
-    id              String  @id @default(cuid()) @map("_id")
-    name            String
-    StreetAddress   String
-    PostalCode      String
-    AddressLocality String
-    AddressCountry  String
-    Telephone       String
-    Site            String
-    lon             Float?
-    lat             Float?
-    place_id        String?
+    @@unique([identifier, token])
 }
 
 // Necessary for Next auth
 model Account {
-    id                String  @id @default(cuid()) @map("_id")
-    userId            String
+    id                String  @id @default(cuid()) @map("_id")  
+    userId            String   
+    user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
     type              String
     provider          String
     providerAccountId String
@@ -56,21 +33,20 @@ model Account {
     scope             String?
     id_token          String? // @db.Text
     session_state     String?
-    user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
     @@unique([provider, providerAccountId])
 }
 
 model Session {
-    id           String   @id @default(cuid()) @map("_id")
+    id           String   @id @default(cuid()) @map("_id")  
     sessionToken String   @unique
-    userId       String
     expires      DateTime
+    userId       String    
     user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model User {
-    id              String      @id @default(cuid()) @map("_id")
+    id              String      @id @default(cuid()) @map("_id")  
     name            String?
     firstname       String?
     email           String?     @unique
@@ -85,12 +61,112 @@ model User {
     accounts        Account[]
     sessions        Session[]
     UserPlace       UserPlace[]
+    stabs           stabs[]
+    HorseOwnerId    Horse[]     @relation(name: "HorseOwnerId")
+    halfLeaseUser   Horse[]     @relation(name: "halfLeaseUser")
+    userSignatory   Contract[]  @relation(name: "signatur")
+    userIssuer      Contract[]  @relation(name: "issuer")
+    adsIssuer       Ads[]       @relation(name: "adsIssuer")
+    adsInteresr     Ads[]       @relation(name: "adsInteresr")
 }
 
-model VerificationToken {
-    identifier String   @id @default(auto()) @map("_id") @db.ObjectId
-    token      String   @unique
-    expires    DateTime
+model UserPlace {
+    id           String  @id @default(cuid()) @map("_id")  
+    name         String
+    type         String
+    dateAdded    String
+    id_Api       Int     @unique
+    lon          Float
+    lat          Float
+    user         User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+    userId       String   
+    HorseOwnerId Horse[]
+}
 
-    @@unique([identifier, token])
+model stabs {
+    id              String     @id @default(cuid()) @map("_id")  
+    name            String
+    StreetAddress   String
+    PostalCode      String
+    AddressLocality String
+    AddressCountry  String
+    Telephone       String
+    Site            String
+    lon             Float?
+    lat             Float?
+    place_id        String?
+    User            User?      @relation(fields: [userId], references: [id])
+    userId          String?     
+    Horse           Horse[]
+    TotalPlace      Int
+    Ads             Ads[]
+    Contract        Contract[]
+}
+
+model Horse {
+    id               String     @id @default(cuid()) @map("_id")  
+    name             String
+    size             Float
+    createdDate      DateTime   @default(now())
+    UdpdateDate      DateTime   @updatedAt
+    birthDate        DateTime
+    userPlace        UserPlace  @relation(fields: [placeId], references: [id])
+    placeId          String      
+    stab             stabs      @relation(fields: [stabId], references: [id])
+    stabId           String      
+    user             User       @relation(name: "HorseOwnerId", fields: [ownerId], references: [id])
+    ownerId          String      
+    halfLeaseUsers   User       @relation(name: "halfLeaseUser", fields: [halfLeaseUsersId], references: [id])
+    halfLeaseUsersId String[]    
+    contract         Contract[]
+    ads              Ads[]
+}
+
+model Contract {
+    id                String   @id @default(cuid()) @map("_id")  
+    price             Float
+    type              String
+    createdDate       DateTime @default(now())
+    UdpdateDate       DateTime @updatedAt
+    startingDate      DateTime
+    endingDate        DateTime
+    title             String
+    content           String
+    acceptationDate   DateTime
+    userSignatory     User     @relation(name: "signatur", fields: [contractSignatory], references: [id])
+    contractSignatory String    
+    userIssuer        User     @relation(name: "issuer", fields: [contractSignatory], references: [id])
+    contractIssuer    String    
+    horseIssuer       Horse    @relation(fields: [horseId], references: [id])
+    horseId           String    
+    stab              stabs?   @relation(fields: [stabId], references: [id])
+    stabId            String?   
+}
+
+model Ads {
+    id                String   @id @default(cuid()) @map("_id")  
+    type              String
+    price             Float
+    createdDate       DateTime @default(now())
+    UdpdateDate       DateTime @updatedAt
+    startingDate      DateTime
+    endingDate        DateTime
+    title             String
+    content           String
+    userSignatory     User     @relation(name: "adsIssuer", fields: [contractSignatory], references: [id])
+    contractSignatory String    
+    userIssuer        User     @relation(name: "adsInteresr", fields: [contractSignatory], references: [id])
+    contractIssuer    String    
+    horseIssuer       Horse    @relation(fields: [horseId], references: [id])
+    horseId           String    
+    activity          Activity @relation(fields: [activityId], references: [id])
+    activityId        String[]  
+    stab              stabs?   @relation(fields: [stabId], references: [id])
+    stabId            String?   
+}
+
+model Activity {
+    id   String @id @default(cuid()) @map("_id")  
+    name String
+    ads  Ads[]
 }

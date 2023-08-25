@@ -2,5 +2,11 @@
     "WillLuke.nextjs.addTypesOnSave": true,
     "WillLuke.nextjs.hasPrompted": true,
     "editor.fontFamily": "Source Code Pro Medium for Powerline,Cascadia, Code PL, Hack",
-    "editor.fastScrollSensitivity": 20
+    "editor.fastScrollSensitivity": 20,
+    "editor.fontSize": 13,
+    "scm.inputFontSize": 12,
+    "debug.console.fontSize": 12,
+    "markdown.preview.fontSize": 12,
+    "terminal.integrated.fontSize": 13,
+    "chat.editor.fontSize": 12
 }
