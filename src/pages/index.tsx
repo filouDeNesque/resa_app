@@ -6,7 +6,6 @@ import DisconnectHome from "~/components/Home/DisconnectHome";
 
 export default function Home() {
   const { data: session } = useSession();
-
   if (session) {
     return (
       <>

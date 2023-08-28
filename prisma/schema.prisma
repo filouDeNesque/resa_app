@@ -110,10 +110,10 @@ model Horse {
     createdDate      DateTime   @default(now())
     UdpdateDate      DateTime   @updatedAt
     birthDate        DateTime
-    userPlace        UserPlace  @relation(fields: [placeId], references: [id])
-    placeId          String      
-    stab             stabs      @relation(fields: [stabId], references: [id])
-    stabId           String      
+    userPlace        UserPlace?  @relation(fields: [placeId], references: [id])
+    placeId          String?      
+    stab             stabs?      @relation(fields: [stabId], references: [id])
+    stabId           String?      
     user             User       @relation(name: "HorseOwnerId", fields: [ownerId], references: [id])
     ownerId          String      
     halfLeaseUsers   User       @relation(name: "halfLeaseUser", fields: [halfLeaseUsersId], references: [id])

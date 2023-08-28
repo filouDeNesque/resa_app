@@ -2,6 +2,7 @@ import { createEnv } from "@t3-oss/env-nextjs";
 import { z } from "zod";
 
 export const env = createEnv({
+  
   /**
    * Specify your server-side environment variables schema here. This way you can ensure the app
    * isn't built with invalid env vars.
@@ -56,3 +57,18 @@ export const env = createEnv({
    */
   skipValidation: !!process.env.SKIP_ENV_VALIDATION,
 });
+
+
+
+
+
+
+// // --------------------TEST---------------
+// export const envDev = {
+//   PRISMA_CLIENT_ENGINE_TYPE: "query", // ou "error", "warn", ou autre valeur
+//   // ... autres variables d'environnement spécifiques au développement
+// };
+
+// const env = envDev
+
+// export {env}
