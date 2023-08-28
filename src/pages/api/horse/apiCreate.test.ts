@@ -1,3 +1,4 @@
+import type { NextApiRequest, NextApiResponse } from 'next';
 import { createMocks } from '../../../../node_modules/node-mocks-http';
 import handler from './create'; // Remplacez par le chemin vers votre fichier API
 
@@ -11,7 +12,7 @@ const horseData = {
 
 describe('API Tests', () => {
     it('should create a new horse', async () => {
-        const { req, res } = createMocks({
+        const { req, res } = createMocks<NextApiRequest, NextApiResponse>({
             method: 'POST',
             body: { horse: horseData },
         });

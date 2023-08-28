@@ -1,6 +1,6 @@
-import { NextApiRequest, NextApiResponse } from "next";
+import type { NextApiRequest, NextApiResponse } from "next";
 import { prisma } from "~/server/db";
-import { Horse } from "~/types/Horse.type";
+import type { Horse } from "~/types/Horse.type";
 
 //TODO:possibilité de faire un modele global pour tous les requête horse
 type Data = {
@@ -40,7 +40,7 @@ export default async function handler(
                 break;
             case 'PUT':
                 // Update a horse
-                const updatedHorseData = req.body
+                const updatedHorseData = req.body as Horse
                 const updateData = {
                     ...(updatedHorseData.name !== null && { name: updatedHorseData.name }),
                     ...(updatedHorseData.size !== null && { size: updatedHorseData.size }),
@@ -63,7 +63,6 @@ export default async function handler(
                 break;
             case 'DELETE':
                 // Delete a horse
-                const horseId = req.body.id
                 const deleteHorse = await prisma.horse.delete({
                     where: {
                         id: req.query.id as string

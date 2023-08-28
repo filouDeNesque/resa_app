@@ -1,5 +1,7 @@
 import { createMocks } from 'node-mocks-http';
-import handler from './[id]'; 
+import handler from './[id]';
+import type { NextApiRequest, NextApiResponse } from 'next';
+import type { Horse } from '~/types/Horse.type';
 
 const horseDataget = {
     id: 'cllugvgsr0001ukj0p7j8vlyx',
@@ -18,7 +20,7 @@ const horseDataget = {
 describe('API Tests', () => {
     it('should get a horse by id', async () => {
         // Créer une requête simulée pour la méthode GET avec le paramètre id
-        const { req, res } = createMocks({
+        const { req, res } = createMocks<NextApiRequest, NextApiResponse>({
             method: 'GET',
             query: { id: horseDataget.id },
         });
@@ -30,9 +32,10 @@ describe('API Tests', () => {
         expect(res._getStatusCode()).toBe(200);
 
         // Vérifier le contenu de la réponse
-        const responseBody = JSON.parse(res._getData());
-        expect(responseBody.message).toBe('Get Horse ById');
-        expect(responseBody.data).toEqual(horseDataget);
+        const responseBodyString = res?._getData() as string;
+        const responseBody = JSON.parse(responseBodyString) as { message: string, data: null | Horse };
+        expect(responseBody?.message).toBe('Get Horse ById');
+        expect(responseBody?.data).toEqual(horseDataget);
     });
 });
 
@@ -66,7 +69,7 @@ const resultupdatedHorseData = {
 describe('API Tests', () => {
     it('should update a horse by id', async () => {
         // Créer une requête simulée pour la méthode PUT avec les données mises à jour
-        const { req, res } = createMocks({
+        const { req, res } = createMocks<NextApiRequest, NextApiResponse>({
             method: 'PUT',
             body: updatedHorseData,
             query: { id: 'cllutdv910001ukjc3agwzv4q' },
@@ -79,7 +82,8 @@ describe('API Tests', () => {
         expect(res._getStatusCode()).toBe(200);
 
         // Vérifier le contenu de la réponse
-        const responseBody = JSON.parse(res._getData());
+        const responseBodyString = res?._getData() as string;
+        const responseBody = JSON.parse(responseBodyString) as { message: string, data: null | Horse };
         expect(responseBody.message).toBe('Update Horse ById');
         expect(responseBody.data).toEqual(resultupdatedHorseData);
     });
@@ -89,7 +93,7 @@ describe('API Tests', () => {
 describe('API Tests Horse Delete by Id', () => {
     it('should delete a horse by id', async () => {
         // Créer une requête simulée pour la méthode DELETE avec l'ID du cheval à supprimer
-        const { req, res } = createMocks({
+        const { req, res } = createMocks<NextApiRequest, NextApiResponse>({
             method: 'DELETE',
             query: { id: 'clluteb9c0001ukhw5tmoi152' }, // Remplacez par l'ID du cheval à supprimer
         });
@@ -101,7 +105,8 @@ describe('API Tests Horse Delete by Id', () => {
         expect(res._getStatusCode()).toBe(200);
 
         // Vérifier le contenu de la réponse
-        const responseBody = JSON.parse(res._getData());
+        const responseBodyString = res?._getData() as string;
+        const responseBody = JSON.parse(responseBodyString) as { message: string, data: null | Horse };
         expect(responseBody.message).toBe('Delete Horse ById');
 
     });

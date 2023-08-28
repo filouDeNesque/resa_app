@@ -1,7 +1,6 @@
-import type { Prisma } from "@prisma/client";
-import { NextApiRequest, NextApiResponse } from "next";
+import type { NextApiRequest, NextApiResponse } from "next";
 import { prisma } from "~/server/db";
-import { Horse } from "~/types/Horse.type";
+import type { Horse } from "~/types/Horse.type";
 
 type Data = {
     message: object | string;
@@ -27,8 +26,7 @@ export default async function handler(
     }
     try {
 
-        // Create a new horse
-        const { horse } = req.body
+        // Read all horse in DB
         const newHorse = await prisma.horse.findMany({
             select: select
         })
