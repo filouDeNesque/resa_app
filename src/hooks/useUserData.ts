@@ -2,25 +2,18 @@ import { useSession } from "next-auth/react";
 import { useState, useEffect } from "react";
 import type { User } from "~/types/User.type";
 
-
 interface APIResponse<T> {
   data: T;
   message: string;
-  // Vous pouvez ajouter d'autres propriétés spécifiques à la réponse API si nécessaire
 }
 
 const useUserData = () => {
   const [userData, setUserData] = useState<User | null>(null);
   const [updateStatus, setUpdateStatus] = useState<boolean | null>(null);
-
   const { data: session } = useSession();
-  const userId : string = session?.user?.id ?? ""
-  console.log("userId")
-  console.log(userId)
-
+  const userId: string = session?.user?.id ?? ""
 
   useEffect(() => {
-
     const fetchUserData = async () => {
       try {
         const response = await fetch(`/api/users/${userId}`);
@@ -33,7 +26,6 @@ const useUserData = () => {
       } catch (error) {
         console.error(error);
       }
-
     };
 
     if (userId) {
@@ -44,12 +36,10 @@ const useUserData = () => {
     }
   }, [userId, setUserData]);
 
-
-
   const updateUserData = async (updatedData: Partial<User>) => {
     try {
       const response = await fetch(`/api/users/${userId}`, {
-        method: "PUT", // Utilisez PUT ou PATCH en fonction de votre API
+        method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
@@ -58,7 +48,6 @@ const useUserData = () => {
 
       if (response.ok) {
         setUpdateStatus(true);
-        // Vous pouvez également mettre à jour userData ici si nécessaire
       } else {
         setUpdateStatus(false);
       }
