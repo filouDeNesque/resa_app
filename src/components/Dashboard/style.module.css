@@ -1,0 +1,13 @@
+.containerDashboard {
+
+    @apply  text-white p-4 rounded-md;
+    @apply flex min-h-[70vh]
+}
+
+.LeftSideContainer {
+    @apply  text-black p-4 rounded-md w-1/5 bg-slate-300 bg-opacity-20;
+}
+
+.MainCenterContainer {
+    @apply w-4/5 p-4 text-gray-800 ;
+}

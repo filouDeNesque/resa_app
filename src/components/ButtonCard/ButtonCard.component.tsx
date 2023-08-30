@@ -11,7 +11,7 @@ interface ButtonCardProps {
 
 const ButtonCard: React.FC<ButtonCardProps> = ({ title, content, href }) => {
     return (
-        <Link href="#" className="flex-nowrap flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl md:max-h-32  hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700  mx-[1rem] my-[1rem]  w-full">
+        <Link href="/dashboard" className="flex-nowrap flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl md:max-h-32  hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700  mx-[1rem] my-[1rem]  w-full">
             <Image
                 width={1200}
                 height={800}

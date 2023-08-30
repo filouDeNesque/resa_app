@@ -23,12 +23,12 @@ const MenuUser = () => {
       </div>
       <ul className="py-2" aria-labelledby="user-menu-button">
         <li>
-          <a
-            href="#"
+          <Link
+            href="/dashboard"
             className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-[#00122D] dark:hover:bg-gray-600 dark:hover:text-white"
           >
             Dashboard
-          </a>
+          </Link>
         </li>
         <li>
           <Link
