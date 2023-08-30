@@ -1,21 +1,25 @@
 .ulMenu {
-    @apply w-44
+    @apply md:w-auto flex md:flex-col justify-evenly w-fit
 }
 
 .liMenu {
-    @apply w-44 border-b-2 border-neutral-100 border-opacity-50 py-2 dark:border-opacity-50;
+    @apply w-auto border-b-2 border-neutral-100 border-opacity-50 py-2 dark:border-opacity-50;
     @apply cursor-pointer transition duration-500 hover:bg-orange-100 hover:text-neutral-500 focus:bg-neutral-100 focus:text-neutral-500 focus:ring-0;
-    @apply text-sm px-2 flex
+    @apply text-sm px-2 flex min-w-[150px] md:min-w-fit
 }
 
 .separator{
-    @apply w-full border-b-2 border-neutral-100 border-opacity-100 pt-4 my-4 dark:border-opacity-50;
+    @apply w-full border-b-2 border-x-gray-600 border-opacity-100 md:pt-4 my-4 dark:border-opacity-50;
 }
 
 .image{
-    @apply mr-2
+    @apply mr-2 h-[20px] w-[20px] self-center 
 }
 
 .selected{
     @apply border-blue-300 bg-blue-100 text-neutral-500
+}
+
+.ListComponent{
+    @apply overflow-auto
 }

@@ -32,7 +32,7 @@ const LeftSideContainer: React.FC<LeftSideContainerProps> = ({ style, onContentC
                 <ListeMenu menu={activeMenu} onMenuItemClick={handleMenuItemClick}></ListeMenu>
             </div>
             <div id="separator" className={Style.separator}> </div>
-            <div id="List-component">
+            <div id="List-component" className={Style.ListComponent}>
                 <ListeMenu menu={menuComponent} onMenuChange={handleMenuChange}></ListeMenu>
             </div>
         </div>
