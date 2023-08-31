@@ -13,12 +13,11 @@ export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse<Data>
 ) {
-    
-    try {
 
+    try {
         // Create a new horse
-        const { horse } = req.body as {horse:Horse}
-        const newHorse = await createHorse(horse) 
+        const horse = req.body as Horse
+        const newHorse = await createHorse(horse)
         res.status(200).json({ message: 'New Horse add', data: newHorse })
     } catch (error) {
         console.log(error)

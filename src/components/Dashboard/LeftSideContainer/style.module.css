@@ -5,7 +5,7 @@
 .liMenu {
     @apply w-auto border-b-2 border-neutral-100 border-opacity-50 py-2 dark:border-opacity-50;
     @apply cursor-pointer transition duration-500 hover:bg-orange-100 hover:text-neutral-500 focus:bg-neutral-100 focus:text-neutral-500 focus:ring-0;
-    @apply text-sm px-2 flex min-w-[150px] md:min-w-fit
+    @apply text-sm px-2 flex min-w-[150px] md:min-w-fit relative
 }
 
 .separator{
@@ -21,5 +21,9 @@
 }
 
 .ListComponent{
-    @apply overflow-auto
+    @apply overflow-auto md:overflow-visible    
+}
+
+.badge{
+    @apply absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-orange-300 border-2 border-white rounded-full -top-2 -right-2 dark:border-gray-900
 }

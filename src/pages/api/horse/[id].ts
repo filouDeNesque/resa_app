@@ -63,11 +63,13 @@ export default async function handler(
                 break;
             case 'DELETE':
                 // Delete a horse
+                console.log("Delete Horse -----------------")
+                console.log(req.query.id)
+                const { id } = req.query as {id:string}
                 const deleteHorse = await prisma.horse.delete({
                     where: {
-                        id: req.query.id as string
+                        id: id,
                     },
-                    select: select,
                 });
                 res.status(200).json({ message: 'Delete Horse ById', data: deleteHorse })
                 break;

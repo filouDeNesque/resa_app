@@ -1,8 +1,7 @@
-import { NextApiRequest, NextApiResponse } from "next";
+import { type NextApiRequest, type NextApiResponse } from "next";
 import { prisma } from "~/server/db";
-import { Horse } from "~/types/Horse.type";
+import { type Horse } from "~/types/Horse.type";
 
-//TODO:possibilité de faire un modele global pour tous les requête horse
 type Data = {
     message: object | string;
     data: null | Horse[];

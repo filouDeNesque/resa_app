@@ -43,9 +43,9 @@ const LeftSideContainer: React.FC<LeftSideContainerProps> = ({ style, onContentC
 export default LeftSideContainer;
 
 const menuComponent: Menu[] = [
-    { title: "Chevaux", icone: chevalICo },
-    { title: "Pension", icone: StabICo },
-    { title: "Demi-pension", icone: DemiPICo },
+    { title: "Chevaux", icone: chevalICo, total:12 },
+    { title: "Pension", icone: StabICo, total:1 },
+    { title: "Demi-pension", icone: DemiPICo, total:0 },
 ]
 
 const menuactionHorse: Menu[] = [

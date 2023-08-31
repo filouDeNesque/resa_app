@@ -38,6 +38,7 @@ export const ListeMenu: React.FC<ListeMenuProps> = ({ menu, onMenuChange, onMenu
     return (
         <>
             <ul className={Style.ulMenu}>
+
                 {menu.map((item, index) => (
                     <li
                         key={index}
@@ -52,6 +53,11 @@ export const ListeMenu: React.FC<ListeMenuProps> = ({ menu, onMenuChange, onMenu
                             className={Style.image}>
                         </Image>
                         {item.title}
+                        {item.total !== undefined && item.total >= 0 && (
+                            <div id="badge" className={Style.badge}>
+                                {item.total}
+                            </div>
+                        )}
                     </li>
                 ))}
             </ul>

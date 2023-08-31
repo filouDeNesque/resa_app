@@ -180,7 +180,7 @@ export const useHorseData = () => {
         }
     }
 
-    const useHorseCreateData = async (horse: Horse) => {
+    const UseHorseCreateData = async (horse: Horse) => {
         try {
             const response = await fetch(`/api/horse/create`, {
                 method: "POST",
@@ -230,7 +230,7 @@ export const useHorseData = () => {
         }
     }
 
-    const useHorseDeleteByIdData = async (horseId: string) => {
+    const UseHorseDeleteByIdData = async (horseId: string) => {
         try {
             const response = await fetch(`/api/horse/${horseId}`, {
                 method: "DELETE",
@@ -261,9 +261,9 @@ export const useHorseData = () => {
         useHorseByPlaceIdData,
         useHorseByStabIdData,
         useHorseByhalfLeaseUserIdData,
-        useHorseCreateData,
+        UseHorseCreateData,
         useHorseGetAllData,
-        useHorseDeleteByIdData,
+        UseHorseDeleteByIdData,
         useHorseUpdateData
     }
 }

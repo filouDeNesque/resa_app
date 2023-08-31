@@ -1,3 +1,4 @@
+import { type Horse } from "~/types/Horse.type";
 import Form from "./Form/Form";
 import TableListe from "./TableListe/TableListe";
 
@@ -7,8 +8,9 @@ interface ChildComponentProps {
 }
 
 const MainCenterContainer: React.FC<ChildComponentProps> = ({ style, content }) => {
-    const onSubmit = () => {
-        console.log("submite on Form push")
+    const onSubmit = (horse:Horse) => {
+        
+        console.log("submite on Form push ======================: ", horse)
     }
     return (
         <>
