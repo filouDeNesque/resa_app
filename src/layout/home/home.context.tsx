@@ -67,6 +67,7 @@ export const HomeProvider: React.FC<HomeContextProps> = ({ children }) => {
 
   return <HomeContext.Provider value={value}>{children}</HomeContext.Provider>;
 };
+
 const useHome = () => {
   const context = useContext(HomeContext);
 
@@ -86,7 +87,6 @@ const geolocUser = () => {
         (position) => {
           const latitude = position.coords.latitude;
           const longitude = position.coords.longitude;
-
           resolve({ latitude, longitude });
         },
         (error) => {
