@@ -4,8 +4,11 @@ import { type Horse } from "~/types/Horse.type";
 import { type Stabs } from "~/types/stabs";
 import { FormField } from "./FormField";
 
+
+
 interface FormProps {
-    onSubmit: (horse: Horse) => void;
+    // ! onSubmit n'est pas utilisé 
+    onSubmit: (horse?: Horse, stab?: Stabs) => void;
 }
 
 const Form: React.FC<FormProps> = ({ onSubmit }) => {
@@ -36,8 +39,6 @@ const Form: React.FC<FormProps> = ({ onSubmit }) => {
         UseHorseCreateData(horse).catch((error) => {
             console.log(error)
         })
-
-        // Effectuer les actions nécessaires avant la soumission (validation, envoi, etc.)
         onSubmit(horse);
     };
 
@@ -48,17 +49,7 @@ const Form: React.FC<FormProps> = ({ onSubmit }) => {
         id: string;
         htmlFor: string;
     }
-    interface itemForm {
-        type: string;
-        inputlabel: inputLabel;
-        horse?: Horse;
-        stab?: Stabs;
-        halfLeaseUsers?: Horse;
-        createHorse: () => void;
-        updateHorse: () => void;
-        createStab: () => void;
-        updateStab: () => void;
-    }
+
 
 
     return (

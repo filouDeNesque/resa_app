@@ -5,14 +5,17 @@ import listeICo from "../../../../public/images/icone/icons8-liste-64.png";
 import { type Menu } from "./leftsideContainer.interface";
 import Style from "./style.module.css";
 
+type menuType = 'horseListe' | 'stabListe' | 'halfLeaseUserList'
 
 interface ListeMenuProps {
     menu: Menu[];
     onMenuChange?: (newMenu: Menu[]) => void;
     onMenuItemClick?: (newContent: "form" | "table") => void
+    changeMenu?: (menuName: menuType) => void;
+
 }
 
-export const ListeMenu: React.FC<ListeMenuProps> = ({ menu, onMenuChange, onMenuItemClick, }) => {
+export const ListeMenu: React.FC<ListeMenuProps> = ({ menu, onMenuChange, onMenuItemClick, changeMenu }) => {
     const [selectedItem, setSelectedItem] = useState<number | null>(0);
 
     const handleItemClick = (index: number) => {
@@ -28,10 +31,19 @@ export const ListeMenu: React.FC<ListeMenuProps> = ({ menu, onMenuChange, onMenu
 
             if (index === 0) {
                 onMenuChange(menuactionHorse);
+                if (changeMenu) {
+                    changeMenu("horseListe")
+                }
             } else if (index === 1) {
                 onMenuChange(menuactionPension);
+                if (changeMenu) {
+                    changeMenu("stabListe")
+                }
             } else if (index === 2) {
                 onMenuChange(menuActionDemiPension);
+                if (changeMenu) {
+                    changeMenu("halfLeaseUserList")
+                }
             }
         }
     };

@@ -8,12 +8,15 @@ import { ListeMenu } from "./ListeMenu"
 import type { Menu } from "./leftsideContainer.interface"
 import Style from "./style.module.css"
 
+type menuType = 'horseListe' | 'stabListe' | 'halfLeaseUserList'
+
 interface LeftSideContainerProps {
     style: string;
     onContentChange:  (newContent: "form" | "table") => void;
+    changeMenu: (menuName: menuType) => void;
 }
 
-const LeftSideContainer: React.FC<LeftSideContainerProps> = ({ style, onContentChange }) => {
+const LeftSideContainer: React.FC<LeftSideContainerProps> = ({ style, onContentChange, changeMenu }) => {
     const [activeMenu, setActiveMenu] = useState<Menu[]>(menuactionHorse);
 
     const handleMenuChange = (newMenu: Menu[]) => {
@@ -29,11 +32,11 @@ const LeftSideContainer: React.FC<LeftSideContainerProps> = ({ style, onContentC
             <div id="contextual-menu">
                 <h3>Cheval</h3>
                 <div id="separator" className={Style.separator}> </div>
-                <ListeMenu menu={activeMenu} onMenuItemClick={handleMenuItemClick}></ListeMenu>
+                <ListeMenu menu={activeMenu} onMenuItemClick={handleMenuItemClick} ></ListeMenu>
             </div>
             <div id="separator" className={Style.separator}> </div>
             <div id="List-component" className={Style.ListComponent}>
-                <ListeMenu menu={menuComponent} onMenuChange={handleMenuChange}></ListeMenu>
+                <ListeMenu menu={menuComponent} onMenuChange={handleMenuChange} changeMenu={changeMenu}></ListeMenu>
             </div>
         </div>
 
