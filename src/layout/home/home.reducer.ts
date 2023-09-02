@@ -34,7 +34,6 @@ const stabsReducer = (state: State, action: Action): State => {
       }
     case "setUserPosition":
       try {
-        console.log(payload);
         return {
           ...state,
           user: {

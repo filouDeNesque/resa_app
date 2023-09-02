@@ -12,6 +12,8 @@ export const useHorseData = () => {
     const { data: session } = useSession();
     const userId: string = session?.user?.id ?? ""
 
+    console.log("utilisation de useHorseData")
+
     useEffect(() => {
         const fetchHorseData = async () => {
             try {
@@ -60,7 +62,7 @@ export const useHorseData = () => {
         }
     }
 
-    const useHorseByUserIdData = async (userId: string) => {
+    const UseHorseByUserIdData = async (userId: string) => {
         try {
             const response = await fetch(`/api/horse/byUserId/${userId}`, {
                 method: "GET",
@@ -132,9 +134,9 @@ export const useHorseData = () => {
         }
     }
 
-    const useHorseByhalfLeaseUserIdData = async (halfLeaseUserId: string) => {
+    const UseHorseByhalfLeaseUserIdData = async (halfLeaseUserId: string) => {
         try {
-            const response = await fetch(`/api/horse/byhalfLeaseUserId/${halfLeaseUserId}`, {
+            const response = await fetch(`/api/horse/byhalfLeaseUsersId/${halfLeaseUserId}`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
@@ -257,10 +259,10 @@ export const useHorseData = () => {
         horseData,
         updateStatus,
         useHorseByIdData,
-        useHorseByUserIdData,
+        UseHorseByUserIdData,
         useHorseByPlaceIdData,
         useHorseByStabIdData,
-        useHorseByhalfLeaseUserIdData,
+        UseHorseByhalfLeaseUserIdData,
         UseHorseCreateData,
         useHorseGetAllData,
         UseHorseDeleteByIdData,

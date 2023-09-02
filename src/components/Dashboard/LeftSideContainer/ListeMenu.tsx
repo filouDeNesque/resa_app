@@ -4,6 +4,8 @@ import AddICo from "../../../../public/images/icone/Add-icone.png";
 import listeICo from "../../../../public/images/icone/icons8-liste-64.png";
 import { type Menu } from "./leftsideContainer.interface";
 import Style from "./style.module.css";
+import { useHorseData } from "~/hooks/useHorseData";
+
 
 type menuType = 'horseListe' | 'stabListe' | 'halfLeaseUserList'
 
@@ -17,6 +19,9 @@ interface ListeMenuProps {
 
 export const ListeMenu: React.FC<ListeMenuProps> = ({ menu, onMenuChange, onMenuItemClick, changeMenu }) => {
     const [selectedItem, setSelectedItem] = useState<number | null>(0);
+    const {
+        UseHorseByhalfLeaseUserIdData
+    } = useHorseData();
 
     const handleItemClick = (index: number) => {
         setSelectedItem(index);

@@ -15,6 +15,7 @@ const Form: React.FC<FormProps> = ({ onSubmit }) => {
     const {
         UseHorseCreateData,
     } = useHorseData();
+    console.log("utilisation de form component")
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -35,7 +36,6 @@ const Form: React.FC<FormProps> = ({ onSubmit }) => {
             stabId: null,
             halfLeaseUsersId: null
         }
-        console.log(horse)
         UseHorseCreateData(horse).catch((error) => {
             console.log(error)
         })

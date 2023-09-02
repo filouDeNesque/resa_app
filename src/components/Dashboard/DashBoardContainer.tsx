@@ -7,15 +7,15 @@ type menuType = 'horseListe' | 'stabListe' | 'halfLeaseUserList'
 
 const DashboardContainer = () => {
   const [content, setContent] = useState<"form" | "table">("table");
-
   const handleContentChange = (newContent: "form" | "table") => {
     setContent(newContent);
   };
-
   const [menuType, setMenuType] = useState<menuType>("horseListe")
   const changeMenu = (menuName: menuType) => {
     setMenuType(menuName)
   }
+
+  console.log("utilisation de dashboard container")
 
   return (
     <>

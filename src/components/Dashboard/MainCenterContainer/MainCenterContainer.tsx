@@ -1,14 +1,13 @@
+import { useHorseData } from "~/hooks/useHorseData";
 import { type Horse } from "~/types/Horse.type";
 import { type Stabs } from "~/types/stabs";
 import Form from "./Form/Form";
 import TableListe from "./TableListe/TableListe";
-import { useState } from "react";
-import { useHorseData } from "~/hooks/useHorseData";
 
 interface ChildComponentProps {
     style: string;
-    content: "form" | "table";
-    menuType:menuType
+    content: "form" | " table";
+    menuType: menuType
 }
 
 type menuType = 'horseListe' | 'stabListe' | 'halfLeaseUserList'
@@ -19,9 +18,13 @@ const MainCenterContainer: React.FC<ChildComponentProps> = ({ style, content, me
         // ! onSubmit n'est pas Utilisé
         console.log("submite on Form push ======================: ", horse ? horse : stab)
     }
+    console.log("utilisation de main center component ")
+
     const {
         horseData,
-        UseHorseDeleteByIdData
+        UseHorseDeleteByIdData,
+        UseHorseByhalfLeaseUserIdData,
+        UseHorseByUserIdData,
     } = useHorseData();
     return (
         <>
@@ -31,7 +34,7 @@ const MainCenterContainer: React.FC<ChildComponentProps> = ({ style, content, me
                         <div id="logo-name"></div>
                         <div id="filter container"></div>
                     </div>
-                    {content === "form" ? <Form onSubmit={onSubmit} /> : <TableListe menuType={menuType} horseData={horseData} UseHorseDeleteByIdData={UseHorseDeleteByIdData} />}
+                    {content === "form" ? <Form onSubmit={onSubmit} /> : <TableListe menuType={menuType} horseData={horseData} UseHorseDeleteByIdData={UseHorseDeleteByIdData} UseHorseByhalfLeaseUserIdData={UseHorseByhalfLeaseUserIdData} UseHorseByUserIdData={UseHorseByUserIdData}/>}
                 </div>
             </div>
         </>

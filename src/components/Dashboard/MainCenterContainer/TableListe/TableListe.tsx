@@ -5,14 +5,17 @@ import { ThHeader } from "./ThHeader";
 import Trbody from "./TrBody";
 import Style from "./style.module.css";
 import type { Horseitem, Stabsitem } from "./tableListe.interface";
+import { useSession } from "next-auth/react";
 
 type tableListeProps = {
     menuType: 'horseListe' | 'stabListe' | 'halfLeaseUserList'
     horseData: Horse | Horse[] | null
     UseHorseDeleteByIdData: (horseId: string) => Promise<void>
+    UseHorseByhalfLeaseUserIdData: (halfLeaseUserId: string) => Promise<void>
+    UseHorseByUserIdData: (userId: string) => Promise<void>
 }
 
-const TableListe: React.FC<tableListeProps> = ({ menuType, horseData, UseHorseDeleteByIdData }) => {
+const TableListe: React.FC<tableListeProps> = ({ menuType, horseData, UseHorseDeleteByIdData, UseHorseByhalfLeaseUserIdData, UseHorseByUserIdData }) => {
     const titleTabStabList: string[] = [
         "Nom",
         "Adresse",
@@ -30,49 +33,49 @@ const TableListe: React.FC<tableListeProps> = ({ menuType, horseData, UseHorseDe
         "Editer",
         "Suprimer"
     ]
-    const [headertabMenu, setHeaderMenu] = useState<string[]>(titleTabStabList)
+    const [SelectedTabMenu, setHeaderMenu] = useState<string[]>(titleTabStabList)
     const [contentTable, setContentTable] = useState<Horseitem[] | Stabsitem[]>([])
-    const [horseItems, setHorseItem] = useState<Horseitem[]>([])
+    const { data: session } = useSession();
+    const userId: string = session?.user?.id ?? ""
 
-    //? si le menu est HorseList
-    useEffect(() => {
-        if (Array.isArray(horseData) && horseItems) {
-            setHorseItem(formatHorseData(horseData));
-        }
-    }, [menuType, horseData])
-    //? si le menu est StabList
-    //Todo
-    const stabsItems: Stabsitem[] = [];
-
-    //? si le menu est HalfLeafUser
-    //Todo
-    const HalfLeaseItems: Horseitem[] = [];
+    console.log("utilisation de table Liste component")
 
     useEffect(() => {
         if (menuType === "horseListe") {
             console.log("menu change horseliste")
+            UseHorseByUserIdData(userId).catch((error) => {
+                console.log(error)
+            })
             setHeaderMenu(titleTabHorseListe)
-            if (Array.isArray(horseData) && horseItems) {
-                setContentTable(formatHorseData(horseData))
-            }
-            console.log("===end====")
         } else if (menuType === "stabListe") {
             console.log("menu change stabliste")
             setHeaderMenu(titleTabStabList)
-            setContentTable(stabsItems)
+            setContentTable([])
         } else if (menuType === "halfLeaseUserList") {
             console.log("menu change halfleaseUserList")
+            UseHorseByhalfLeaseUserIdData(userId).catch((error) => {
+                console.log(error)
+            })
             setHeaderMenu(titleTabHorseListe)
-            setContentTable(HalfLeaseItems)
         }
     }, [menuType])
+
+    useEffect(() => {
+        if (menuType === "horseListe" || menuType === "halfLeaseUserList") {
+            if (Array.isArray(horseData) && contentTable) {
+                setContentTable(formatHorseData(horseData))
+            }
+        } else if (menuType === "stabListe") {
+            setContentTable([])
+        }
+    }, [horseData])
 
     return (
         <div id="table-container" className={Style.tableContainer}>
             <table className={Style.table}>
                 <thead className={Style.thead}>
                     <tr>
-                        {headertabMenu.map((key) => (
+                        {SelectedTabMenu.map((key) => (
                             <ThHeader key={key} content={key} />
                         ))}
                     </tr>
@@ -107,4 +110,40 @@ function formatHorseData(horseData: Horse[]) {
         birthDate: item?.birthDate.toString(),
         stab: item?.stabId != null ? item?.stabId : ""
     }))
+}
+
+// ! Reducer non utilisé
+interface State {
+    titleTabStabList: string[];
+    titleTabHorseListe: string[];
+    SelectedTabMenu: string[];
+    contentTable: Horseitem[] | Stabsitem[]
+}
+
+interface Action {
+    type: string;
+    payload: {
+        titleTabStabList: string[];
+        titleTabHorseListe: string[];
+        SelectedTabMenu: string[];
+        contentTable: Horseitem[] | Stabsitem[]
+    };
+}
+
+export const initialState: State = {
+    titleTabStabList: [],
+    titleTabHorseListe: [],
+    SelectedTabMenu: [],
+    contentTable: []
+};
+
+function tableListeReducer(state: State, action: Action): State {
+    const { type, payload } = action;
+    switch (type) {
+        case "getsomething":
+            console.log('test')
+            return state;
+        default:
+            return state;
+    }
 }
