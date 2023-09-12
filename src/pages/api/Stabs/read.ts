@@ -9,6 +9,7 @@ type Data = {
 
 type RequestBody = {
   ids: string[];
+  placeId: string[];
   lon: number[];
   lat: number[];
   city: string[];
@@ -24,13 +25,19 @@ export default async function handler(
   res: NextApiResponse<Data>
 ) {
   try {
-    const { ids, lon, lat, city } = req.body as RequestBody;
+    console.log("====================read api")
+    const { placeId, lon, lat, city, ids } = req.body as RequestBody;
     const stabs = await prisma.stabs.findMany({
       where: {
         OR: [
           {
-            place_id: {
+            id: {
               in: ids,
+            },
+          },
+          {
+            place_id: {
+              in: placeId,
             },
           },
           {

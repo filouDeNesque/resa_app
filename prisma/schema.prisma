@@ -84,7 +84,7 @@ model UserPlace {
 }
 
 model stabs {
-    id              String     @id @default(cuid()) @map("_id")  
+    id              String     @id @default(cuid()) @map("_id") @db.ObjectId 
     name            String
     StreetAddress   String
     PostalCode      String

@@ -1,4 +1,5 @@
 import { useHorseData } from "~/hooks/useHorseData";
+import { UseStabData } from "~/hooks/useStabData";
 import { type Horse } from "~/types/Horse.type";
 import { type Stabs } from "~/types/stabs";
 import Form from "./Form/Form";
@@ -26,6 +27,10 @@ const MainCenterContainer: React.FC<ChildComponentProps> = ({ style, content, me
         UseHorseByhalfLeaseUserIdData,
         UseHorseByUserIdData,
     } = useHorseData();
+    const {
+        stabdata,
+        UsegetStabByaArrayIdData
+    } = UseStabData()
     return (
         <>
             <div id="main-center-container" className={style}>
@@ -34,7 +39,17 @@ const MainCenterContainer: React.FC<ChildComponentProps> = ({ style, content, me
                         <div id="logo-name"></div>
                         <div id="filter container"></div>
                     </div>
-                    {content === "form" ? <Form onSubmit={onSubmit} /> : <TableListe menuType={menuType} horseData={horseData} UseHorseDeleteByIdData={UseHorseDeleteByIdData} UseHorseByhalfLeaseUserIdData={UseHorseByhalfLeaseUserIdData} UseHorseByUserIdData={UseHorseByUserIdData}/>}
+                    {content === "form" ? <Form onSubmit={onSubmit} /> :
+                        <TableListe
+                            menuType={menuType}
+                            horseData={horseData}
+                            UseHorseDeleteByIdData={UseHorseDeleteByIdData}
+                            UseHorseByhalfLeaseUserIdData={UseHorseByhalfLeaseUserIdData}
+                            UseHorseByUserIdData={UseHorseByUserIdData}
+                            UsegetStabByaArrayIdData={UsegetStabByaArrayIdData}
+                            stabdata={stabdata}
+                        />}
+
                 </div>
             </div>
         </>

@@ -1,14 +1,15 @@
 import Image from "next/image";
-import Edit from "../../../../../public/images/icone/update.png";
 import Delete from "../../../../../public/images/icone/Delete.png";
-import Style from "./style.module.css"
-import { type item } from "./tableListe.interface";
+import Edit from "../../../../../public/images/icone/update.png";
+import Style from "./style.module.css";
+import { type Horseitem, type Stabsitem } from "./tableListe.interface";
 
 interface trBodyProps {
-    item: item;
+    itemHorse: Horseitem;
+    itemStabs: Stabsitem;
     UseHorseDeleteByIdData: (horseId: string) => Promise<void>;
 }
-const Trbody: React.FC<trBodyProps> = ({ item, UseHorseDeleteByIdData }) => {
+const Trbody: React.FC<trBodyProps> = ({ itemHorse, itemStabs, UseHorseDeleteByIdData }) => {
     const handleDeleteClick = (id: string) => {
         console.log("HandleClick", id)
         UseHorseDeleteByIdData(id).catch((error) => {
@@ -17,11 +18,28 @@ const Trbody: React.FC<trBodyProps> = ({ item, UseHorseDeleteByIdData }) => {
     }
 
     return (
-        <tr key={`${item.id}-${item.birthDate}`} className={Style.trBody as string}>
-            <th scope="row" className={Style.tdBody}>{item.name}</th>
-            <td className={Style.tdBody}>{item.size}</td>
-            <td className={Style.tdBody}>{item.stab}</td>
-            <td className={Style.tdBody}>{item.birthDate}</td>
+        <tr className={Style.trBody as string}>
+            {itemStabs &&
+                <>
+                    <th scope="row" className={Style.tdBody}>{itemStabs.name}</th>
+                    <td className={Style.tdBody}>{itemStabs.adresse}</td>
+                    <td className={Style.tdBody}>{itemStabs.codePostal}</td>
+                    <td className={Style.tdBody}>{itemStabs.city}</td>
+                    <td className={Style.tdBody}>{itemStabs.country}</td>
+                    <td className={Style.tdBody}>{itemStabs.telephone}</td>
+                    <td className={Style.tdBody}>{itemStabs.Site}</td>
+                </>
+            }
+
+            {itemHorse &&
+                <>
+                    <th scope="row" className={Style.tdBody}>{itemHorse.name}</th>
+                    <td className={Style.tdBody}>{itemHorse.size}</td>
+                    <td className={Style.tdBody}>{itemHorse.stab}</td>
+                    <td className={Style.tdBody}>{itemHorse.birthDate}</td>
+                </>
+            }
+
             <td className={Style.tdBody}>
                 <Image
                     src={Edit}
@@ -31,7 +49,7 @@ const Trbody: React.FC<trBodyProps> = ({ item, UseHorseDeleteByIdData }) => {
                     className={Style.image}>
                 </Image>
             </td>
-            <td className={Style.tdBody} onClick={() => handleDeleteClick(item.id)}>
+            <td className={Style.tdBody} onClick={() => handleDeleteClick(itemHorse.id)}>
                 <Image
                     src={Delete}
                     alt="Icon"
