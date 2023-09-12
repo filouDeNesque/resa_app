@@ -16,10 +16,14 @@ const Trbody: React.FC<trBodyProps> = ({ itemHorse, itemStabs, UseHorseDeleteByI
             console.log(error)
         })
     }
+    console.log("============ItemHorse=================")
+    console.log(itemHorse)
+    console.log("============Itemstabs=================")
+    console.log(itemStabs)
 
     return (
         <tr className={Style.trBody as string}>
-            {itemStabs &&
+            {itemStabs && itemStabs.adresse &&
                 <>
                     <th scope="row" className={Style.tdBody}>{itemStabs.name}</th>
                     <td className={Style.tdBody}>{itemStabs.adresse}</td>
