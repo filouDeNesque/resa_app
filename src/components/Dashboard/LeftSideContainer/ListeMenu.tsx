@@ -14,7 +14,6 @@ interface ListeMenuProps {
     onMenuChange?: (newMenu: Menu[]) => void;
     onMenuItemClick?: (newContent: "form" | "table") => void
     changeMenu?: (menuName: menuType) => void;
-
 }
 
 export const ListeMenu: React.FC<ListeMenuProps> = ({ menu, onMenuChange, onMenuItemClick, changeMenu }) => {
@@ -23,29 +22,49 @@ export const ListeMenu: React.FC<ListeMenuProps> = ({ menu, onMenuChange, onMenu
         UseHorseByhalfLeaseUserIdData
     } = useHorseData();
 
-    const handleItemClick = (index: number) => {
+    const handleItemClick = (index: number, item: Menu) => {
+
+        console.log("========item========")
+        console.log("item level: ", item.level)
+        console.log("item label: ", item.label)
+
         setSelectedItem(index);
-        if (onMenuItemClick) {
-            if (index === 0) {
+        if (item.level == 2 && onMenuItemClick) {
+            if (item.label === "table") {
                 onMenuItemClick("table")
-            } if (index === 1) {
+            } else {
                 onMenuItemClick("form")
             }
         }
-        if (onMenuChange) {
-
-            if (index === 0) {
+        if (item.level == 1 && onMenuChange) {
+            if (item.label == "Horse") {
                 onMenuChange(menuactionHorse);
                 if (changeMenu) {
                     changeMenu("horseListe")
                 }
-            } else if (index === 1) {
+            } else if (item.label == "Stable") {
                 onMenuChange(menuactionPension);
                 if (changeMenu) {
                     changeMenu("stabListe")
                 }
-            } else if (index === 2) {
+            } else if (item.label == "halfLeaf") {
                 onMenuChange(menuActionDemiPension);
+                if (changeMenu) {
+                    changeMenu("halfLeaseUserList")
+                }
+            } else if (item.label == "Activities") {
+                onMenuChange(menuActionActivities);
+                if (changeMenu) {
+                    changeMenu("halfLeaseUserList")
+                }
+            } else if (item.label == "Annonces") {
+                onMenuChange(menuActionAnnonces);
+                if (changeMenu) {
+                    changeMenu("halfLeaseUserList")
+                }
+            }
+            else if (item.label == "Contracts") {
+                onMenuChange(menuActionContracts);
                 if (changeMenu) {
                     changeMenu("halfLeaseUserList")
                 }
@@ -60,7 +79,7 @@ export const ListeMenu: React.FC<ListeMenuProps> = ({ menu, onMenuChange, onMenu
                     <li
                         key={index}
                         className={`${Style.liMenu as string} ${selectedItem === index ? Style.selected || "" : ""}`}
-                        onClick={() => handleItemClick(index)}
+                        onClick={() => handleItemClick(index, item)}
                     >
                         <Image
                             src={item.icone}
@@ -85,17 +104,32 @@ export const ListeMenu: React.FC<ListeMenuProps> = ({ menu, onMenuChange, onMenu
 
 
 const menuactionHorse: Menu[] = [
-    { title: "Liste", icone: listeICo },
-    { title: "Add", icone: AddICo },
+    { title: "Liste", icone: listeICo, level: 2, label: "table" },
+    { title: "Add", icone: AddICo, level: 2, label: "formHorse" },
 ]
 
 
 const menuactionPension: Menu[] = [
-    { title: "Liste Pension", icone: listeICo },
-    { title: "Add Pension", icone: AddICo },
+    { title: "Liste Pension", icone: listeICo, level: 2, label: "table" },
+    { title: "Add Pension", icone: AddICo, level: 2, label: "formStab" },
 ]
 
 const menuActionDemiPension: Menu[] = [
-    { title: "Liste Demi Pension", icone: listeICo },
-    { title: "Add Demi Pension", icone: AddICo },
+    { title: "Liste Demi Pension", icone: listeICo, level: 2, label: "table" }
+]
+
+const menuActionActivities: Menu[] = [
+    { title: "Liste Activities", icone: listeICo, level: 2, label: "table" },
+    { title: "New", icone: AddICo, level: 2, label: "formActivities" },
+
+]
+
+const menuActionAnnonces: Menu[] = [
+    { title: "Liste Annonces", icone: listeICo, level: 2, label: "table" },
+    { title: "New", icone: AddICo, level: 2, label: "formAnnonce" },
+
+]
+
+const menuActionContracts: Menu[] = [
+    { title: "Liste Contracts", icone: listeICo, level: 2, label: "table" }
 ]

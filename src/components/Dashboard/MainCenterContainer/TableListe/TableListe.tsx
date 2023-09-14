@@ -52,13 +52,11 @@ const TableListe: React.FC<tableListeProps> = ({
 
     useEffect(() => {
         if (menuType === "horseListe") {
-            console.log("menu change horseliste")
             UseHorseByUserIdData(userId).catch((error) => {
                 console.log(error)
             })
             setHeaderMenu(titleTabHorseListe)
         } else if (menuType === "stabListe") {
-            console.log("menu change stabliste")
             setHeaderMenu(titleTabStabList)
             if (Array.isArray(horseData)) {
                 const stabId: (string | null)[] = horseData.map((horse: Horse) => horse.stabId);
@@ -69,7 +67,6 @@ const TableListe: React.FC<tableListeProps> = ({
             }
 
         } else if (menuType === "halfLeaseUserList") {
-            console.log("menu change halfleaseUserList")
             UseHorseByhalfLeaseUserIdData(userId).catch((error) => {
                 console.log(error)
             })
@@ -132,7 +129,7 @@ function formatHorseData(horseData: Horse[]) {
     }))
 }
 
-function formatStabData(stabData: Stabs[]) {
+function formatStabData(stabData: Stabs[]) { 
     return stabData.map((item: Stabs) => ({
         id: item?.id,
         name: item?.name,

@@ -13,7 +13,6 @@ interface ChildComponentProps {
 
 type menuType = 'horseListe' | 'stabListe' | 'halfLeaseUserList'
 
-
 const MainCenterContainer: React.FC<ChildComponentProps> = ({ style, content, menuType }) => {
     const onSubmit = (horse?: Horse, stab?: Stabs) => {
         // ! onSubmit n'est pas Utilisé

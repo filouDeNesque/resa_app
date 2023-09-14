@@ -46,15 +46,15 @@ const LeftSideContainer: React.FC<LeftSideContainerProps> = ({ style, onContentC
 export default LeftSideContainer;
 
 const menuComponent: Menu[] = [
-    { title: "Chevaux", icone: chevalICo, total:12 },
-    { title: "Pension", icone: StabICo, total:1 },
-    { title: "Demi-pension", icone: DemiPICo, total:0 },
+    { title: "Chevaux", icone: chevalICo, total:12, level:1, label:"Horse" },
+    { title: "Pension", icone: StabICo, total:1, level:1, label:"Stable" },
+    { title: "Demi-pension", icone: DemiPICo, total:0, level:1, label:"halfLeaf" },
+    { title: "Activités", icone: DemiPICo, total:0, level:1, label:"Activities" },
+    { title: "Annonces", icone: DemiPICo, total:0, level:1, label:"Annonces" },
+    { title: "Contracts", icone: DemiPICo, total:0, level:1, label:"Contracts" },
 ]
 
 const menuactionHorse: Menu[] = [
-    { title: "Liste", icone: listeICo },
-    { title: "Add", icone: AddICo },
+    { title: "Liste", icone: listeICo, level: 2, label: "table" },
+    { title: "Add", icone: AddICo, level: 2, label: "formHorse" },
 ]
-
-// TODO: Allow comportement to match component
-
