@@ -1,19 +1,19 @@
-import { useState } from "react"
-import chevalICo from "../../../../public/images/icone/Cheval-icone-2.png"
-import DemiPICo from "../../../../public/images/icone/demi-pension.png"
-import StabICo from "../../../../public/images/icone/stab.png"
+import { useState } from "react";
 import AddICo from "../../../../public/images/icone/Add-icone.png";
+import chevalICo from "../../../../public/images/icone/Cheval-icone-2.png";
+import DemiPICo from "../../../../public/images/icone/demi-pension.png";
 import listeICo from "../../../../public/images/icone/icons8-liste-64.png";
-import { ListeMenu } from "./ListeMenu"
-import type { Menu } from "./leftsideContainer.interface"
-import Style from "./style.module.css"
+import StabICo from "../../../../public/images/icone/stab.png";
+import { type MenuType } from "../Dashboard.type";
+import { ListeMenu } from "./ListeMenu";
+import type { Menu } from "./leftsideContainer.interface";
+import Style from "./style.module.css";
 
-type menuType = 'horseListe' | 'stabListe' | 'halfLeaseUserList'
 
 interface LeftSideContainerProps {
     style: string;
     onContentChange:  (newContent: "form" | "table") => void;
-    changeMenu: (menuName: menuType) => void;
+    changeMenu: (menuName: MenuType) => void;
 }
 
 const LeftSideContainer: React.FC<LeftSideContainerProps> = ({ style, onContentChange, changeMenu }) => {

@@ -4,21 +4,21 @@ import { type Horse } from "~/types/Horse.type";
 import { type Stabs } from "~/types/stabs";
 import Form from "./Form/Form";
 import TableListe from "./TableListe/TableListe";
+import { MenuType } from "../Dashboard.type";
 
 interface ChildComponentProps {
     style: string;
-    content: "form" | " table";
-    menuType: menuType
+    content: "form" | "table";
+    menuType: MenuType
 }
 
-type menuType = 'horseListe' | 'stabListe' | 'halfLeaseUserList'
+
 
 const MainCenterContainer: React.FC<ChildComponentProps> = ({ style, content, menuType }) => {
     const onSubmit = (horse?: Horse, stab?: Stabs) => {
         // ! onSubmit n'est pas Utilisé
         console.log("submite on Form push ======================: ", horse ? horse : stab)
     }
-    console.log("utilisation de main center component ")
 
     const {
         horseData,
@@ -26,6 +26,7 @@ const MainCenterContainer: React.FC<ChildComponentProps> = ({ style, content, me
         UseHorseByhalfLeaseUserIdData,
         UseHorseByUserIdData,
     } = useHorseData();
+
     const {
         stabdata,
         UsegetStabByaArrayIdData
@@ -38,7 +39,33 @@ const MainCenterContainer: React.FC<ChildComponentProps> = ({ style, content, me
                         <div id="logo-name"></div>
                         <div id="filter container"></div>
                     </div>
-                    {content === "form" ? <Form onSubmit={onSubmit} /> :
+                    {/* TODO : 
+                    - ajout du menuType dans les props 
+                    - revoir le model de base de données gestion de activity et des annonces (dessiner le parcour utilisateur pour les deux cas)
+                    - faire varier les champs input en fonction de l'item à mettre
+                        -input pour Annonces
+                        -input pour Activities
+                    - mettre en place l'api
+                        -input pour Annonces Create
+                        -input pour Activities Create
+                    - mise en place de la gestion d'une annonce :
+                        - interet
+                        - acceptation
+                        - refus
+                    - mise en place de la gestion d'une Activities :
+                        - interet
+                        - acceptation
+                        - refus
+                    */}
+
+                    {/* externaliser 
+                        - onSubmitHorse
+                        - onSubmitStab
+                        - onSubmitAnnonces
+                        - onSubitActivities
+                    */}
+                    {content === "form" ? <Form onSubmit={onSubmit} menuType={menuType} /> : <></>}
+                    {content === "table" ?
                         <TableListe
                             menuType={menuType}
                             horseData={horseData}
@@ -47,7 +74,8 @@ const MainCenterContainer: React.FC<ChildComponentProps> = ({ style, content, me
                             UseHorseByUserIdData={UseHorseByUserIdData}
                             UsegetStabByaArrayIdData={UsegetStabByaArrayIdData}
                             stabdata={stabdata}
-                        />}
+                        /> :
+                        <></>}
 
                 </div>
             </div>

@@ -7,9 +7,10 @@ import { ThHeader } from "./ThHeader";
 import Trbody from "./TrBody";
 import Style from "./style.module.css";
 import type { Horseitem, Stabsitem } from "./tableListe.interface";
+import { type MenuType } from "../../Dashboard.type";
 
 type tableListeProps = {
-    menuType: 'horseListe' | 'stabListe' | 'halfLeaseUserList'
+    menuType: MenuType
     horseData: Horse | Horse[] | null
     UseHorseDeleteByIdData: (horseId: string) => Promise<void>
     UseHorseByhalfLeaseUserIdData: (halfLeaseUserId: string) => Promise<void>
@@ -26,7 +27,7 @@ const TableListe: React.FC<tableListeProps> = ({
     UseHorseByUserIdData,
     UsegetStabByaArrayIdData,
     stabdata }) => {
-    const titleTabStabList: string[] = [
+    const titleColumnTabStabList: string[] = [
         "Nom",
         "Adresse",
         "Code Postal",
@@ -37,7 +38,7 @@ const TableListe: React.FC<tableListeProps> = ({
         "Modifier",
         "Supprimer"
     ]
-    const titleTabHorseListe: string[] = [
+    const titleColumnTabHorseListe: string[] = [
         "Nom",
         "Taille",
         "Ecurie",
@@ -45,7 +46,7 @@ const TableListe: React.FC<tableListeProps> = ({
         "Editer",
         "Suprimer"
     ]
-    const [SelectedTabMenu, setHeaderMenu] = useState<string[]>(titleTabStabList)
+    const [SelectedTabMenu, setHeaderMenu] = useState<string[]>(titleColumnTabStabList)
     const [contentTable, setContentTable] = useState<Horseitem[] | Stabsitem[]>([])
     const { data: session } = useSession();
     const userId: string = session?.user?.id ?? ""
@@ -55,9 +56,10 @@ const TableListe: React.FC<tableListeProps> = ({
             UseHorseByUserIdData(userId).catch((error) => {
                 console.log(error)
             })
-            setHeaderMenu(titleTabHorseListe)
+            setHeaderMenu(titleColumnTabHorseListe)
         } else if (menuType === "stabListe") {
-            setHeaderMenu(titleTabStabList)
+            //!Fonction très complexe à revoire
+            setHeaderMenu(titleColumnTabStabList)
             if (Array.isArray(horseData)) {
                 const stabId: (string | null)[] = horseData.map((horse: Horse) => horse.stabId);
                 const filteredStabId: string[] = stabId.filter((value) => value !== null && value !== undefined) as string[];
@@ -70,7 +72,19 @@ const TableListe: React.FC<tableListeProps> = ({
             UseHorseByhalfLeaseUserIdData(userId).catch((error) => {
                 console.log(error)
             })
-            setHeaderMenu(titleTabHorseListe)
+            setHeaderMenu(titleColumnTabHorseListe)
+        }
+        else if (menuType === "Activities") {
+            //todo: make something 
+            console.log("Menu Activities")
+        }
+        else if (menuType === "Annonces") {
+            //todo: make something 
+            console.log("Menu Annonces")
+        }
+        else if (menuType === "Contracts") {
+            //todo: make something 
+            console.log("Menu Contracts")
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [menuType])

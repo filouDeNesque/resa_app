@@ -7,7 +7,7 @@ import Style from "./style.module.css";
 import { useHorseData } from "~/hooks/useHorseData";
 
 
-type menuType = 'horseListe' | 'stabListe' | 'halfLeaseUserList'
+type menuType = 'horseListe' | 'stabListe' | 'halfLeaseUserList'|'Activities'|'Annonces'|'Contracts'
 
 interface ListeMenuProps {
     menu: Menu[];
@@ -55,18 +55,18 @@ export const ListeMenu: React.FC<ListeMenuProps> = ({ menu, onMenuChange, onMenu
             } else if (item.label == "Activities") {
                 onMenuChange(menuActionActivities);
                 if (changeMenu) {
-                    changeMenu("halfLeaseUserList")
+                    changeMenu(item.label)
                 }
             } else if (item.label == "Annonces") {
                 onMenuChange(menuActionAnnonces);
                 if (changeMenu) {
-                    changeMenu("halfLeaseUserList")
+                    changeMenu(item.label)
                 }
             }
             else if (item.label == "Contracts") {
                 onMenuChange(menuActionContracts);
                 if (changeMenu) {
-                    changeMenu("halfLeaseUserList")
+                    changeMenu(item.label)
                 }
             }
         }
