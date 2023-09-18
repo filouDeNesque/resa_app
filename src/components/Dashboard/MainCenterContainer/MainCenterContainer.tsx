@@ -1,23 +1,37 @@
 import { useHorseData } from "~/hooks/useHorseData";
 import { UseStabData } from "~/hooks/useStabData";
-import { type Horse } from "~/types/Horse.type";
-import { type Stabs } from "~/types/stabs";
+import { type MenuType } from "../Dashboard.type";
 import Form from "./Form/Form";
 import TableListe from "./TableListe/TableListe";
-import { MenuType } from "../Dashboard.type";
 
 interface ChildComponentProps {
     style: string;
     content: "form" | "table";
-    menuType: MenuType
+    menuType: MenuType;
+    changeMenu: (newContent: "form" | "table") => void;
+    handleSetMenuType: (menuName: MenuType) => void;
 }
 
-
-
-const MainCenterContainer: React.FC<ChildComponentProps> = ({ style, content, menuType }) => {
-    const onSubmit = (horse?: Horse, stab?: Stabs) => {
+const MainCenterContainer: React.FC<ChildComponentProps> = ({ style, content, menuType, changeMenu, handleSetMenuType }) => {
+    const onSubmit = () => {
         // ! onSubmit n'est pas Utilisé
-        console.log("submite on Form push ======================: ", horse ? horse : stab)
+        console.log("submite on Form push ======================: ");
+        switch (menuType) {
+            case "horseListe":
+                handleSetMenuType("stabListe")
+                handleSetMenuType("horseListe")
+                changeMenu("table")
+
+                return true;
+            case "stabListe":
+                return true;
+            case "Annonces":
+                return true;
+            case "Activities":
+                return true;
+            default:
+                return [];
+        }
     }
 
     const {
@@ -31,6 +45,7 @@ const MainCenterContainer: React.FC<ChildComponentProps> = ({ style, content, me
         stabdata,
         UsegetStabByaArrayIdData
     } = UseStabData()
+
     return (
         <>
             <div id="main-center-container" className={style}>

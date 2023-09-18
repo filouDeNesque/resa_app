@@ -2,12 +2,12 @@ import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { type Horse } from "~/types/Horse.type";
 import { type Stabs } from "~/types/stabs";
+import { type MenuType } from "../../Dashboard.type";
 import PageTransport from "./PageTransport";
 import { ThHeader } from "./ThHeader";
 import Trbody from "./TrBody";
 import Style from "./style.module.css";
 import type { Horseitem, Stabsitem } from "./tableListe.interface";
-import { type MenuType } from "../../Dashboard.type";
 
 type tableListeProps = {
     menuType: MenuType
@@ -95,7 +95,9 @@ const TableListe: React.FC<tableListeProps> = ({
                 setContentTable(formatHorseData(horseData))
             }
         } else if (menuType === "stabListe") {
-            setContentTable(formatStabData(stabdata as Stabs[]))
+            if (Array.isArray(stabdata) && contentTable) {
+            setContentTable(formatStabData(stabdata))
+            }
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [horseData, stabdata])
@@ -143,7 +145,7 @@ function formatHorseData(horseData: Horse[]) {
     }))
 }
 
-function formatStabData(stabData: Stabs[]) { 
+function formatStabData(stabData: Stabs[]) {
     return stabData.map((item: Stabs) => ({
         id: item?.id,
         name: item?.name,

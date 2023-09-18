@@ -35,7 +35,7 @@ export const useHorseData = () => {
             });
         }
 
-    }, [setHorseData, userId])
+    }, [setHorseData, userId, ])
 
 
     const useHorseByIdData = async (id: string) => {

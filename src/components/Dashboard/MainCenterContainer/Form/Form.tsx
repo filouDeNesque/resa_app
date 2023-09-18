@@ -1,9 +1,9 @@
-import React, { useState, type FormEvent, useEffect } from "react";
+import React, { useEffect, useState, type FormEvent } from "react";
 import { useHorseData } from "~/hooks/useHorseData";
 import { type Horse } from "~/types/Horse.type";
-import { type Stabs } from "~/types/stabs";
-import { FormField } from "./FormField";
 import { type MenuType } from "../../Dashboard.type";
+import { FormField } from "./FormField";
+import FormFieldTextarea from "./FormFieldTextarea";
 
 interface Field {
     label: string;
@@ -15,8 +15,8 @@ interface Field {
 
 interface FormProps {
     // ! onSubmit n'est pas utilisé 
-    onSubmit: (horse?: Horse, stab?: Stabs) => void;
-    menuType: MenuType
+    onSubmit: (newContent: "form" | "table") => void;
+    menuType: MenuType;
 }
 
 const Form: React.FC<FormProps> = ({ onSubmit, menuType }) => {
@@ -24,24 +24,10 @@ const Form: React.FC<FormProps> = ({ onSubmit, menuType }) => {
         UseHorseCreateData,
     } = useHorseData();
 
-    const [fieldInputs, setFieldInputs] = useState<Field[]>([]);
+    const [fieldInputs, setFieldInputs] = useState<Field[]>(getFormFields(menuType));
 
-    //mise en forme des input en fonction du context
     useEffect(() => {
-        if (menuType === "horseListe") {
-            setFieldInputs(horseFormfields);
-        }
-        else if (menuType === "stabListe") {
-            setFieldInputs(stabFormfields);
-        }
-        else if (menuType === "Annonces") {
-            setFieldInputs(annonceFormfields);
-        }
-        else if (menuType === "Activities") {
-            setFieldInputs(activitiesFormfields);
-        } else if (menuType === "Contracts" || menuType === "halfLeaseUserList") {
-            setFieldInputs([])
-        }
+        setFieldInputs(getFormFields(menuType))
     }, [menuType])
 
     //transmission des data
@@ -54,22 +40,20 @@ const Form: React.FC<FormProps> = ({ onSubmit, menuType }) => {
             .reduce((obj, input) => Object.assign(obj, { [input.name]: input.value as string }), {} as Record<string, string>);
 
         //renvoi n'importe quel forme 
-        const horse: Horse = {
-            id: 'unknow',
-            name: `${data.floating_first_name as string} ${data.floating_last_name as string}`,
-            size: parseFloat(data.floating_size as string),
-            birthDate: new Date(data.floating_birthDate as string),
-            ownerId: "cllqs7p350000ukpc3b3l92mc",
-            createdDate: null,
-            UdpdateDate: null,
-            placeId: null,
-            stabId: null,
-            halfLeaseUsersId: null
+        switch (menuType) {
+            case "horseListe":
+                SubmitHorsein(data, UseHorseCreateData)
+                onSubmit("table");
+                return true;
+            case "stabListe":
+                return true;
+            case "Annonces":
+                return true;
+            case "Activities":
+                return true;
+            default:
+                return [];
         }
-        UseHorseCreateData(horse).catch((error) => {
-            console.log(error)
-        })
-        onSubmit(horse);
     };
 
     return (
@@ -77,7 +61,7 @@ const Form: React.FC<FormProps> = ({ onSubmit, menuType }) => {
         fieldInputs.length > 0 && (
             <form onSubmit={handleSubmit}>
                 <div className="grid md:grid-cols-2 md:gap-6">
-                    {fieldInputs.map((item, index) => (
+                    {fieldInputs.map((item) => (
                         <>
                             {
                                 item.type != "textarea" && (
@@ -86,11 +70,7 @@ const Form: React.FC<FormProps> = ({ onSubmit, menuType }) => {
                             }
                             {
                                 item.type == "textarea" && (
-                                    <div className="relative z-0 w-full mb-6 group">
-
-                                        <textarea aria-label={item.label} name={item.name} id={item.name} placeholder={item.placeholder} className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"></textarea>
-                                        <label htmlFor={item.name} className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">{item.label}</label>
-                                    </div>
+                                    <FormFieldTextarea item={item} />
                                 )
                             }
                         </>
@@ -106,12 +86,12 @@ const Form: React.FC<FormProps> = ({ onSubmit, menuType }) => {
 export default Form;
 
 const horseFormfields: Field[] = [
-    { label: "Name", name: "floating_first_name", placeholder: "", type: "text" },
-    { label: "Last Name", name: "floating_last_name", placeholder: "", type: "text" },
-    { label: "Size", name: "floating_size", placeholder: "", type: "number", step: "0.01" },
-    { label: "Birth Date", name: "floating_birthDate", placeholder: "", type: "date" },
+    { label: "Name", name: "firstName", placeholder: "", type: "text" },
+    { label: "Last Name", name: "lastName", placeholder: "", type: "text" },
+    { label: "Size", name: "size", placeholder: "", type: "number", step: "0.01" },
+    { label: "Birth Date", name: "birthdate", placeholder: "", type: "date" },
     //TODO: change to type liste
-    { label: "stab", name: "floating_stab", placeholder: "", type: "text" },
+    { label: "stab", name: "stab", placeholder: "", type: "text" },
 ]
 const stabFormfields: Field[] = [
     { label: "Name", name: "name", placeholder: "", type: "text" },
@@ -145,3 +125,39 @@ const activitiesFormfields: Field[] = [
     { label: "Fin", name: "endingDate", placeholder: "", type: "date" },
     { label: "Prix", name: "price", placeholder: "", type: "number" },
 ]
+
+function getFormFields(menuType: MenuType): Field[] {
+    switch (menuType) {
+        case "horseListe":
+            return horseFormfields;
+        case "stabListe":
+            return stabFormfields;
+        case "Annonces":
+            return annonceFormfields;
+        case "Activities":
+            return activitiesFormfields;
+        default:
+            return [];
+    }
+}
+
+//fetch create de Horse
+function SubmitHorsein(data: Record<string, string>, UseHorseCreateData: (horse: Horse) => Promise<void>) {
+    const horse: Horse = {
+        id: 'unknow',
+        name: `${data.firstName as string} ${data.lastName as string}`,
+        size: parseFloat(data.size as string),
+        birthDate: new Date(data.birthdate as string),
+        ownerId: "cllqs7p350000ukpc3b3l92mc",
+        createdDate: null,
+        UdpdateDate: null,
+        placeId: null,
+        stabId: null,
+        halfLeaseUsersId: null
+    }
+    UseHorseCreateData(horse).catch((error) => {
+        console.log(error)
+    })
+}
+
+//fetch create de Stab
