@@ -23,11 +23,6 @@ export const ListeMenu: React.FC<ListeMenuProps> = ({ menu, onMenuChange, onMenu
     } = useHorseData();
 
     const handleItemClick = (index: number, item: Menu) => {
-
-        console.log("========item========")
-        console.log("item level: ", item.level)
-        console.log("item label: ", item.label)
-
         setSelectedItem(index);
         if (item.level == 2 && onMenuItemClick) {
             if (item.label === "table") {
