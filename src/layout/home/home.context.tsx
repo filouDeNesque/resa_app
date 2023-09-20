@@ -72,7 +72,7 @@ const useHome = () => {
   const context = useContext(HomeContext);
 
   if (context === undefined) {
-    throw new Error("useShop must be used within ShopContext");
+    throw new Error("useHome must be used within HomeContext");
   }
 
   return context;

@@ -1,72 +1,60 @@
 import Image from "next/image";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import DashboardContext from "~/layout/dashboard/dashboard.context";
 import AddICo from "../../../../public/images/icone/Add-icone.png";
 import listeICo from "../../../../public/images/icone/icons8-liste-64.png";
 import { type Menu } from "./leftsideContainer.interface";
 import Style from "./style.module.css";
-import { useHorseData } from "~/hooks/useHorseData";
-
-
-type menuType = 'horseListe' | 'stabListe' | 'halfLeaseUserList'|'Activities'|'Annonces'|'Contracts'
 
 interface ListeMenuProps {
     menu: Menu[];
     onMenuChange?: (newMenu: Menu[]) => void;
-    onMenuItemClick?: (newContent: "form" | "table") => void
-    changeMenu?: (menuName: menuType) => void;
 }
 
-export const ListeMenu: React.FC<ListeMenuProps> = ({ menu, onMenuChange, onMenuItemClick, changeMenu }) => {
+export const ListeMenu: React.FC<ListeMenuProps> = ({ menu, onMenuChange }) => {
+    const { contentChange, menuTypeChange } = useContext(DashboardContext)
     const [selectedItem, setSelectedItem] = useState<number | null>(0);
-    const {
-        // UseHorseByhalfLeaseUserIdData
-    } = useHorseData();
 
     const handleItemClick = (index: number, item: Menu) => {
-
-        console.log("========item========")
-        console.log("item level: ", item.level)
-        console.log("item label: ", item.label)
-
         setSelectedItem(index);
-        if (item.level == 2 && onMenuItemClick) {
+        if (item.level == 2 && contentChange) {
             if (item.label === "table") {
-                onMenuItemClick("table")
+                contentChange("table")
             } else {
-                onMenuItemClick("form")
+                contentChange("form")
             }
         }
         if (item.level == 1 && onMenuChange) {
             if (item.label == "Horse") {
                 onMenuChange(menuactionHorse);
-                if (changeMenu) {
-                    changeMenu("horseListe")
+                if (menuTypeChange) {
+                    menuTypeChange("horseListe")
                 }
             } else if (item.label == "Stable") {
                 onMenuChange(menuactionPension);
-                if (changeMenu) {
-                    changeMenu("stabListe")
+                if (menuTypeChange) {
+                    menuTypeChange("stabListe")
                 }
             } else if (item.label == "halfLeaf") {
                 onMenuChange(menuActionDemiPension);
-                if (changeMenu) {
-                    changeMenu("halfLeaseUserList")
+                if (menuTypeChange) {
+                    menuTypeChange("halfLeaseUserList")
                 }
             } else if (item.label == "Activities") {
                 onMenuChange(menuActionActivities);
-                if (changeMenu) {
-                    changeMenu(item.label)
+                if (menuTypeChange) {
+                    menuTypeChange(item.label)
                 }
             } else if (item.label == "Annonces") {
                 onMenuChange(menuActionAnnonces);
-                if (changeMenu) {
-                    changeMenu(item.label)
+                if (menuTypeChange) {
+                    menuTypeChange(item.label)
                 }
             }
             else if (item.label == "Contracts") {
                 onMenuChange(menuActionContracts);
-                if (changeMenu) {
-                    changeMenu(item.label)
+                if (menuTypeChange) {
+                    menuTypeChange(item.label)
                 }
             }
         }

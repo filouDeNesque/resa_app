@@ -5,6 +5,8 @@ import { type MenuType } from "../../Dashboard.type";
 import { FormField } from "./FormField";
 import FormFieldTextarea from "./FormFieldTextarea";
 
+//TODO:Création d'un context pour le form
+
 interface Field {
     label: string;
     name: string;
@@ -14,7 +16,6 @@ interface Field {
 }
 
 interface FormProps {
-    // ! onSubmit n'est pas utilisé 
     onSubmit: (newContent: "form" | "table") => void;
     menuType: MenuType;
 }
