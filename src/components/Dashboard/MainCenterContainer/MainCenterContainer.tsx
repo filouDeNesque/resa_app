@@ -1,6 +1,4 @@
 import { useContext } from "react";
-import { useHorseData } from "~/hooks/useHorseData";
-import { UseStabData } from "~/hooks/useStabData";
 import DashboardContext from "~/layout/dashboard/dashboard.context";
 import Form from "./Form/Form";
 import TableListe from "./TableListe/TableListe";
@@ -10,7 +8,7 @@ interface ChildComponentProps {
 }
 
 const MainCenterContainer: React.FC<ChildComponentProps> = ({ style }) => {
-    const { content, contentChange, menuType, menuTypeChange } = useContext(DashboardContext);
+    const { content, contentChange, menuType, menuTypeChange, horseData, deleteHorseById, horseByHalfLeaseByUserId, horseByUserId, stabsData, stabByHorseStabId } = useContext(DashboardContext);
 
     const onSubmit = () => {
         // ! onSubmit n'est pas Utilisé
@@ -33,18 +31,6 @@ const MainCenterContainer: React.FC<ChildComponentProps> = ({ style }) => {
         }
     }
 
-    const {
-        horseData,
-        UseHorseDeleteByIdData,
-        UseHorseByhalfLeaseUserIdData,
-        UseHorseByUserIdData,
-    } = useHorseData();
-
-    const {
-        stabdata,
-        UsegetStabByaArrayIdData
-    } = UseStabData()
-
     return (
         <>
             <div id="main-center-container" className={style}>
@@ -57,11 +43,11 @@ const MainCenterContainer: React.FC<ChildComponentProps> = ({ style }) => {
                     {content === "table" ?
                         <TableListe
                             horseData={horseData}
-                            UseHorseDeleteByIdData={UseHorseDeleteByIdData}
-                            UseHorseByhalfLeaseUserIdData={UseHorseByhalfLeaseUserIdData}
-                            UseHorseByUserIdData={UseHorseByUserIdData}
-                            UsegetStabByaArrayIdData={UsegetStabByaArrayIdData}
-                            stabdata={stabdata}
+                            UseHorseDeleteByIdData={deleteHorseById}
+                            UseHorseByhalfLeaseUserIdData={horseByHalfLeaseByUserId}
+                            UseHorseByUserIdData={horseByUserId}
+                            UsegetStabByaArrayIdData={stabByHorseStabId}
+                            stabdata={stabsData}
                         /> :
                         <></>}
 
