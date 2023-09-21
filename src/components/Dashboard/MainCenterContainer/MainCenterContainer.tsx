@@ -54,7 +54,7 @@ const MainCenterContainer: React.FC<ChildComponentProps> = ({ style }) => {
                         <div id="logo-name"></div>
                         <div id="filter container"></div>
                     </div>
-                    {content === "form" ? <Form onSubmit={onSubmit} menuType={menuType as MenuType} /> : <></>}
+                    {content === "form" ? <Form onSubmit={onSubmit} /> : <></>}
                     {content === "table" ?
                         <TableListe
                             menuType={menuType as MenuType}

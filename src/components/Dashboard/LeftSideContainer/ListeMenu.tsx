@@ -59,10 +59,10 @@ export const ListeMenu: React.FC<ListeMenuProps> = ({ menu, onMenuChange }) => {
             }
         }
     };
+
     return (
         <>
             <ul className={Style.ulMenu}>
-
                 {menu.map((item, index) => (
                     <li
                         key={index}
@@ -89,13 +89,10 @@ export const ListeMenu: React.FC<ListeMenuProps> = ({ menu, onMenuChange }) => {
     );
 };
 
-
-
 const menuactionHorse: Menu[] = [
     { title: "Liste", icone: listeICo, level: 2, label: "table" },
     { title: "Add", icone: AddICo, level: 2, label: "formHorse" },
 ]
-
 
 const menuactionPension: Menu[] = [
     { title: "Liste Pension", icone: listeICo, level: 2, label: "table" },
@@ -115,7 +112,6 @@ const menuActionActivities: Menu[] = [
 const menuActionAnnonces: Menu[] = [
     { title: "Liste Annonces", icone: listeICo, level: 2, label: "table" },
     { title: "New", icone: AddICo, level: 2, label: "formAnnonce" },
-
 ]
 
 const menuActionContracts: Menu[] = [

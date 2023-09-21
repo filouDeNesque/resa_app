@@ -96,7 +96,7 @@ const TableListe: React.FC<tableListeProps> = ({
             }
         } else if (menuType === "stabListe") {
             if (Array.isArray(stabdata) && contentTable) {
-            setContentTable(formatStabData(stabdata))
+                setContentTable(formatStabData(stabdata))
             }
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps

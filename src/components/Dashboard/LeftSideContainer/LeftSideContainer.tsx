@@ -8,7 +8,6 @@ import { ListeMenu } from "./ListeMenu";
 import type { Menu } from "./leftsideContainer.interface";
 import Style from "./style.module.css";
 
-
 interface LeftSideContainerProps {
     style: string;
 }
@@ -20,9 +19,7 @@ const LeftSideContainer: React.FC<LeftSideContainerProps> = ({ style }) => {
         setActiveMenu(newMenu);
     };
 
-
     return (
-
         <div id="left-side-container" className={style}>
             <div id="contextual-menu">
                 <h3>Cheval</h3>
@@ -34,7 +31,6 @@ const LeftSideContainer: React.FC<LeftSideContainerProps> = ({ style }) => {
                 <ListeMenu menu={menuComponent} onMenuChange={handleMenuChange} ></ListeMenu>
             </div>
         </div>
-
     );
 };
 
