@@ -1,10 +1,12 @@
-import React, { useEffect, useState, type FormEvent } from "react";
+import React, { useEffect, useState, type FormEvent, useContext } from "react";
 import { useHorseData } from "~/hooks/useHorseData";
 import { type Horse } from "~/types/Horse.type";
 import { type MenuType } from "../../Dashboard.type";
 import { FormField } from "./FormField";
 import FormFieldTextarea from "./FormFieldTextarea";
+import DashboardContext from "~/layout/dashboard/dashboard.context";
 
+//TODO:Création d'un context pour le form
 interface Field {
     label: string;
     name: string;
@@ -14,20 +16,18 @@ interface Field {
 }
 
 interface FormProps {
-    // ! onSubmit n'est pas utilisé 
     onSubmit: (newContent: "form" | "table") => void;
-    menuType: MenuType;
 }
 
-const Form: React.FC<FormProps> = ({ onSubmit, menuType }) => {
+const Form: React.FC<FormProps> = ({ onSubmit }) => {
+    const { menuType } = useContext(DashboardContext)
     const {
         UseHorseCreateData,
     } = useHorseData();
-
-    const [fieldInputs, setFieldInputs] = useState<Field[]>(getFormFields(menuType));
+    const [fieldInputs, setFieldInputs] = useState<Field[]>(getFormFields(menuType as MenuType));
 
     useEffect(() => {
-        setFieldInputs(getFormFields(menuType))
+        setFieldInputs(getFormFields(menuType as MenuType))
     }, [menuType])
 
     //transmission des data
@@ -57,7 +57,6 @@ const Form: React.FC<FormProps> = ({ onSubmit, menuType }) => {
     };
 
     return (
-
         fieldInputs.length > 0 && (
             <form onSubmit={handleSubmit}>
                 <div className="grid md:grid-cols-2 md:gap-6">
@@ -140,7 +139,6 @@ function getFormFields(menuType: MenuType): Field[] {
             return [];
     }
 }
-
 //fetch create de Horse
 function SubmitHorsein(data: Record<string, string>, UseHorseCreateData: (horse: Horse) => Promise<void>) {
     const horse: Horse = {
@@ -159,5 +157,4 @@ function SubmitHorsein(data: Record<string, string>, UseHorseCreateData: (horse:
         console.log(error)
     })
 }
-
 //fetch create de Stab
