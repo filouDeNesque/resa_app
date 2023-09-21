@@ -8,7 +8,7 @@ interface ChildComponentProps {
 }
 
 const MainCenterContainer: React.FC<ChildComponentProps> = ({ style }) => {
-    const { content, contentChange, menuType, menuTypeChange, horseData, deleteHorseById, horseByHalfLeaseByUserId, horseByUserId, stabsData, stabByHorseStabId } = useContext(DashboardContext);
+    const { content, contentChange, menuType, menuTypeChange } = useContext(DashboardContext);
 
     const onSubmit = () => {
         // ! onSubmit n'est pas Utilisé
@@ -40,17 +40,7 @@ const MainCenterContainer: React.FC<ChildComponentProps> = ({ style }) => {
                         <div id="filter container"></div>
                     </div>
                     {content === "form" ? <Form onSubmit={onSubmit} /> : <></>}
-                    {content === "table" ?
-                        <TableListe
-                            horseData={horseData}
-                            UseHorseDeleteByIdData={deleteHorseById}
-                            UseHorseByhalfLeaseUserIdData={horseByHalfLeaseByUserId}
-                            UseHorseByUserIdData={horseByUserId}
-                            UsegetStabByaArrayIdData={stabByHorseStabId}
-                            stabdata={stabsData}
-                        /> :
-                        <></>}
-
+                    {content === "table" ? <TableListe /> : <></>}
                 </div>
             </div>
         </>
