@@ -2,7 +2,6 @@ import { useContext } from "react";
 import { useHorseData } from "~/hooks/useHorseData";
 import { UseStabData } from "~/hooks/useStabData";
 import DashboardContext from "~/layout/dashboard/dashboard.context";
-import { type MenuType } from "../Dashboard.type";
 import Form from "./Form/Form";
 import TableListe from "./TableListe/TableListe";
 
@@ -57,7 +56,6 @@ const MainCenterContainer: React.FC<ChildComponentProps> = ({ style }) => {
                     {content === "form" ? <Form onSubmit={onSubmit} /> : <></>}
                     {content === "table" ?
                         <TableListe
-                            menuType={menuType as MenuType}
                             horseData={horseData}
                             UseHorseDeleteByIdData={UseHorseDeleteByIdData}
                             UseHorseByhalfLeaseUserIdData={UseHorseByhalfLeaseUserIdData}

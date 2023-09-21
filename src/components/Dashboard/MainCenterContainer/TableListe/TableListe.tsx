@@ -1,8 +1,8 @@
 import { useSession } from "next-auth/react";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import DashboardContext from "~/layout/dashboard/dashboard.context";
 import { type Horse } from "~/types/Horse.type";
 import { type Stabs } from "~/types/stabs";
-import { type MenuType } from "../../Dashboard.type";
 import PageTransport from "./PageTransport";
 import { ThHeader } from "./ThHeader";
 import Trbody from "./TrBody";
@@ -10,7 +10,6 @@ import Style from "./style.module.css";
 import type { Horseitem, Stabsitem } from "./tableListe.interface";
 
 type tableListeProps = {
-    menuType: MenuType
     horseData: Horse | Horse[] | null
     UseHorseDeleteByIdData: (horseId: string) => Promise<void>
     UseHorseByhalfLeaseUserIdData: (halfLeaseUserId: string) => Promise<void>
@@ -20,13 +19,13 @@ type tableListeProps = {
 }
 
 const TableListe: React.FC<tableListeProps> = ({
-    menuType,
     horseData,
     UseHorseDeleteByIdData,
     UseHorseByhalfLeaseUserIdData,
     UseHorseByUserIdData,
     UsegetStabByaArrayIdData,
     stabdata }) => {
+    const { menuType } = useContext(DashboardContext)
     const titleColumnTabStabList: string[] = [
         "Nom",
         "Adresse",
