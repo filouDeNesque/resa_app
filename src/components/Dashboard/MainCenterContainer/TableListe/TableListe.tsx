@@ -1,32 +1,19 @@
 import { useSession } from "next-auth/react";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import DashboardContext from "~/layout/dashboard/dashboard.context";
 import { type Horse } from "~/types/Horse.type";
 import { type Stabs } from "~/types/stabs";
-import { type MenuType } from "../../Dashboard.type";
 import PageTransport from "./PageTransport";
 import { ThHeader } from "./ThHeader";
 import Trbody from "./TrBody";
 import Style from "./style.module.css";
 import type { Horseitem, Stabsitem } from "./tableListe.interface";
 
-type tableListeProps = {
-    menuType: MenuType
-    horseData: Horse | Horse[] | null
-    UseHorseDeleteByIdData: (horseId: string) => Promise<void>
-    UseHorseByhalfLeaseUserIdData: (halfLeaseUserId: string) => Promise<void>
-    UseHorseByUserIdData: (userId: string) => Promise<void>
-    UsegetStabByaArrayIdData: (ids: string[]) => Promise<void>
-    stabdata: Stabs | Stabs[] | null
-}
 
-const TableListe: React.FC<tableListeProps> = ({
-    menuType,
-    horseData,
-    UseHorseDeleteByIdData,
-    UseHorseByhalfLeaseUserIdData,
-    UseHorseByUserIdData,
-    UsegetStabByaArrayIdData,
-    stabdata }) => {
+
+const TableListe = ({
+}) => {
+    const { menuType, horseData, stabsData, deleteHorseById, horseByHalfLeaseByUserId, horseByUserId, stabByHorseStabId } = useContext(DashboardContext)
     const titleColumnTabStabList: string[] = [
         "Nom",
         "Adresse",
@@ -53,7 +40,7 @@ const TableListe: React.FC<tableListeProps> = ({
 
     useEffect(() => {
         if (menuType === "horseListe") {
-            UseHorseByUserIdData(userId).catch((error) => {
+            horseByUserId(userId).catch((error) => {
                 console.log(error)
             })
             setHeaderMenu(titleColumnTabHorseListe)
@@ -63,13 +50,13 @@ const TableListe: React.FC<tableListeProps> = ({
             if (Array.isArray(horseData)) {
                 const stabId: (string | null)[] = horseData.map((horse: Horse) => horse.stabId);
                 const filteredStabId: string[] = stabId.filter((value) => value !== null && value !== undefined) as string[];
-                UsegetStabByaArrayIdData(filteredStabId).catch((error) => {
+                stabByHorseStabId(filteredStabId).catch((error) => {
                     console.log(error);
                 });
             }
 
         } else if (menuType === "halfLeaseUserList") {
-            UseHorseByhalfLeaseUserIdData(userId).catch((error) => {
+            horseByHalfLeaseByUserId(userId).catch((error) => {
                 console.log(error)
             })
             setHeaderMenu(titleColumnTabHorseListe)
@@ -95,12 +82,12 @@ const TableListe: React.FC<tableListeProps> = ({
                 setContentTable(formatHorseData(horseData))
             }
         } else if (menuType === "stabListe") {
-            if (Array.isArray(stabdata) && contentTable) {
-                setContentTable(formatStabData(stabdata))
+            if (Array.isArray(stabsData) && contentTable) {
+                setContentTable(formatStabData(stabsData))
             }
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [horseData, stabdata])
+    }, [horseData, stabsData])
 
     return (
         <div id="table-container" className={Style.tableContainer}>
@@ -121,7 +108,7 @@ const TableListe: React.FC<tableListeProps> = ({
                                     key={`${items.id}-${index}`}
                                     itemHorse={items as Horseitem}
                                     itemStabs={items as Stabsitem}
-                                    UseHorseDeleteByIdData={UseHorseDeleteByIdData}
+                                    UseHorseDeleteByIdData={deleteHorseById}
                                 />
                             </>
                         )

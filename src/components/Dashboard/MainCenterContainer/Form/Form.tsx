@@ -1,10 +1,9 @@
-import React, { useEffect, useState, type FormEvent, useContext } from "react";
-import { useHorseData } from "~/hooks/useHorseData";
+import React, { useContext, useEffect, useState, type FormEvent } from "react";
+import DashboardContext from "~/layout/dashboard/dashboard.context";
 import { type Horse } from "~/types/Horse.type";
 import { type MenuType } from "../../Dashboard.type";
 import { FormField } from "./FormField";
 import FormFieldTextarea from "./FormFieldTextarea";
-import DashboardContext from "~/layout/dashboard/dashboard.context";
 
 //TODO:Création d'un context pour le form
 interface Field {
@@ -20,14 +19,11 @@ interface FormProps {
 }
 
 const Form: React.FC<FormProps> = ({ onSubmit }) => {
-    const { menuType } = useContext(DashboardContext)
-    const {
-        UseHorseCreateData,
-    } = useHorseData();
-    const [fieldInputs, setFieldInputs] = useState<Field[]>(getFormFields(menuType as MenuType));
+    const { menuType, createHorse } = useContext(DashboardContext)
+    const [fieldInputs, setFieldInputs] = useState<Field[]>(getFormFields(menuType));
 
     useEffect(() => {
-        setFieldInputs(getFormFields(menuType as MenuType))
+        setFieldInputs(getFormFields(menuType))
     }, [menuType])
 
     //transmission des data
@@ -42,7 +38,7 @@ const Form: React.FC<FormProps> = ({ onSubmit }) => {
         //renvoi n'importe quel forme 
         switch (menuType) {
             case "horseListe":
-                SubmitHorsein(data, UseHorseCreateData)
+                SubmitHorsein(data, createHorse)
                 onSubmit("table");
                 return true;
             case "stabListe":
@@ -140,7 +136,7 @@ function getFormFields(menuType: MenuType): Field[] {
     }
 }
 //fetch create de Horse
-function SubmitHorsein(data: Record<string, string>, UseHorseCreateData: (horse: Horse) => Promise<void>) {
+function SubmitHorsein(data: Record<string, string>, createHorse: (horse: Horse) => Promise<void>) {
     const horse: Horse = {
         id: 'unknow',
         name: `${data.firstName as string} ${data.lastName as string}`,
@@ -153,7 +149,7 @@ function SubmitHorsein(data: Record<string, string>, UseHorseCreateData: (horse:
         stabId: null,
         halfLeaseUsersId: null
     }
-    UseHorseCreateData(horse).catch((error) => {
+    createHorse(horse).catch((error) => {
         console.log(error)
     })
 }
