@@ -1,7 +1,7 @@
 import { useSession } from "next-auth/react";
 import TopContainer from "~/components/Home/TopContainer";
 import Layout from "~/components/Layout";
-import { HomeProvider } from "~/layout/home/home.context";
+import { HomeProvider } from "~/context/home/home.context";
 import DisconnectHome from "~/components/Home/DisconnectHome";
 
 export default function Home() {

@@ -2,7 +2,7 @@ import "leaflet-defaulticon-compatibility";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
 import "leaflet/dist/leaflet.css";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
-import useHome from "~/layout/home/home.context";
+import useHome from "~/context/home/home.context";
 import type { Stabs } from "~/types/stabs";
 import {
   stabsIcon,

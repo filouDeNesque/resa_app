@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { useContext, useState } from "react";
-import DashboardContext from "~/layout/dashboard/dashboard.context";
+import DashboardContext from "~/context/dashboard/dashboard.context";
 import AddICo from "../../../../public/images/icone/Add-icone.png";
 import listeICo from "../../../../public/images/icone/icons8-liste-64.png";
 import { type Menu } from "./leftsideContainer.interface";

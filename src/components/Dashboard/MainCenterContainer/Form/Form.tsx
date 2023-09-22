@@ -1,21 +1,15 @@
 import React, { useContext, useEffect, useState, type FormEvent } from "react";
-import DashboardContext from "~/layout/dashboard/dashboard.context";
+import DashboardContext from "~/context/dashboard/dashboard.context";
+import { activitiesFormfields, annonceFormfields, horseFormfields, stabFormfields } from "~/data/formFields";
 import { type Horse } from "~/types/Horse.type";
-import { type MenuType } from "../../Dashboard.type";
+import { type Field, type MenuType } from "../../Dashboard.type";
 import { FormField } from "./FormField";
 import FormFieldTextarea from "./FormFieldTextarea";
 
 //TODO:Création d'un context pour le form
-interface Field {
-    label: string;
-    name: string;
-    placeholder: string;
-    type: string;
-    step?: string;
-}
 
 interface FormProps {
-    onSubmit: (newContent: "form" | "table") => void;
+    onSubmit: () => void;
 }
 
 const Form: React.FC<FormProps> = ({ onSubmit }) => {
@@ -26,10 +20,9 @@ const Form: React.FC<FormProps> = ({ onSubmit }) => {
         setFieldInputs(getFormFields(menuType))
     }, [menuType])
 
-    //transmission des data
+    //handler du Form 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-
         const inputs = Array.from(e.currentTarget.elements) as HTMLFormElement[];
         const data = inputs
             .filter((input) => input.name)
@@ -39,7 +32,7 @@ const Form: React.FC<FormProps> = ({ onSubmit }) => {
         switch (menuType) {
             case "horseListe":
                 SubmitHorsein(data, createHorse)
-                onSubmit("table");
+                onSubmit();
                 return true;
             case "stabListe":
                 return true;
@@ -58,16 +51,12 @@ const Form: React.FC<FormProps> = ({ onSubmit }) => {
                 <div className="grid md:grid-cols-2 md:gap-6">
                     {fieldInputs.map((item) => (
                         <>
-                            {
-                                item.type != "textarea" && (
-                                    <FormField label={item.label} name={item.name} placeholder={item.placeholder} type={item.type} step={item.step} />
-                                )
-                            }
-                            {
-                                item.type == "textarea" && (
-                                    <FormFieldTextarea item={item} />
-                                )
-                            }
+                            {item.type != "textarea" && (
+                                <FormField label={item.label} name={item.name} placeholder={item.placeholder} type={item.type} step={item.step} />
+                            )}
+                            {item.type == "textarea" && (
+                                <FormFieldTextarea item={item} />
+                            )}
                         </>
                     ))}
                 </div>
@@ -79,47 +68,6 @@ const Form: React.FC<FormProps> = ({ onSubmit }) => {
 };
 
 export default Form;
-
-const horseFormfields: Field[] = [
-    { label: "Name", name: "firstName", placeholder: "", type: "text" },
-    { label: "Last Name", name: "lastName", placeholder: "", type: "text" },
-    { label: "Size", name: "size", placeholder: "", type: "number", step: "0.01" },
-    { label: "Birth Date", name: "birthdate", placeholder: "", type: "date" },
-    //TODO: change to type liste
-    { label: "stab", name: "stab", placeholder: "", type: "text" },
-]
-const stabFormfields: Field[] = [
-    { label: "Name", name: "name", placeholder: "", type: "text" },
-    { label: "Adresse", name: "adresse", placeholder: "", type: "text" },
-    { label: "Code postal", name: "postalCode", placeholder: "", type: "number" },
-    { label: "Ville", name: "city", placeholder: "", type: "text" },
-    { label: "Telephone", name: "phone", placeholder: "", type: "tel" },
-    { label: "Site", name: "site", placeholder: "", type: "tel" },
-    { label: "Capacité", name: "capacity", placeholder: "", type: "date" },
-]
-const annonceFormfields: Field[] = [
-    //TODO: change to type liste
-    { label: "Type", name: "type", placeholder: "Vente", type: "text" },
-    { label: "Catégories", name: "categories", placeholder: "", type: "text" },
-    { label: "Titre", name: "title", placeholder: "", type: "text" },
-    { label: "Votre annonce", name: "content", placeholder: "", type: "textarea" },
-    //TODO:Change to type liste
-    { label: "Cheval", name: "horse", placeholder: "", type: "liste" },
-    { label: "Début", name: "startingDate", placeholder: "", type: "date" },
-    { label: "Fin", name: "endingDate", placeholder: "", type: "date" },
-    { label: "Prix", name: "price", placeholder: "", type: "number" },
-    { label: "label", name: "label", placeholder: "proposal", type: "liste" },
-]
-const activitiesFormfields: Field[] = [
-    { label: "Type", name: "type", placeholder: "Veterinaire", type: "text" },
-    { label: "Catégories", name: "categories", placeholder: "", type: "text" },
-    { label: "Titre", name: "title", placeholder: "", type: "text" },
-    { label: "Commentaire", name: "content", placeholder: "", type: "textarea" },
-    { label: "Cheval", name: "horse", placeholder: "", type: "liste" },
-    { label: "Début", name: "startingDate", placeholder: "", type: "date" },
-    { label: "Fin", name: "endingDate", placeholder: "", type: "date" },
-    { label: "Prix", name: "price", placeholder: "", type: "number" },
-]
 
 function getFormFields(menuType: MenuType): Field[] {
     switch (menuType) {
@@ -142,6 +90,7 @@ function SubmitHorsein(data: Record<string, string>, createHorse: (horse: Horse)
         name: `${data.firstName as string} ${data.lastName as string}`,
         size: parseFloat(data.size as string),
         birthDate: new Date(data.birthdate as string),
+        //!modifier l'id par celui de l'utilisateur
         ownerId: "cllqs7p350000ukpc3b3l92mc",
         createdDate: null,
         UdpdateDate: null,

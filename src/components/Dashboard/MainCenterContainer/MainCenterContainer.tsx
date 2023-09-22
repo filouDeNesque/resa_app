@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import DashboardContext from "~/layout/dashboard/dashboard.context";
+import DashboardContext from "~/context/dashboard/dashboard.context";
 import Form from "./Form/Form";
 import TableListe from "./TableListe/TableListe";
 
@@ -10,15 +10,14 @@ interface ChildComponentProps {
 const MainCenterContainer: React.FC<ChildComponentProps> = ({ style }) => {
     const { content, contentChange, menuType, menuTypeChange } = useContext(DashboardContext);
 
+    //TODO: Utilisation d'un useEffect
     const onSubmit = () => {
-        // ! onSubmit n'est pas Utilisé
-        console.log("submite on Form push ======================: ");
         switch (menuType) {
             case "horseListe":
+                //?modification de la mise à jour de la forme
                 menuTypeChange("stabListe")
                 menuTypeChange("horseListe")
                 contentChange("table")
-
                 return true;
             case "stabListe":
                 return true;

@@ -1,6 +1,6 @@
 import { useSession } from "next-auth/react";
 import { useContext, useEffect, useState } from "react";
-import DashboardContext from "~/layout/dashboard/dashboard.context";
+import DashboardContext from "~/context/dashboard/dashboard.context";
 import { type Horse } from "~/types/Horse.type";
 import { type Stabs } from "~/types/stabs";
 import PageTransport from "./PageTransport";
@@ -9,11 +9,17 @@ import Trbody from "./TrBody";
 import Style from "./style.module.css";
 import type { Horseitem, Stabsitem } from "./tableListe.interface";
 
-
-
 const TableListe = ({
 }) => {
-    const { menuType, horseData, stabsData, deleteHorseById, horseByHalfLeaseByUserId, horseByUserId, stabByHorseStabId } = useContext(DashboardContext)
+    const {
+        menuType,
+        horseData,
+        stabsData,
+        deleteHorseById,
+        horseByHalfLeaseByUserId,
+        horseByUserId,
+        stabByHorseStabId
+    } = useContext(DashboardContext)
     const titleColumnTabStabList: string[] = [
         "Nom",
         "Adresse",
