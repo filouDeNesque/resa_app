@@ -1,6 +1,6 @@
 import DashboardContainer from "~/components/Dashboard/DashBoardContainer";
 import Layout from "~/components/Layout/Layout";
-import { DashboardContextProvider } from "~/layout/dashboard/dashboard.context";
+import { DashboardContextProvider } from "~/context/dashboard/dashboard.context";
 
 const Dashboard = () => {
     return (

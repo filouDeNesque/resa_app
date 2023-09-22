@@ -10,11 +10,9 @@ interface ChildComponentProps {
 const MainCenterContainer: React.FC<ChildComponentProps> = ({ style }) => {
     const { content, contentChange, menuType, menuTypeChange } = useContext(DashboardContext);
 
-    //TODO: Utilisation d'un useEffect
     const onSubmit = () => {
         switch (menuType) {
             case "horseListe":
-                //?modification de la mise à jour de la forme
                 menuTypeChange("stabListe")
                 menuTypeChange("horseListe")
                 contentChange("table")

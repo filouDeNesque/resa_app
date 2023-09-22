@@ -11,7 +11,7 @@ datasource db {
 }
 
 model VerificationToken {
-    identifier String   @id @default(auto()) @map("_id")  @db.ObjectId
+    identifier String   @id @default(auto()) @map("_id") @db.ObjectId
     token      String   @unique
     expires    DateTime
 
@@ -20,8 +20,8 @@ model VerificationToken {
 
 // Necessary for Next auth
 model Account {
-    id                String  @id @default(cuid()) @map("_id")  
-    userId            String   
+    id                String  @id @default(cuid()) @map("_id")
+    userId            String
     user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
     type              String
     provider          String
@@ -38,15 +38,15 @@ model Account {
 }
 
 model Session {
-    id           String   @id @default(cuid()) @map("_id")  
+    id           String   @id @default(cuid()) @map("_id")
     sessionToken String   @unique
     expires      DateTime
-    userId       String    
+    userId       String
     user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model User {
-    id              String      @id @default(cuid()) @map("_id")  
+    id              String      @id @default(cuid()) @map("_id")
     name            String?
     firstname       String?
     email           String?     @unique
@@ -71,7 +71,7 @@ model User {
 }
 
 model UserPlace {
-    id           String  @id @default(cuid()) @map("_id")  
+    id           String  @id @default(cuid()) @map("_id")
     name         String
     type         String
     dateAdded    String
@@ -79,12 +79,12 @@ model UserPlace {
     lon          Float
     lat          Float
     user         User    @relation(fields: [userId], references: [id], onDelete: Cascade)
-    userId       String   
+    userId       String
     HorseOwnerId Horse[]
 }
 
 model stabs {
-    id              String     @id @default(cuid()) @map("_id") @db.ObjectId 
+    id              String     @id @default(cuid()) @map("_id") @db.ObjectId
     name            String
     StreetAddress   String
     PostalCode      String
@@ -96,7 +96,7 @@ model stabs {
     lat             Float?
     place_id        String?
     User            User?      @relation(fields: [userId], references: [id])
-    userId          String?     
+    userId          String?
     Horse           Horse[]
     TotalPlace      Int
     Ads             Ads[]
@@ -104,26 +104,26 @@ model stabs {
 }
 
 model Horse {
-    id               String     @id @default(cuid()) @map("_id")  
+    id               String     @id @default(cuid()) @map("_id")
     name             String
     size             Float
     createdDate      DateTime   @default(now())
     UdpdateDate      DateTime   @updatedAt
     birthDate        DateTime
-    userPlace        UserPlace?  @relation(fields: [placeId], references: [id])
-    placeId          String?      
-    stab             stabs?      @relation(fields: [stabId], references: [id])
-    stabId           String?      
+    userPlace        UserPlace? @relation(fields: [placeId], references: [id])
+    placeId          String?
+    stab             stabs?     @relation(fields: [stabId], references: [id])
+    stabId           String?     @db.ObjectId
     user             User       @relation(name: "HorseOwnerId", fields: [ownerId], references: [id])
-    ownerId          String      
+    ownerId          String
     halfLeaseUsers   User       @relation(name: "halfLeaseUser", fields: [halfLeaseUsersId], references: [id])
-    halfLeaseUsersId String[]    
+    halfLeaseUsersId String[]
     contract         Contract[]
     ads              Ads[]
 }
 
 model Contract {
-    id                String   @id @default(cuid()) @map("_id")  
+    id                String   @id @default(cuid()) @map("_id")
     price             Float
     type              String
     createdDate       DateTime @default(now())
@@ -134,17 +134,17 @@ model Contract {
     content           String
     acceptationDate   DateTime
     userSignatory     User     @relation(name: "signatur", fields: [contractSignatory], references: [id])
-    contractSignatory String    
+    contractSignatory String
     userIssuer        User     @relation(name: "issuer", fields: [contractSignatory], references: [id])
-    contractIssuer    String    
+    contractIssuer    String
     horseIssuer       Horse    @relation(fields: [horseId], references: [id])
-    horseId           String    
+    horseId           String
     stab              stabs?   @relation(fields: [stabId], references: [id])
-    stabId            String?   
+    stabId            String?     @db.ObjectId
 }
 
 model Ads {
-    id                String   @id @default(cuid()) @map("_id")  
+    id                String   @id @default(cuid()) @map("_id")
     type              String
     price             Float
     createdDate       DateTime @default(now())
@@ -154,19 +154,19 @@ model Ads {
     title             String
     content           String
     userSignatory     User     @relation(name: "adsIssuer", fields: [contractSignatory], references: [id])
-    contractSignatory String    
+    contractSignatory String
     userIssuer        User     @relation(name: "adsInteresr", fields: [contractSignatory], references: [id])
-    contractIssuer    String    
+    contractIssuer    String
     horseIssuer       Horse    @relation(fields: [horseId], references: [id])
-    horseId           String    
+    horseId           String
     activity          Activity @relation(fields: [activityId], references: [id])
-    activityId        String[]  
+    activityId        String[]
     stab              stabs?   @relation(fields: [stabId], references: [id])
-    stabId            String?   
+    stabId            String?     @db.ObjectId
 }
 
 model Activity {
-    id   String @id @default(cuid()) @map("_id")  
+    id   String @id @default(cuid()) @map("_id")
     name String
     ads  Ads[]
 }
